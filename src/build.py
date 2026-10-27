@@ -16,7 +16,7 @@ def head(title,desc,path,ld):
 <title>{e(t)}</title><meta name="description" content="{e(desc[:155])}"><link rel="canonical" href="{U}{path}">
 <meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:site_name" content="{N}"><meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc[:155])}"><meta property="og:url" content="{U}{path}"><meta property="og:type" content="{'article' if path.startswith('/news/') and path!='/news/' else 'website'}"><meta name="twitter:card" content="summary">
 <link rel="icon" href="/assets/logo.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/site.css"><link rel="alternate" type="application/rss+xml" href="/feed.xml" title="{N}">
-<script>window.__rrGaId={json.dumps(SITE['ga_id'])};</script><script defer src="/consent.js"></script>
+<script>window.__rrGaId={json.dumps(SITE['ga_id'])};window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('consent','default',{{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',functionality_storage:'denied',personalization_storage:'denied',security_storage:'granted',wait_for_update:500}});</script><script defer src="/consent.js"></script>
 <script type="application/ld+json">{json.dumps({"@context":"https://schema.org","@graph":[ORG]+ld})}</script></head>"""
 def chrome(body,path):
     nav="".join(f'<li><a href="{h}"{" aria-current=\"page\"" if path.startswith(h) else ""}>{t}</a></li>' for h,t in NAV)

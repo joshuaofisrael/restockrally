@@ -4,11 +4,12 @@
    in localStorage. Any element with data-consent-open reopens the banner. */
 (function () {
   var KEY = "rr-analytics-consent";
+  var KEY2 = "mtm-analytics-consent"; /* shared key read by the network GA test */
   function read() {
-    try { return localStorage.getItem(KEY); } catch (e) { return null; }
+    try { return localStorage.getItem(KEY) || localStorage.getItem(KEY2); } catch (e) { return null; }
   }
   function save(v) {
-    try { localStorage.setItem(KEY, v); } catch (e) {}
+    try { localStorage.setItem(KEY, v); localStorage.setItem(KEY2, v); } catch (e) {}
   }
   function gtagSafe() {
     if (typeof window.gtag === "function") window.gtag.apply(null, arguments);
@@ -19,17 +20,7 @@
     if (!id || /^G-X+$/.test(id)) return;
     window.__rrGaLoaded = true;
     window.dataLayer = window.dataLayer || [];
-    window.gtag = function () { window.dataLayer.push(arguments); };
-    window.gtag("consent", "default", {
-      ad_storage: "denied",
-      ad_user_data: "denied",
-      ad_personalization: "denied",
-      analytics_storage: "denied",
-      functionality_storage: "denied",
-      personalization_storage: "denied",
-      security_storage: "granted",
-      wait_for_update: 500
-    });
+    if (typeof window.gtag !== "function") window.gtag = function () { window.dataLayer.push(arguments); };
     window.gtag("set", "ads_data_redaction", true);
     window.gtag("set", "url_passthrough", false);
     window.gtag("consent", "update", { analytics_storage: "granted" });
