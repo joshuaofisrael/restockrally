@@ -1,6 +1,9 @@
 import os, json, html, re, shutil, datetime
 from data import SITE, RELEASES, RESTOCKS
 from articles import ARTICLES
+import sys, subprocess, legal_gate
+# Legal hold gate layer 1: a flagged article is never rendered (saved as HOLD_REVIEW draft + queue.jsonl instead).
+ARTICLES=[a for a in ARTICLES if legal_gate.gate_article(a)]
 OUT=os.path.join(os.path.dirname(__file__),"..","docs"); OUT=os.path.abspath(OUT)
 U=SITE["url"]; N=SITE["name"]; Y=SITE["year"]
 e=html.escape
@@ -130,4 +133,9 @@ open(f"{OUT}/CNAME","w").write("restockrally.com\n"); open(f"{OUT}/.nojekyll","w
 open(f"{OUT}/llms.txt","w").write(f"# {N}\n\n> {SITE['tagline']}. Sourced sneaker release dates, restocks and raffles.\n\n## Key pages\n- [Release calendar]({U}/releases/)\n- [Restocks]({U}/restocks/)\n- [Raffles]({U}/raffles/)\n- [News]({U}/news/)\n- [Sources & Ethics]({U}/sources-ethics/)\n\n## Articles\n"+"".join(f"- [{a['title']}]({U}/news/{a['slug']}/): {a['description']}\n" for a in ART))
 items="".join(f"<item><title>{e(a['title'])}</title><link>{U}/news/{a['slug']}/</link><guid>{U}/news/{a['slug']}/</guid><pubDate>{datetime.date.fromisoformat(a['date']).strftime('%a, %d %b %Y')} 09:00:00 +0000</pubDate><description>{e(a['description'])}</description></item>" for a in ART)
 open(f"{OUT}/feed.xml","w").write(f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>{N}</title><link>{U}/</link><description>{SITE["tagline"]}</description>{items}</channel></rss>')
+# Legal hold gate layer 2: full-site backstop. If any built page is held, put docs/ back to the last committed version and fail.
+if legal_gate.main([]) != 0:
+    root=os.path.dirname(OUT)
+    subprocess.run(["git","checkout","--","docs"],cwd=root); subprocess.run(["git","clean","-fdq","docs"],cwd=root)
+    print("HOLD_REVIEW: build refused, docs/ restored to the last published version"); sys.exit(3)
 print(len(pages),"pages")
