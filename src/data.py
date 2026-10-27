@@ -4,7 +4,7 @@ SITE = {
   "url": "https://restockrally.com",
   "tagline": "Fast sneaker release dates, restocks and raffles",
   "contact_endpoint": "https://formsubmit.co/4497ee41a1200e746e967998473d21da",
-  "ga_id": "G-XXXXXXXXXX",  # placeholder until the Personal assistant sends the real G- ID
+  "ga_id": "G-LE2DZJFW6R",  # placeholder until the Personal assistant sends the real G- ID
   "indexnow_key": "8b8cf29951bb9ec34c151a1f184a21a0",
   "year": 2026,
 }
