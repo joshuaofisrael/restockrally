@@ -1,0 +1,61 @@
+# Each article: slug, title, description, date, category, body html, sources [(title,url,publisher,date)]
+NIKE6="https://www.nike.com/launch/t/air-jordan-6-white-infrared-white-and-light-crimson"
+NIKE11="https://www.nike.com/launch/t/air-jordan-11-green-screen"
+LBJ="https://www.nike.com/a/lebron-24-release"
+HOH="https://houseofheat.co/sneaker-releases-october-26-31-2026"
+SI="https://soleinsider.com/calendar/october-2026"
+SR="https://www.soleretriever.com/news/articles/nike-mind-restock-release-date-october-2026"
+CT="https://carttactic.com/nike-air-bakin-high-black-varsity-red-restock-foot-locker/"
+NJ="https://www.nj.com/shopping-deals/2026/10/nike-has-finally-restocked-the-sold-out-air-max-phenomena-sneaker-loafer.html"
+ARTICLES=[
+{"slug":"sneaker-releases-october-27-31-2026","title":"Sneaker releases this week: October 27 to 31, 2026","category":"Release Dates","date":"2026-10-27",
+"description":"The Air Jordan 3 Fireside, Kobe Mamba Eterno pack, Air Jordan 14 Forest Green and more land between October 27 and 31.",
+"body":f"""<p><strong>The short answer:</strong> the last week of October is packed, with Nike, Jordan, adidas, Converse and Vans releases landing every day from Tuesday to Saturday, according to <a href="{HOH}">House of Heat's weekly roundup</a> and the <a href="{SI}">SoleInsider October calendar</a>.</p>
+<h2>Tuesday and Wednesday</h2>
+<p>SoleInsider lists the Menace x adidas Adistar Control 5 "Heat Signature" for October 27 at $180 and the Nocturnal x Nike SB Air Force 1 Low the same day at $120. On October 28, the <a href="{SI}">same calendar</a> shows the Nike Air Max Ecstasy Plus "Triple Black" at $180 and the women's Nike First Sight Shadow "Cream" at $145.</p>
+<h2>Friday is the big day</h2>
+<p>October 30 carries the heaviest load. <a href="{SI}">SoleInsider</a> lists the women's Air Jordan 3 "Fireside" at $205, the Nike Book 2 "Oogie Boogie" at $155, the Nike Caitlin 1 "Jinx" at $150 and the Nike KD 19 "Slim Reaper" at $165. The calendar notes that the Caitlin 1 and KD 19 dates moved from October 23. The Kobe "Mamba Eterno" pack also lands that day, with the Kobe 3 Low Protro listed at $190.</p>
+<h2>Saturday closes the month</h2>
+<p>The Air Jordan 14 "Forest Green" ($215) and the Air Jordan 4 "Light Army" ($220) round out October, per <a href="{SI}">SoleInsider</a>. <a href="{HOH}">House of Heat</a> describes the Air Jordan 4 "Light Army" as an EU exclusive, so US buyers should check regional availability before release day.</p>
+<p>Every pair above is in our <a href="/releases/">filterable release calendar</a>, where you can sort by brand, date and price. Dates and prices can change, so confirm on the retailer's page before you buy.</p>""",
+"sources":[("This Week's Biggest Sneaker Releases: October 26 to 31",HOH,"House of Heat","2026-10-26"),("October 2026 Sneaker Release Dates",SI,"SoleInsider","2026-10-27")]},
+{"slug":"air-jordan-6-white-infrared-november-7-2026","title":"Air Jordan 6 \"White Infrared\" returns November 7 for $215","category":"Jordan","date":"2026-10-27",
+"description":"Nike's SNKRS page lists the Air Jordan 6 White Infrared, style code CT8529-105, for November 7 at $215.",
+"body":f"""<p><strong>The short answer:</strong> the Air Jordan 6 "White Infrared" (style code CT8529-105) is listed on <a href="{NIKE6}">Nike's SNKRS launch page</a> for November 7 at $215 for men's sizes.</p>
+<h2>What Nike says</h2>
+<p>Nike describes the pair as a bring back of the 1991 shoe, saying the shape, fit and feel mirror the original from 35 years ago. The <a href="{NIKE6}">SNKRS listing</a> credits the design to Tinker Hatfield and says it drew inspiration from German sports cars of the era. Nike also says the colorway was one of the shoe's original launch colorways and that the pair carries Nike Air heel branding.</p>
+<h2>Price and where to buy</h2>
+<p>The <a href="{NIKE6}">SNKRS page</a> shows $215 for the main listing, with a second listing on the same page at $155 (the page does not say which sizes it covers); check the size options before release day. SNKRS shows the release time in your local time zone, so open the page from your own device to see the exact hour.</p>
+<p>See the full details and a where to buy box on our <a href="/shoes/air-jordan-6-white-infrared/">Air Jordan 6 "White Infrared" release page</a>.</p>""",
+"sources":[("Air Jordan 6 White Infrared (CT8529-105) Release Date",NIKE6,"Nike SNKRS","2026-10-27")]},
+{"slug":"air-jordan-11-green-screen-november-14-2026","title":"Air Jordan 11 \"Green Screen\" set for November 14 at $255","category":"Jordan","date":"2026-10-27",
+"description":"Nike lists the Air Jordan 11 Green Screen, inspired by Space Jam's green screens, for November 14 at $255.",
+"body":f"""<p><strong>The short answer:</strong> <a href="{NIKE11}">Nike's SNKRS page</a> lists the Air Jordan 11 "Green Screen" (style code IQ5700-900) for November 14, priced at $255.</p>
+<h2>The story behind the colorway</h2>
+<p>Nike says the colorway was inspired by the green screens that brought the real world into the cartoon universe of Space Jam. According to the <a href="{NIKE11}">SNKRS listing</a>, Lucky Green covers the familiar silhouette, with dimensional textures and details across the shoe.</p>
+<h2>Sizes and price</h2>
+<p>The page shows $255 for the main listing and a second listing at $200; the page does not say which sizes it covers. As with every SNKRS launch, the release hour appears in your local time on the <a href="{NIKE11}">product page</a>.</p>
+<p>Track it on our <a href="/shoes/air-jordan-11-green-screen/">Air Jordan 11 "Green Screen" release page</a> and in the <a href="/releases/">release calendar</a>.</p>""",
+"sources":[("Air Jordan 11 Green Screen (IQ5700-900) Release Date",NIKE11,"Nike SNKRS","2026-10-27")]},
+{"slug":"nike-lebron-xxiv-stars-november-17-2026","title":"Nike LeBron XXIV \"Stars\" debuts November 17 for $180","category":"Basketball","date":"2026-10-27",
+"description":"Nike says the LeBron XXIV is the lightest LeBron signature shoe yet. The Stars colorway arrives November 17 for $180.",
+"body":f"""<p><strong>The short answer:</strong> the Nike LeBron XXIV launches November 17, 2026 in the debut "Stars" colorway (style code IO8204&#8209;400) for $180, according to <a href="{LBJ}">Nike's release page</a>, with pricing varying by region.</p>
+<h2>What is new</h2>
+<p>Nike says the 24th shoe in LeBron James' signature line uses a new KingKnit upper, a lower profile React midsole and a redesigned midfoot shank. The company calls it the lightest LeBron signature game shoe to date, based on the weight of a men's US size 9 compared with the LeBron 1 through 23, and notes that actual weight can vary by size and colorway.</p>
+<p>"LeBron frequently challenges us to continue pushing the limits of what's possible," Nike basketball footwear director Dorian Pickens said in <a href="{LBJ}">Nike's announcement</a>.</p>
+<h2>More colorways to follow</h2>
+<p>Nike says the "Stars" pair has a polarized blue base with black, gold and Racer Blue accents. It also previewed a brushed metallic silver pair, an all yellow pair, a rose toned pair and a multicolor style for Chinese New Year, which Nike says will follow after the debut.</p>
+<p>See our <a href="/shoes/nike-lebron-xxiv-stars/">LeBron XXIV "Stars" release page</a> for where to buy.</p>""",
+"sources":[("Nike LeBron XXIV: Release Date, Price and Colorways",LBJ,"Nike","2026-10-20")]},
+{"slug":"october-2026-sneaker-restocks-nike-mind-air-bakin","title":"October restocks: Nike Mind, Air Bakin and Air Max Phenomena came back","category":"Restocks","date":"2026-10-27",
+"description":"Nike Mind 001 and 002, the Air Bakin High SP and the Air Max Phenomena all restocked in October 2026. Here is what came back and where.",
+"body":f"""<p><strong>The short answer:</strong> three notable Nike pairs restocked in October: the Nike Mind 001 and 002 on October 15, the Air Bakin High SP "Black/Varsity Red" at Foot Locker on October 22, and the Air Max Phenomena earlier in the month.</p>
+<h2>Nike Mind 001 and 002</h2>
+<p><a href="{SR}">Sole Retriever reported</a> that Nike scheduled a Mind restock for October 15 through the Nike App and Nike.com, not SNKRS, using its Let Everyone Order method. The report listed the Mind 001 in Black, Solar Red and Work Blue at $95 and the Mind 002 Work Blue at $145.</p>
+<h2>Air Bakin High SP "Black/Varsity Red"</h2>
+<p>According to <a href="{CT}">CartTactic</a>, the Air Bakin High SP (style code IQ5365&#8209;600) restocked online at Foot Locker on the night of October 22 for $170 in men's sizes.</p>
+<h2>Air Max Phenomena</h2>
+<p><a href="{NJ}">NJ.com reported</a> on October 7 that Nike restocked the Air Max Phenomena sneaker loafer in black and a new cacao wow color, at $155.</p>
+<p>Restocks sell through fast and stock changes by the minute. Our <a href="/restocks/">restocks page</a> keeps a sourced log, and every entry links to the original report.</p>""",
+"sources":[("The Nike Mind Restocks October 15",SR,"Sole Retriever","2026-10-01"),("Nike Air Bakin High Black/Varsity Red Restock at Foot Locker",CT,"CartTactic","2026-10-23"),("Nike has finally restocked the sold out Air Max Phenomena sneaker loafer",NJ,"NJ.com","2026-10-10")]},
+]
