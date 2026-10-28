@@ -34,3 +34,34 @@ RESTOCKS = [
  ("Nike Mind 001 and Mind 002","2026-10-15","Nike App and Nike.com",95,"",("Sole Retriever","https://www.soleretriever.com/news/articles/nike-mind-restock-release-date-october-2026")),
  ("Nike Air Max Phenomena","2026-10-07","Nike",155,"",("NJ.com","https://www.nj.com/shopping-deals/2026/10/nike-has-finally-restocked-the-sold-out-air-max-phenomena-sneaker-loafer.html")),
 ]
+SIN = ("SoleInsider November 2026 calendar", "https://soleinsider.com/calendar/november-2026")
+SNK=[("Nike SNKRS","https://www.nike.com/launch")]
+RELEASES += [
+ ("Nike Kobe 3 Low Protro \"Black\"","Nike","2026-11-01",190,"IV7127-002",SNK,SIN),
+ ("Pharrell x adidas Adistar \"Jellyfish\"","adidas","2026-11-01",300,"KH6727",[("adidas","https://www.adidas.com/us")],SIN),
+ ("Nike Air Foamposite Pro \"Mummy Duck\"","Nike","2026-11-03",230,"IZ7806-001",SNK,SIN),
+ ("Air Jordan 11 MCS Cleat \"Space Jam\"","Jordan","2026-11-05",225,"JA7792-400",SNK,SIN),
+ ("Nike Air Foamposite Pro \"FSU\"","Nike","2026-11-05",250,"IX2095-600",SNK,SIN),
+ ("Nike Air Foamposite Pro \"LSU\"","Nike","2026-11-05",250,"IX2091-700",SNK,SIN),
+ ("Nike Air Foamposite Pro \"Ohio State\"","Nike","2026-11-05",250,"IX2094-100",SNK,SIN),
+ ("Victor Wembanyama x Nike GT Cut 4 \"State of Liberty\"","Nike","2026-11-05",210,"IW0737-300",SNK,SIN),
+ ("New Balance 990v7 Made in USA","New Balance","2026-11-06",200,"U990GR7",[("New Balance","https://www.newbalance.com")],SIN),
+ ("Union x Nike Dunk Low \"Bamboo\"","Nike","2026-11-06",130,"IF7380-200",SNK,SIN),
+ ("Air Jordan 11 \"Magic Ball\" (Women's)","Jordan","2026-11-11",235,"IZ1800-200",SNK,SIN),
+ ("Air Jordan 11 \"Lapis\" (Women's)","Jordan","2026-11-11",235,"IZ1800-400",SNK,SIN),
+ ("Nike Kobe 8 Protro \"Shanghai Fireworks\"","Nike","2026-11-11",200,"IO6259-800",SNK,SIN),
+ ("Nike Air Bakin \"Varsity Royal\"","Nike","2026-11-12",170,"IQ5365-400",SNK,SIN),
+ ("Nike Air Foamposite One \"Phantom\"","Nike","2026-11-13",240,"IZ1476-001",SNK,SIN),
+ ("Nike KD 19 \"Aunt Pearl\"","Nike","2026-11-13",170,"IO8111-600",SNK,SIN),
+ ("Nike Ja 4 \"Code Red\"","Nike","2026-11-19",130,"IM4135-603",SNK,SIN),
+ ("adidas Anthony Edwards 3 \"Lucid Pink\"","adidas","2026-11-20",130,"KH8545",[("adidas","https://www.adidas.com/us")],SIN),
+ ("Air Jordan 3 \"Not Nice\"","Jordan","2026-11-21",215,"IF4396-001",SNK,SIN),
+ ("Air Jordan 3 \"Lola Bunny\" (GS)","Jordan","2026-11-21",155,"IZ1694-600",SNK,SIN),
+ ("Air Jordan 4 OG \"Bred\"","Jordan","2026-11-27",230,"IX8180-001",SNK,SIN),
+ ("Nike Air Foamposite Pro \"Dr. Doom\"","Nike","2026-11-27",240,"HF0794-003",SNK,SIN),
+]
+SNWR=("Sneaker News","https://sneakernews.com/2026/10/25/sneaker-releases-october-25-31-2026/")
+RESTOCKS = [
+ ("Nike Air Max Goadome \"Black Pony Hair\"","2026-10-29","Nike and select stores",None,"",SNWR),
+ ("adidas Adizero Adios Pro Evo 3","2026-10-29","adidas and select stores",None,"",SNWR),
+] + RESTOCKS

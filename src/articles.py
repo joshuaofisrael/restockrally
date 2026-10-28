@@ -59,3 +59,62 @@ ARTICLES=[
 <p>Restocks sell through fast and stock changes by the minute. Our <a href="/restocks/">restocks page</a> keeps a sourced log, and every entry links to the original report.</p>""",
 "sources":[("The Nike Mind Restocks October 15",SR,"Sole Retriever","2026-10-01"),("Nike Air Bakin High Black/Varsity Red Restock at Foot Locker",CT,"CartTactic","2026-10-23"),("Nike has finally restocked the sold out Air Max Phenomena sneaker loafer",NJ,"NJ.com","2026-10-10")]},
 ]
+WWD="https://wwd.com/footwear-news/sneaker-news/air-jordan-release-date-calendar-november-2026-1239384236/"
+SIN="https://soleinsider.com/calendar/november-2026"
+JDT="https://justdrops.com/today"
+SNW="https://sneakernews.com/2026/10/25/sneaker-releases-october-25-31-2026/"
+JD3="https://justdrops.com/release/nike/womens-air-jordan-3-retro-fireside/CK9246-200"
+DA3="https://dropagenda.com/releases/air-jordan-3-fireside-womens/"
+ARTICLES_1028=[
+{"slug":"air-jordan-releases-november-2026","title":"Every Air Jordan releasing in November 2026","category":"Jordan","date":"2026-10-28",
+"description":"Space Jam Air Jordan 11s, the Air Jordan 6 White Infrared and the Air Jordan 4 Bred lead Jordan Brand's November 2026 lineup.",
+"body":f"""<p><strong>The short answer:</strong> November is a heavy month for Jordan Brand, with a Space Jam collection for the film's 30th anniversary, the Air Jordan 6 "White Infrared" on November 7 and the Air Jordan 4 "Bred" on November 27, according to <a href="{WWD}">Footwear News</a> and the <a href="{SIN}">SoleInsider November calendar</a>.</p>
+<h2>Early November</h2>
+<p><a href="{WWD}">Footwear News</a> lists the Air Jordan 41 for November 5 at $205 as part of the Space Jam collection. SoleInsider shows an Air Jordan 11 MCS cleat in a Space Jam theme the same day at $225. On November 7 the Air Jordan 6 "White Infrared" (CT8529&#8209;105) arrives at $215, alongside the Air Jordan 15 and Air Jordan 17 Low "Black Pack" at $245, per Footwear News.</p>
+<h2>Mid month</h2>
+<p>The women's Air Jordan 11 "Magic Ball" and "Lapis" are both listed for November 11 at $235 on <a href="{SIN}">SoleInsider</a>. Footwear News says the "Magic Ball" pair gets an extended size run up to the equivalent of a men's 12.5. The Air Jordan 11 "Green Screen" (IQ5700&#8209;900) follows on November 14 at $255.</p>
+<h2>Late November</h2>
+<p>SoleInsider lists three Air Jordan 3 pairs for November 21: the "Not Nice" at $215 and the grade school "Lola Bunny" and "Santa" at $155 each. <a href="{WWD}">Footwear News</a> still showed the "Not Nice" price as TBD when it published, so check the retailer page. The month closes with the Air Jordan 4 "Bred" on November 27 at $230.</p>
+<p>All of these pairs are in our <a href="/releases/">release calendar</a>. Dates and prices can change, so confirm on the retailer's page before release day.</p>""",
+"sources":[("Every Air Jordan Sneaker Releasing in November",WWD,"Footwear News","2026-10-24"),("November 2026 Sneaker Release Dates",SIN,"SoleInsider","2026-10-28")]},
+{"slug":"air-jordan-4-bred-november-27-2026","title":"Air Jordan 4 \"Bred\" returns November 27 for $230","category":"Jordan","date":"2026-10-28",
+"description":"The Air Jordan 4 Bred is listed for November 27, 2026 at $230, returning with its original materials.",
+"body":f"""<p><strong>The short answer:</strong> the Air Jordan 4 OG "Bred" (style code IX8180&#8209;001) is listed for Friday, November 27, 2026 at $230, according to <a href="{WWD}">Footwear News</a> and <a href="{SIN}">SoleInsider</a>.</p>
+<h2>What is different this time</h2>
+<p><a href="{WWD}">Footwear News</a> notes that last year's "Remastered" version swapped the Durabuck upper for leather, and says this release returns with the shoe's original materials. The outlet also points out that Jordan Brand usually saves one of its biggest releases of the year for Black Friday, and this year that slot belongs to the "Bred."</p>
+<h2>Release time and price</h2>
+<p><a href="{SIN}">SoleInsider</a> shows a 10 AM ET start and a $230 retail price. Expect the pair on Nike SNKRS and at Jordan Brand stockists; many shops sell limited Jordans by raffle or in a first come, first served drop, so check each store's own page for its method.</p>
+<p>Track it in our <a href="/releases/">release calendar</a> and see the rest of the month in our <a href="/news/air-jordan-releases-november-2026/">November Air Jordan guide</a>.</p>""",
+"sources":[("Every Air Jordan Sneaker Releasing in November",WWD,"Footwear News","2026-10-24"),("November 2026 Sneaker Release Dates",SIN,"SoleInsider","2026-10-28")]},
+{"slug":"sneaker-releases-october-28-29-2026","title":"Sneaker releases today and tomorrow: October 28 and 29, 2026","category":"Release Dates","date":"2026-10-28",
+"description":"The Air Max Ecstasy Plus drops October 28, then a college Air Force 1 pack, Wales Bonner adidas and the New Balance 992 land October 29.",
+"body":f"""<p><strong>The short answer:</strong> Wednesday is led by the Nike Air Max Ecstasy Plus in "Triple Black" and "Metallic Silver" at $180 each, and Thursday brings a four pair college Air Force 1 set at $125 each, according to <a href="{JDT}">Just Drops' daily release list</a>.</p>
+<h2>Wednesday, October 28</h2>
+<p><a href="{JDT}">Just Drops</a> lists both Air Max Ecstasy Plus colorways for 10 AM ET on the SNKRS app as a Let Everyone Order launch, which means anyone who requests a pair in time can buy one while stock lasts. The women's Nike First Sight Shadow "Cream II" also releases at $145. <a href="{SNW}">Sneaker News</a> describes the Ecstasy Plus pair as the start of an Air Max 2000 retro and rebrand.</p>
+<h2>Thursday, October 29</h2>
+<p>Just Drops lists Air Force 1 pairs for the University of Georgia, Kentucky, Oregon and Texas at 10 AM ET for $125 each. Wales Bonner adidas pairs follow at 11 AM ET, including the Gazelle Suede "Croc" at $220 and the Adizero Adios Suede "Wonder White" at $200, plus the Nike Alphafly 4 at $280 and the New Balance Made in USA 992 at $199.99.</p>
+<p><a href="{SNW}">Sneaker News</a> also reports two returning pairs that day: the Nike Air Max Goadome "Black Pony Hair" and the adidas Adizero Adios Pro Evo 3.</p>
+<p>See every date in our <a href="/releases/">release calendar</a> and returning pairs on our <a href="/restocks/">restocks page</a>.</p>""",
+"sources":[("Sneaker Releases Today (Wed, Oct 28)",JDT,"Just Drops","2026-10-28"),("Best Sneaker Releases October 25 to 31 2026",SNW,"Sneaker News","2026-10-25")]},
+{"slug":"air-jordan-3-fireside-where-to-buy-october-30-2026","title":"Air Jordan 3 \"Fireside\": where to buy on October 30","category":"Raffles","date":"2026-10-28",
+"description":"The women's Air Jordan 3 Fireside drops October 30 at 10 AM ET for $205 on SNKRS. Here is how it sells and where.",
+"body":f"""<p><strong>The short answer:</strong> the women's Air Jordan 3 Retro "Fireside" (CK9246&#8209;200) releases Friday, October 30 at 10 AM ET for $205 on the SNKRS app as a Let Everyone Order launch, according to <a href="{JD3}">Just Drops</a>.</p>
+<h2>Release details</h2>
+<p><a href="{JD3}">Just Drops</a> lists the colorway as Velvet Brown, Light British Tan, Rust Pink and Pearl White, and says Nike moved the US date from October 3 to October 30. It tracks the pair at 29 retailers, with 23 selling first come, first served and 3 running raffles.</p>
+<h2>Shops to check</h2>
+<p><a href="{DA3}">Drop Agenda</a> lists Lapstone &amp; Hammer, Sneaker Politics and Extra Butter as stockists, and notes that limited pairs usually sell by raffle or first come, first served. We only list a raffle on our <a href="/raffles/">raffles page</a> after we confirm it on the retailer's own site, so enter only through each shop's own website or app and never pay to enter.</p>
+<p>The pair is also in our <a href="/releases/">release calendar</a>. Confirm price and timing on the retailer page before release day.</p>""",
+"sources":[("Women's Air Jordan 3 Retro Fireside (CK9246-200)",JD3,"Just Drops","2026-10-27"),("Wmns Air Jordan 3 Retro Fireside release date and price",DA3,"Drop Agenda","2026-10-28")]},
+{"slug":"nike-air-foamposite-releases-november-2026","title":"Nike Foamposite releases in November 2026: Mummy Duck, college pack and Dr. Doom","category":"Nike","date":"2026-10-28",
+"description":"Nike has at least six Foamposite pairs on the November 2026 calendar, from the Mummy Duck on November 3 to the Dr. Doom on November 27.",
+"body":f"""<p><strong>The short answer:</strong> the Foamposite is all over Nike's November calendar, with pairs listed for November 3, 5, 13, 16 and 27 on the <a href="{SIN}">SoleInsider November calendar</a>.</p>
+<h2>Mummy Duck</h2>
+<p>SoleInsider lists the Air Foamposite Pro "Mummy Duck" (IZ7806&#8209;001) for November 3 at $230, and a second "Mummy Duck" listing (JA5895&#8209;001) for November 16 at $240. Check the style code on the retailer page so you know which version you are buying.</p>
+<h2>College pack on November 5</h2>
+<p>Three school themed Air Foamposite Pro pairs, "FSU," "LSU" and "Ohio State," are listed for November 5 at $250 each. <a href="{SIN}">SoleInsider</a> notes the FSU date moved from November 1 and the Ohio State date moved up from January 1. The Air Max Foamdome "Eggplant" lands the same day at $265.</p>
+<h2>Phantom and Dr. Doom</h2>
+<p>The Air Foamposite One "Phantom" (IZ1476&#8209;001) is listed for November 13 at $240, and the Air Foamposite Pro "Dr. Doom" (HF0794&#8209;003) closes the month on November 27, also at $240.</p>
+<p>Every pair is in our <a href="/releases/">release calendar</a>. Dates often move, so confirm with the retailer before release day.</p>""",
+"sources":[("November 2026 Sneaker Release Dates",SIN,"SoleInsider","2026-10-28")]},
+]
+ARTICLES=ARTICLES_1028+ARTICLES
