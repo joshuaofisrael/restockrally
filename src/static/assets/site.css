@@ -41,6 +41,10 @@ select,input,textarea{font:inherit;padding:.5rem;border:2px solid var(--muted);b
 .story-page,.page-body{max-width:44rem}.prose h2{margin-top:1.8rem}
 .sources{border-top:1px solid var(--line);margin-top:2rem;font-size:.95rem}.source-meta{color:var(--muted)}
 .byline,.last-updated{font-family:var(--sans);font-size:.9rem;color:var(--muted);margin:.2rem 0}
+.story-figure{margin:0 0 1.25rem}
+.story-figure img{width:100%;height:auto;border-radius:6px;display:block}
+.story-figure figcaption{font-family:var(--sans);font-size:.75rem;color:var(--muted);margin-top:.35rem}
+.ai-label{font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:.68rem}
 .contact-form label{display:block;font-family:var(--sans);font-weight:600}.contact-form input,.contact-form textarea{width:100%}.hp{position:absolute;left:-9999px}
 .legal-line{margin-top:2rem;font-size:.9rem;color:var(--muted);border-top:1px solid var(--line);padding-top:1rem}
 .site-footer{background:var(--header);color:var(--header-text);font-family:var(--sans);margin-top:2rem}

@@ -4,20 +4,41 @@ from articles import ARTICLES
 import sys, subprocess, legal_gate
 # Legal hold gate layer 1: a flagged article is never rendered (saved as HOLD_REVIEW draft + queue.jsonl instead).
 ARTICLES=[a for a in ARTICLES if legal_gate.gate_article(a)]
+def _asof():
+    raw=os.environ.get("BUILD_ASOF")
+    if not raw: return datetime.datetime.now(datetime.timezone.utc)
+    dt=datetime.datetime.fromisoformat(raw)
+    if dt.tzinfo is None: dt=dt.replace(tzinfo=datetime.timezone.utc)
+    return dt.astimezone(datetime.timezone.utc)
+NOW=_asof()
+def pub_dt(a):
+    raw=a.get("publish") or (a["date"]+"T09:00:00+00:00")
+    dt=datetime.datetime.fromisoformat(raw)
+    if dt.tzinfo is None: dt=dt.replace(tzinfo=datetime.timezone.utc)
+    return dt.astimezone(datetime.timezone.utc)
+# A publish time in the future stays out of pages, the sitemap, RSS and listings.
+ARTICLES=[a for a in ARTICLES if pub_dt(a)<=NOW]
 OUT=os.path.join(os.path.dirname(__file__),"..","docs"); OUT=os.path.abspath(OUT)
 U=SITE["url"]; N=SITE["name"]; Y=SITE["year"]
 e=html.escape
 def slug(s): return re.sub(r"[^a-z0-9]+","-",s.lower().replace("'","")).strip("-")
 def nice(d): return datetime.date.fromisoformat(d).strftime("%B %-d, %Y")
+def stamp(a):
+    if a.get("publish"):
+        dt=pub_dt(a)
+        return dt.strftime("%Y-%m-%dT%H:%M:%SZ"), nice(a["date"])+" at "+dt.strftime("%H:%M")+" London"
+    return a["date"], nice(a["date"])
 LEGAL=f"© {Y} Joshua Israel Ventures LLC. All rights reserved. {N} is a trade name of Joshua Israel Ventures LLC, a Florida limited liability company."
 pages=[]
 ORG={"@type":"NewsMediaOrganization","@id":U+"/#org","name":N,"url":U+"/","logo":{"@type":"ImageObject","url":U+"/assets/logo.svg"},"parentOrganization":{"@type":"Organization","name":"Joshua Israel Ventures LLC"}}
 NAV=[("/releases/","Release Calendar"),("/restocks/","Restocks"),("/raffles/","Raffles"),("/news/","News")]
-def head(title,desc,path,ld):
+def head(title,desc,path,ld,image=None):
     t=f"{title} | {N}" if path!="/" else f"{N}: {SITE['tagline']}"
+    card="summary_large_image" if image else "summary"
+    ogimg=f'<meta property="og:image" content="{U}{image}">' if image else ""
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{e(t)}</title><meta name="description" content="{e(desc[:155])}"><link rel="canonical" href="{U}{path}">
-<meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:site_name" content="{N}"><meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc[:155])}"><meta property="og:url" content="{U}{path}"><meta property="og:type" content="{'article' if path.startswith('/news/') and path!='/news/' else 'website'}"><meta name="twitter:card" content="summary">
+<meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:site_name" content="{N}"><meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc[:155])}"><meta property="og:url" content="{U}{path}"><meta property="og:type" content="{'article' if path.startswith('/news/') and path!='/news/' else 'website'}">{ogimg}<meta name="twitter:card" content="{card}">
 <link rel="icon" href="/assets/logo.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/site.css"><link rel="alternate" type="application/rss+xml" href="/feed.xml" title="{N}">
 <script>window.__rrGaId={json.dumps(SITE['ga_id'])};window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('consent','default',{{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',functionality_storage:'denied',personalization_storage:'denied',security_storage:'granted',wait_for_update:500}});</script><script defer src="/consent.js"></script>
 <script type="application/ld+json">{json.dumps({"@context":"https://schema.org","@graph":[ORG]+ld})}</script></head>"""
@@ -34,7 +55,7 @@ def chrome(body,path):
 <nav aria-label="Company links"><h2>{N}</h2><ul><li><a href="/about/">About</a></li><li><a href="/contact/">Contact Us</a></li><li><a href="/sources-ethics/">Sources &amp; Ethics</a></li><li><a href="/corrections/">Corrections</a></li></ul></nav>
 <nav aria-label="Legal and feeds"><h2>Legal and feeds</h2><ul><li><a href="/terms/">Terms</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/disclaimer/">Disclaimer</a></li><li><a href="/copyright/">Copyright &amp; DMCA</a></li><li><a href="/affiliate-disclosure/">Affiliate Disclosure</a></li><li><button type="button" class="consent-link" data-consent-open="1">Cookie choices</button></li><li><a href="/feed.xml">RSS</a></li></ul></nav>
 </div></footer></body></html>"""
-def write(path,title,desc,body,ld=None,index=True):
+def write(path,title,desc,body,ld=None,index=True,lastmod=None,image=None):
     crumbs=[]
     if path!="/":
         parts=[p for p in path.strip("/").split("/")]
@@ -44,12 +65,12 @@ def write(path,title,desc,body,ld=None,index=True):
             acc+="/"+p
             items.append({"@type":"ListItem","position":i+2,"name":title if i==len(parts)-1 else p.replace("-"," ").title(),"item":U+acc+"/"})
         crumbs=[{"@type":"BreadcrumbList","itemListElement":items}]
-    h=head(title,desc,path,(ld or [])+crumbs)+chrome(body,path)
+    h=head(title,desc,path,(ld or [])+crumbs,image)+chrome(body,path)
     if not index: h=h.replace('content="index,follow,max-image-preview:large"','content="noindex"')
     d=os.path.join(OUT,path.strip("/"))
     if not path.endswith(".html"): os.makedirs(d,exist_ok=True)
     open(os.path.join(d,"index.html") if not path.endswith(".html") else d,"w").write(h)
-    if index: pages.append(path)
+    if index: pages.append((path, lastmod or "2026-10-27"))
 shutil.rmtree(OUT,ignore_errors=True); os.makedirs(OUT)
 shutil.copytree(os.path.join(os.path.dirname(__file__),"static"),OUT,dirs_exist_ok=True)
 REL=[dict(name=r[0],brand=r[1],date=r[2],price=r[3],sku=r[4],buy=r[5],src=r[6],slug=slug(r[0].replace("(Women's)","womens"))) for r in RELEASES]
@@ -66,7 +87,7 @@ for r in REL:
 <section class="sources"><h2>Source</h2><ol><li><a href="{e(r['src'][1])}">{e(r['src'][0])}</a></li></ol></section>
 <p><a href="/releases/">Back to the release calendar</a></p></article>"""
     ld=[{"@type":"Product","name":r["name"],"sku":r["sku"],"brand":{"@type":"Brand","name":r["brand"]},"releaseDate":r["date"]}]
-    write(f"/shoes/{r['slug']}/",r["name"]+" release date and price",f"{r['name']} releases {nice(r['date'])} for ${r['price']}. Style code {r['sku']}, where to buy and sources.",body,ld)
+    write(f"/shoes/{r['slug']}/",r["name"]+" release date and price",f"{r['name']} releases {nice(r['date'])} for ${r['price']}. Style code {r['sku']}, where to buy and sources.",body,ld,lastmod="2026-10-29" if r["date"]>="2026-10-29" and r["sku"] in ("A23933C-832","KK2813") else "2026-10-27")
 # calendar
 brands=sorted({r["brand"] for r in REL})
 opts="".join(f'<option>{e(b)}</option>' for b in brands)
@@ -77,7 +98,7 @@ cal=f"""<h1>Sneaker release calendar</h1><p class="dek">Upcoming sneaker release
 <label>Sort <select id="f-sort"><option value="date">Date</option><option value="price">Price</option></select></label></form>
 <p id="count" class="small" aria-live="polite">{len(REL)} releases</p><ul class="rel-list" id="rel-list">{''.join(relrow(r) for r in REL)}</ul>
 <p class="small">Sources: retail prices and dates come from the brand's own pages where available, and otherwise from the release calendars credited on each shoe page.</p><script src="/assets/calendar.js" defer></script>"""
-write("/releases/","Sneaker release dates calendar","Fast, filterable sneaker release calendar: dates, retail prices and style codes for Nike, Jordan, adidas and more, with where to buy links.",cal)
+write("/releases/","Sneaker release dates calendar","Fast, filterable sneaker release calendar: dates, retail prices and style codes for Nike, Jordan, adidas and more, with where to buy links.",cal,lastmod=NOW.date().isoformat())
 # restocks
 rs="".join(f'<li class="rel"><time datetime="{d}">{datetime.date.fromisoformat(d).strftime("%b %-d")}</time><span class="rel-main"><strong>{e(n)}</strong><span class="meta">{e(w)}{" · "+e(k) if k else ""} · reported by <a href="{e(su)}">{e(sn)}</a></span></span><span class="price">{"$"+str(p) if p else "See retailer"}</span></li>' for n,d,w,p,k,(sn,su) in RESTOCKS)
 write("/restocks/","Sneaker restocks log","A sourced log of recent sneaker restocks: what came back, where, at what retail price, and who reported it.",f"<h1>Sneaker restocks</h1><p class='dek'>Recent restocks, newest first. Each entry links to the original report. Stock moves fast, so check the retailer right away.</p><ul class='rel-list'>{rs}</ul><p><a href='/news/october-2026-sneaker-restocks-nike-mind-air-bakin/'>Read the October restocks roundup</a></p>")
@@ -87,21 +108,27 @@ write("/raffles/","Sneaker raffles and draws","How sneaker raffles and draws wor
 <h2>Staying safe</h2><ul><li>Check the web address belongs to the retailer.</li><li>No genuine retailer raffle charges an entry fee.</li><li>Watch for winner emails that ask you to pay through a new link; go to the retailer directly instead.</li></ul>
 <p>See the <a href="/releases/">release calendar</a> for upcoming dates.</p>""")
 # articles
-ART=sorted(ARTICLES,key=lambda a:a["date"],reverse=True)
+ART=sorted(ARTICLES,key=lambda a:pub_dt(a),reverse=True)
 for a in ART:
     srcs="".join(f'<li><a href="{e(u)}">{e(t)}</a> <span class="source-meta">{e(p)}, {nice(d)}</span></li>' for t,u,p,d in a["sources"])
-    body=f"""<article class="story-page"><header class="article-head"><p class="story-kicker"><span class="chip">{e(a['category'])}</span> <time datetime="{a['date']}">{nice(a['date'])}</time></p><h1>{e(a['title'])}</h1><p class="byline">By the {N} desk</p><p class="dek">{e(a['description'])}</p><p class="last-updated">Last updated <time datetime="{a['date']}">{nice(a['date'])}</time></p></header>
-<div class="prose">{a['body']}</div><section class="sources" aria-labelledby="sh"><h2 id="sh">Sources</h2><ol>{srcs}</ol></section></article>"""
-    ld=[{"@type":"NewsArticle","headline":a["title"],"description":a["description"],"datePublished":a["date"]+"T09:00:00Z","dateModified":a["date"]+"T09:00:00Z","mainEntityOfPage":U+"/news/"+a["slug"]+"/","author":{"@type":"Organization","name":N+" desk","url":U+"/about/"},"publisher":{"@id":U+"/#org"},"isBasedOn":[s[1] for s in a["sources"]]}]
-    write(f"/news/{a['slug']}/",a["title"],a["description"],body,ld)
-cards="".join(f'<li class="story-card"><p class="story-kicker"><span class="chip">{e(a["category"])}</span> <time datetime="{a["date"]}">{nice(a["date"])}</time></p><h3><a href="/news/{a["slug"]}/">{e(a["title"])}</a></h3><p>{e(a["description"])}</p></li>' for a in ART)
-write("/news/","Sneaker news","Sourced sneaker release and restock news.",f"<h1>Sneaker news</h1><ul class='story-grid'>{cards}</ul>")
-today="2026-10-27"; up=[r for r in REL if r["date"]>=today][:8]
+    iso,label=stamp(a)
+    fig=""
+    if a.get("image"):
+        fig=f'<figure class="story-figure"><img src="{e(a["image"])}" alt="{e(a.get("image_alt") or a["title"])}" width="1280" height="720"><figcaption><span class="ai-label">AI-generated</span> Editorial image, not a photograph of the product.</figcaption></figure>'
+    body=f"""<article class="story-page"><header class="article-head"><p class="story-kicker"><span class="chip">{e(a['category'])}</span> <time datetime="{iso}">{e(label)}</time></p><h1>{e(a['title'])}</h1><p class="byline">By the {N} desk</p><p class="dek">{e(a['description'])}</p><p class="last-updated">Last updated <time datetime="{iso}">{e(label)}</time></p></header>
+{fig}<div class="prose">{a['body']}</div><section class="sources" aria-labelledby="sh"><h2 id="sh">Sources</h2><ol>{srcs}</ol></section></article>"""
+    published=pub_dt(a).strftime("%Y-%m-%dT%H:%M:%SZ")
+    ld=[{"@type":"NewsArticle","headline":a["title"],"description":a["description"],"datePublished":published,"dateModified":published,"mainEntityOfPage":U+"/news/"+a["slug"]+"/","author":{"@type":"Organization","name":N+" desk","url":U+"/about/"},"publisher":{"@id":U+"/#org"},"isBasedOn":[s[1] for s in a["sources"]]}]
+    if a.get("image"): ld[0]["image"]=U+a["image"]
+    write(f"/news/{a['slug']}/",a["title"],a["description"],body,ld,lastmod=a["date"],image=a.get("image"))
+cards="".join(f'<li class="story-card"><p class="story-kicker"><span class="chip">{e(a["category"])}</span> <time datetime="{stamp(a)[0]}">{e(stamp(a)[1])}</time></p><h3><a href="/news/{a["slug"]}/">{e(a["title"])}</a></h3><p>{e(a["description"])}</p></li>' for a in ART)
+write("/news/","Sneaker news","Sourced sneaker release and restock news.",f"<h1>Sneaker news</h1><ul class='story-grid'>{cards}</ul>",lastmod=max((a["date"] for a in ART), default="2026-10-27"))
+today=NOW.date().isoformat(); up=[r for r in REL if r["date"]>=today][:8]
 home=f"""<section class="hero"><h1 class="visually-hidden">{N}</h1><p class="hero-kicker">Release dates, restocks and raffles</p><p class="hero-lead">The fastest way to see what drops next, what it costs and where to buy it.</p><p><a class="buy-btn" href="/releases/">Open the release calendar</a></p></section>
 <section aria-labelledby="up"><h2 id="up" class="section-title">Dropping next</h2><ul class="rel-list">{''.join(relrow(r) for r in up)}</ul><p><a href="/releases/">Full calendar</a></p></section>
 <section aria-labelledby="ln"><h2 id="ln" class="section-title">Latest news</h2><ul class="story-grid">{cards}</ul></section>
 <section aria-labelledby="rs"><h2 id="rs" class="section-title">Recent restocks</h2><ul class="rel-list">{rs}</ul></section>"""
-write("/",N,"Fast sneaker release calendar, restock log and raffle guide with prices, style codes and where to buy links. Every fact sourced.",home,[{"@type":"WebSite","name":N,"url":U+"/","publisher":{"@id":U+"/#org"}}])
+write("/",N,"Fast sneaker release calendar, restock log and raffle guide with prices, style codes and where to buy links. Every fact sourced.",home,[{"@type":"WebSite","name":N,"url":U+"/","publisher":{"@id":U+"/#org"}}],lastmod=NOW.date().isoformat())
 # static pages
 def page(path,title,desc,body,legal=False,index=True):
     if legal: body+=f'<p class="legal-line">{LEGAL}</p>'
@@ -115,23 +142,23 @@ page("/contact/","Contact Us","Contact the "+N+" desk with tips, corrections or 
 <p><label for="m">Message</label><textarea id="m" name="message" rows="6" required></textarea></p><input type="hidden" name="_ready" id="ready" value=""><p><button type="submit" class="buy-btn">Send</button></p></form>
 <p class="small">We use your message only to reply. We never sell it.</p><script src="/assets/contact.js" defer></script>""")
 page("/contact/thanks/","Thanks","Message sent.","<p>Thanks, your message is on its way. <a href='/'>Back to the homepage</a>.</p>",index=False)
-page("/sources-ethics/","Sources & Ethics","How "+N+" sources and checks sneaker news.","<p>Every fact links to a named source in the sentence. We prefer the brand's own product and launch pages, then credited release calendars and reporting. We write in our own words, quote briefly with attribution, report company announcements as what the company says, and label any opinion. We do not invent quotes, prices or dates. Images are official brand press images with credit, or embeds; we do not use AI images of real products.</p>")
+page("/sources-ethics/","Sources & Ethics","How "+N+" sources and checks sneaker news.","<p>Every fact links to a named source in the sentence. We prefer the brand's own product and launch pages, then credited release calendars and reporting. We write in our own words, quote briefly with attribution, report company announcements as what the company says, and label any opinion. We do not invent quotes, prices or dates. News images are original editorial pictures made for this site and labeled AI-generated. They are not photographs of a product. We do not use third-party photos.</p>")
 page("/corrections/","Corrections","How to request a correction on "+N+".","<p>If we got something wrong, <a href='/contact/'>tell us</a>. We fix errors quickly and note material corrections at the end of the article.</p>")
 page("/terms/","Terms of Use","Terms of use for "+N+".",f"<p>By using {N} you agree to these terms. The site is operated by Joshua Israel Ventures LLC, a Florida limited liability company, under the trade name {N}.</p><h2>Information only</h2><p>Content is general news and information. Release dates, prices and stock change, and the retailer's page controls. We are not a retailer and do not sell, hold or ship products.</p><h2>Third party links</h2><p>We link to retailers and sources we do not control and are not responsible for their content, offers or practices.</p><h2>Limitation of liability</h2><p>To the fullest extent permitted by law, the site is provided as is, without warranties, and we are not liable for any loss arising from its use, including a missed release or a purchase decision.</p><h2>Intellectual property</h2><p>Brand names and product names belong to their owners and are used only to identify products. See our <a href='/copyright/'>Copyright and DMCA policy</a>.</p><h2>Governing law</h2><p>These terms are governed by the laws of the State of Florida, United States, without regard to conflict of law rules, and disputes will be resolved in the courts located in Florida.</p><h2>Changes</h2><p>We may update these terms; the date below shows the latest version. Last updated October 27, 2026.</p>",legal=True)
 page("/privacy/","Privacy Policy","How "+N+" handles your data, including Google Analytics 4.",f"<p>This policy explains what data {N} collects. Last updated October 27, 2026.</p><h2 id='google-analytics'>Google Analytics 4</h2><p>With your consent, we use Google Analytics 4, a service from Google LLC, to measure visits and improve the site. Google Analytics 4 loads only after you click Accept in our cookie banner. It sets cookies such as _ga and collects data like pages viewed, device type and approximate location. We turn off Google signals and ad personalization. You can change your choice any time with the Cookie choices button in the footer. See <a href='https://policies.google.com/technologies/partner-sites'>how Google uses data from sites that use its services</a>.</p><h2>Cloudflare Web Analytics</h2><p>We may use Cloudflare Web Analytics, a privacy focused tool that does not use cookies, to count page views.</p><h2>Contact form</h2><p>Messages are delivered by FormSubmit to our inbox and used only to reply.</p><h2>Advertising and affiliate links</h2><p>If we add advertising (such as Google AdSense) or affiliate links, partners may use cookies subject to your consent where required. We will update this policy first.</p><h2>Your rights</h2><p>You can ask us to access or delete data you sent us through the <a href='/contact/'>contact form</a>. We do not sell personal information.</p><h2>Children</h2><p>The site is not directed to children under 13.</p>",legal=True)
 page("/disclaimer/","Disclaimer","Disclaimer for "+N+".",f"<p>{N} publishes news and information about sneaker releases, restocks and raffles. It is not purchasing, financial or resale advice. Dates, prices, sizes and stock come from cited sources and can change at any time; always confirm with the retailer. {N} is independent and is not affiliated with or endorsed by Nike, Jordan Brand, adidas or any other brand or retailer mentioned. Product names and trademarks belong to their owners.</p>",legal=True)
-page("/copyright/","Copyright & DMCA","Copyright and DMCA policy for "+N+".",f"<p>We write original text and use only official brand press images with credit, or embeds. If you believe content on {N} infringes your copyright, send a notice through our <a href='/contact/'>contact form</a> with: your contact details, the work you claim is infringed, the URL of the material, a statement of good faith belief that the use is not authorized, a statement that the notice is accurate and that you are the owner or authorized to act, and your signature. We remove material promptly on a valid notice and may restore it on a valid counter notice.</p>",legal=True)
+page("/copyright/","Copyright & DMCA","Copyright and DMCA policy for "+N+".",f"<p>We write original text. News images are original editorial pictures made for this site and labeled AI-generated. They are not photographs of a product, and we do not use third-party photos. If you believe content on {N} infringes your copyright, send a notice through our <a href='/contact/'>contact form</a> with: your contact details, the work you claim is infringed, the URL of the material, a statement of good faith belief that the use is not authorized, a statement that the notice is accurate and that you are the owner or authorized to act, and your signature. We remove material promptly on a valid notice and may restore it on a valid counter notice.</p>",legal=True)
 page("/affiliate-disclosure/","Affiliate Disclosure","Affiliate and advertising disclosure for "+N+".",f"<p>{N} may earn a commission when you buy through some retailer links on this site, at no extra cost to you. Right now our where to buy links are plain links to official retailers. When a link becomes an affiliate link, this page and the link label will say so. Commissions never decide what we cover or how we rank releases.</p>",legal=True)
 write("/404.html","Page not found","Page not found.","<h1>Page not found</h1><p>Try the <a href='/releases/'>release calendar</a> or the <a href='/'>homepage</a>.</p>",index=False)
 # seo files
-sm="".join(f"<url><loc>{U}{p}</loc><lastmod>2026-10-27</lastmod></url>" for p in pages)
+sm="".join(f"<url><loc>{U}{p}</loc><lastmod>{lm}</lastmod></url>" for p,lm in pages)
 open(f"{OUT}/sitemap.xml","w").write(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{sm}</urlset>')
 bots=["Googlebot","Bingbot","OAI-SearchBot","GPTBot","ChatGPT-User","PerplexityBot","ClaudeBot","Claude-SearchBot","Google-Extended","Applebot","Applebot-Extended","CCBot","DuckDuckBot"]
 open(f"{OUT}/robots.txt","w").write("".join(f"User-agent: {b}\nAllow: /\n\n" for b in bots)+f"User-agent: *\nAllow: /\n\nSitemap: {U}/sitemap.xml\n")
 open(f"{OUT}/{SITE['indexnow_key']}.txt","w").write(SITE["indexnow_key"])
 open(f"{OUT}/CNAME","w").write("restockrally.com\n"); open(f"{OUT}/.nojekyll","w").write("")
 open(f"{OUT}/llms.txt","w").write(f"# {N}\n\n> {SITE['tagline']}. Sourced sneaker release dates, restocks and raffles.\n\n## Key pages\n- [Release calendar]({U}/releases/)\n- [Restocks]({U}/restocks/)\n- [Raffles]({U}/raffles/)\n- [News]({U}/news/)\n- [Sources & Ethics]({U}/sources-ethics/)\n\n## Articles\n"+"".join(f"- [{a['title']}]({U}/news/{a['slug']}/): {a['description']}\n" for a in ART))
-items="".join(f"<item><title>{e(a['title'])}</title><link>{U}/news/{a['slug']}/</link><guid>{U}/news/{a['slug']}/</guid><pubDate>{datetime.date.fromisoformat(a['date']).strftime('%a, %d %b %Y')} 09:00:00 +0000</pubDate><description>{e(a['description'])}</description></item>" for a in ART)
+items="".join(f"<item><title>{e(a['title'])}</title><link>{U}/news/{a['slug']}/</link><guid>{U}/news/{a['slug']}/</guid><pubDate>{pub_dt(a).strftime('%a, %d %b %Y %H:%M:%S +0000')}</pubDate><description>{e(a['description'])}</description></item>" for a in ART)
 open(f"{OUT}/feed.xml","w").write(f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>{N}</title><link>{U}/</link><description>{SITE["tagline"]}</description>{items}</channel></rss>')
 # Legal hold gate layer 2: full-site backstop. If any built page is held, put docs/ back to the last committed version and fail.
 if legal_gate.main([]) != 0:

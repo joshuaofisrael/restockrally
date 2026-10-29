@@ -1,0 +1,41 @@
+name: Publish scheduled articles
+
+on:
+  schedule:
+    # 29 Oct 2026 only. London is UTC+0 that day. Hourly from 11:00 through 19:00
+    # so a late runner still publishes a slot before the next one, and never early.
+    - cron: "0 11-19 29 10 *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Skip later years
+        if: github.event_name == 'schedule'
+        run: |
+          d="$(date -u +%Y-%m-%d)"
+          # Allow the 30th so a runner that starts after midnight still publishes the 19:00 slot.
+          if [ "$d" != "2026-10-29" ] && [ "$d" != "2026-10-30" ]; then
+            echo "This schedule is only for 29 Oct 2026"
+            echo "skip=1" >> "$GITHUB_ENV"
+          fi
+      - name: Build
+        if: env.skip != '1'
+        run: python3 src/build.py
+      - name: Commit published pages
+        if: env.skip != '1'
+        run: |
+          git config user.name "restockrally-publish"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs
+          if git diff --cached --quiet; then
+            echo "Nothing new to publish"
+            exit 0
+          fi
+          git commit -m "Publish articles scheduled for this slot"
+          git push

@@ -65,3 +65,7 @@ RESTOCKS = [
  ("Nike Air Max Goadome \"Black Pony Hair\"","2026-10-29","Nike and select stores",None,"",SNWR),
  ("adidas Adizero Adios Pro Evo 3","2026-10-29","adidas and select stores",None,"",SNWR),
 ] + RESTOCKS
+RELEASES += [
+ ("Converse SHAI 001 Lace Up \"Flare\"","Converse","2026-10-29",120,"A23933C-832",[("Nike SNKRS","https://www.nike.com/launch/t/shai-001-lace-up-flare")],("Nike SNKRS: SHAI 001 Lace Up Flare","https://www.nike.com/launch/t/shai-001-lace-up-flare")),
+ ("Wales Bonner Karintha BW Army \"Black Pony\"","adidas","2026-10-29",200,"KK2813",[("adidas","https://www.adidas.com/us/wales-bonner-karintha-bw-army-black-pony-shoes/KK2813.html")],("adidas: Wales Bonner Karintha BW Army Black Pony","https://www.adidas.com/us/wales-bonner-karintha-bw-army-black-pony-shoes/KK2813.html")),
+]

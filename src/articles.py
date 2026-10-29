@@ -118,3 +118,51 @@ ARTICLES_1028=[
 "sources":[("November 2026 Sneaker Release Dates",SIN,"SoleInsider","2026-10-28")]},
 ]
 ARTICLES=ARTICLES_1028+ARTICLES
+SHAI="https://www.nike.com/launch/t/shai-001-lace-up-flare"
+SHAIN="https://sneakernews.com/2026/10/27/converse-shai-001-lace-up-flare-a23933c/"
+SHAID="https://justdrops.com/release/nike/shai-001-lace-up/A23933C-832"
+JDSN="https://justdrops.com/snkrs"
+WB="https://walesbonner.com/pages/adidas-originals-by-wales-bonner-autumn-winter-2026-collection"
+ADP="https://www.adidas.com/us/wales-bonner-karintha-bw-army-black-pony-shoes/KK2813.html"
+WBD="https://justdrops.com/release/adidas/wales-bonner-karintha-bw-army-black-pony-shoes/KK2813"
+FWM="https://footwearmagazine.com/adidas-wales-bonner-fw26-collection-october-29-2026/"
+SNKRS101="https://www.nike.com/au/launch/t/inside-snkrs-snkrs-101-astla"
+ARTICLES_1029=[
+{"slug":"converse-shai-001-lace-up-flare-october-29-2026","title":"Converse SHAI 001 Lace Up \"Flare\" is listed for October 29 at $120","category":"Release Dates","date":"2026-10-29","publish":"2026-10-29T11:00:00+00:00",
+"description":"Nike's SNKRS page lists the SHAI 001 Lace Up Flare, style code A23933C-832, for October 29 at $120.",
+"image":"/assets/news/shai-001-release-morning.jpg","image_alt":"A closed cardboard shoebox and a phone on a wooden gym bench",
+"body":f"""<p><strong>The short answer:</strong> <a href="{SHAI}">Nike's SNKRS page</a> lists the Converse SHAI 001 Lace Up "Flare" (style code A23933C-832) for October 29 at $120.</p>
+<h2>What the SNKRS page shows</h2>
+<p>Nike says the lace-up keeps the sculptural form of the SHAI 001 and replaces the zipper with laces. The <a href="{SHAI}">listing</a> we opened on the morning of October 29, 2026 read "Available 10/29 at 2:00 PM" and did not print a time zone on that line. SNKRS shows the hour in the time zone of the device you use, so open the page on your own phone for the exact time.</p>
+<h2>Color and launch type</h2>
+<p><a href="{SHAID}">Just Drops</a>, citing Nike's SNKRS launch feed, lists the same style code for 10:00 AM ET (7:00 AM PT) as a Let Everyone Order launch, and names the colorway Sun Glow/White/Sun Glow. Its <a href="{JDSN}">SNKRS calendar</a>, updated October 28 at 10:15 PM ET, lists the pair the same way. <a href="{SHAIN}">Sneaker News</a> reported on October 27 that the color is called Flare, with orange across most of the shoe and a lighter lace and inner lining, and that the retail pair keeps the Converse star and chevron on the heel.</p>
+<h2>Where to buy</h2>
+<p>The <a href="{SHAI}">SNKRS listing</a> is the Nike launch page. Just Drops also counts one first-come, first-served retailer. The pair is on our <a href="/shoes/converse-shai-001-lace-up-flare/">SHAI 001 "Flare" release page</a> and in the <a href="/releases/">release calendar</a>. The rest of Thursday's slate is in our <a href="/news/sneaker-releases-october-28-29-2026/">October 28 and 29 release list</a>. Dates and prices can change, so confirm on the retailer's page before you buy.</p>""",
+"sources":[("SHAI 001 Lace Up Flare (A23933C-832)",SHAI,"Nike SNKRS","2026-10-29"),("Converse SHAI 001 Lace Up Sun Glow (A23933C-832)",SHAID,"Just Drops","2026-10-29"),("Converse SHAI 001 Lace Up Flare drops October 29",SHAIN,"Sneaker News","2026-10-27"),("SNKRS release calendar and drop times",JDSN,"Just Drops","2026-10-28")]},
+{"slug":"adidas-wales-bonner-fw26-october-29-2026","title":"adidas Originals by Wales Bonner lists Fall/Winter 2026 for October 29","category":"Release Dates","date":"2026-10-29","publish":"2026-10-29T15:00:00+00:00",
+"description":"Wales Bonner's page sets the Fall/Winter 2026 collection for October 29 at 9:00 AM GMT. adidas lists the Black Pony at $200.",
+"image":"/assets/news/wales-bonner-materials.jpg","image_alt":"Brown, green and black fabric swatches beside a plain clothbound book",
+"body":f"""<p><strong>The short answer:</strong> <a href="{WB}">Wales Bonner's collection page</a> says the adidas Originals by Wales Bonner Fall/Winter 2026 collection launches Thursday, October 29 at 9:00 AM GMT (10:00 CET) on walesbonner.com.</p>
+<h2>The footwear</h2>
+<p>The same page says the Karintha uses dark brown crocodile-stamped leather with gold brushed eyelets, the Gazelle Snake follows in green, the ADIZERO Adios Suede brings a running shoe into everyday wear, and the BW Pony arrives for the first time in pony hair with lizard-print overlays. It also says Harley Weir photographed the campaign, which draws on the attitude of 1980s London.</p>
+<h2>The Black Pony price and time</h2>
+<p><a href="{ADP}">adidas.com/us</a> lists the Wales Bonner Karintha BW Army Black Pony Shoes, style code KK2813, at $200, and says they are available Thursday, October 29 at 3:00 pm. That line does not name a time zone. <a href="{WBD}">Just Drops</a>, citing the adidas site, lists the same style code for 11:00 AM ET at $200, and says it tracks the pair at nine retailers, eight of them first come, first served and one a raffle. We have not confirmed a raffle on a retailer's own page, so it is not on our <a href="/raffles/">raffles page</a>. Enter only through each shop's own website.</p>
+<h2>Other doors</h2>
+<p><a href="{FWM}">Footwear Magazine</a> reported on October 28 that the collection goes out on October 29 through adidas.com, the CONFIRMED app and select retailers, and attributed that plan to a brand announcement on October 27. Our <a href="/news/sneaker-releases-october-28-29-2026/">Thursday release list</a> already noted two other Wales Bonner pairs from a separate Just Drops tally. The Black Pony is on our <a href="/shoes/wales-bonner-karintha-bw-army-black-pony/">release page</a> and in the <a href="/releases/">release calendar</a>. Confirm the hour and the price on the retailer page before you buy.</p>""",
+"sources":[("adidas Originals by Wales Bonner Autumn Winter 2026",WB,"Wales Bonner","2026-10-29"),("Wales Bonner Karintha BW Army Black Pony Shoes (KK2813)",ADP,"adidas","2026-10-29"),("Wales Bonner Karintha BW Army Black Pony release",WBD,"Just Drops","2026-10-29"),("adidas and Wales Bonner set an October 29 launch for the FW26 collection",FWM,"Footwear Magazine","2026-10-28")]},
+{"slug":"how-nike-snkrs-draw-and-line-launches-work","title":"How Nike SNKRS Draw and Line launches work","category":"Raffles","date":"2026-10-29","publish":"2026-10-29T19:00:00+00:00",
+"description":"Nike's SNKRS 101 page explains Draw, a random pick after entries close, and Line, which works like a queue.",
+"image":"/assets/news/snkrs-draw-line.jpg","image_alt":"Hands holding a blank phone beside a blank paper slip and a pencil",
+"body":f"""<p><strong>The short answer:</strong> <a href="{SNKRS101}">Nike's SNKRS 101 page</a> describes two launch mechanics. A Draw picks winners at random after the entry window closes. A Line works like a queue: the earlier you join, the more likely you are to find your size.</p>
+<h2>Draw</h2>
+<p>Nike says the winner selection happens once the entry window closes, and members are then told if they got the pair. The page uses the words "GOT 'EM" for that notice.</p>
+<h2>Line</h2>
+<p>Nike compares a Line to standing in line at a store. Members are told shortly after they enter whether they got the pair.</p>
+<h2>The names on US launch lists</h2>
+<p><a href="{JDSN}">Just Drops</a>, on a SNKRS calendar updated October 28, 2026, uses its own labels. It describes Let Everyone Order, or LEO, as a line: enter when the launch opens, and the earlier you join, the better your chance at a pair. It describes DAN as a draw: enter while the window is open, and buyers are picked at random after it closes. Nike's page calls the same ideas Line and Draw. Just Drops lists today's <a href="/news/converse-shai-001-lace-up-flare-october-29-2026/">SHAI 001 Lace Up "Flare"</a> as a Let Everyone Order launch.</p>
+<h2>Exclusive Access</h2>
+<p>On the same <a href="{SNKRS101}">SNKRS 101 page</a>, Nike says Exclusive Access is an invitation to products outside regular launches. Just Drops says those offers are tied to an account and are not announced ahead of time, so a public calendar cannot list them early.</p>
+<p>Nike's page says to save the correct size and shipping address on the SNKRS account before a launch. Our <a href="/raffles/">raffles page</a> explains draws in general, and the <a href="/releases/">release calendar</a> lists dates and prices. This is a description of how the launches work, not a recommendation to buy. The retailer page has the final word on time, price and method.</p>""",
+"sources":[("Inside SNKRS: SNKRS 101",SNKRS101,"Nike SNKRS","2026-10-29"),("SNKRS release calendar and drop times",JDSN,"Just Drops","2026-10-28")]},
+]
+ARTICLES=ARTICLES_1029+ARTICLES

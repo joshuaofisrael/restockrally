@@ -1,3 +1,6 @@
 {
- "/assets/logo.svg": {"licence": "Original RestockRally artwork, owned outright", "evidence": "src/static/assets/logo.svg created for the site on 27 Oct 2026"}
+ "/assets/logo.svg": {"licence": "Original RestockRally artwork, owned outright", "evidence": "src/static/assets/logo.svg created for the site on 27 Oct 2026"},
+ "/assets/news/shai-001-release-morning.jpg": {"licence": "Original AI-generated editorial image, owned outright", "evidence": "Created for RestockRally on 29 Oct 2026. Not a product photo and not a third-party image. Labeled AI-generated on the page."},
+ "/assets/news/wales-bonner-materials.jpg": {"licence": "Original AI-generated editorial image, owned outright", "evidence": "Created for RestockRally on 29 Oct 2026. Not a product photo and not a third-party image. Labeled AI-generated on the page."},
+ "/assets/news/snkrs-draw-line.jpg": {"licence": "Original AI-generated editorial image, owned outright", "evidence": "Created for RestockRally on 29 Oct 2026. Not a product photo and not a third-party image. Labeled AI-generated on the page."}
 }
