@@ -69,3 +69,21 @@ RELEASES += [
  ("Converse SHAI 001 Lace Up \"Flare\"","Converse","2026-10-29",120,"A23933C-832",[("Nike SNKRS","https://www.nike.com/launch/t/shai-001-lace-up-flare")],("Nike SNKRS: SHAI 001 Lace Up Flare","https://www.nike.com/launch/t/shai-001-lace-up-flare")),
  ("Wales Bonner Karintha BW Army \"Black Pony\"","adidas","2026-10-29",200,"KK2813",[("adidas","https://www.adidas.com/us/wales-bonner-karintha-bw-army-black-pony-shoes/KK2813.html")],("adidas: Wales Bonner Karintha BW Army Black Pony","https://www.adidas.com/us/wales-bonner-karintha-bw-army-black-pony-shoes/KK2813.html")),
 ]
+# 30 Oct 2026 slot: rows checked on Nike SNKRS product pages or the SoleInsider November calendar on 30 Oct 2026.
+def _snkrs(t,u): return ([("Nike SNKRS product page",u)],("Nike SNKRS: "+t,u))
+RELEASES += [
+ ("Kobe Dunk Low Protro \"Anthracite and Sundial\"","Nike","2026-10-30",130,"IQ3922-001",*_snkrs("Kobe Dunk Low Protro Anthracite and Sundial","https://www.nike.com/launch/t/kobe-dunk-low-protro-anthracite-and-sundial-na")),
+ ("Nike Air Max 97 \"Coppin State University\"","Nike","2026-10-30",190,"IW6991-400",*_snkrs("Air Max 97 Coppin State University","https://www.nike.com/launch/t/air-max-97-coppin-state-university-global-blue-and-midwest-gold")),
+ ("Nike Air Max 97 \"North Carolina A&T\"","Nike","2026-10-30",190,"IW6992-100",*_snkrs("Air Max 97 North Carolina A&T","https://www.nike.com/launch/t/air-max-97-north-carolina-a-t-sail-and-sport-royal")),
+ ("Nike Air Max 97 \"Mississippi Valley State University\"","Nike","2026-10-30",190,"IW6993-300",*_snkrs("Air Max 97 Mississippi Valley State University","https://www.nike.com/launch/t/air-max-97-mississippi-valley-state-university-court-green-and-black")),
+ ("Nike Air Max Foamdome \"Eggplant\"","Nike","2026-11-05",265,"IX7255-506",*_snkrs("Air Max Foamdome Eggplant","https://www.nike.com/launch/t/air-max-foamdome-eggplant")),
+ ("One Block Down x Nike Air Max 95 Big Bubble Lux","Nike","2026-11-06",200,"IM0704-001",*_snkrs("Air Max 95 Big Bubble Lux One Block Down","https://www.nike.com/launch/t/air-max-95-big-bubble-lux")),
+ ("Nike SB Dunk Low \"Champagne\"","Nike","2026-11-06",130,"IQ0431-300",SNK,SIN),
+ ("Nike Book 2 \"Chromaflair\"","Nike","2026-11-07",145,"FZ7013-003",SNK,SIN),
+]
+# Upgrade sources to Nike's own product pages where we opened them on 30 Oct 2026.
+_UP={"487471-300":"https://www.nike.com/launch/t/air-jordan-14-forest-green","IO6260-800":"https://www.nike.com/launch/t/kobe-3-low-protro-mamba-eterno","JA7792-400":"https://www.nike.com/launch/t/jordan-11-mcs-space-jam-black"}
+RELEASES=[(r[:5]+_snkrs(r[0].replace('"',''),_UP[r[4]])) if r[4] in _UP else r for r in RELEASES]
+CTU=("CartTactic","https://carttactic.com/nike-air-more-uptempo-96-black-white-restock-foot-locker/")
+RESTOCKS = [("Nike Air More Uptempo '96 \"Black/White\"","2026-10-29","Foot Locker (online)",170,"",CTU)] + [
+ (r[0],r[1],r[2],230,"IO4635-001",("Sneaker News","https://sneakernews.com/2026/10/19/nike-air-max-goadome-pony-hair-io4635-001/")) if r[0].startswith("Nike Air Max Goadome") else r for r in RESTOCKS]
