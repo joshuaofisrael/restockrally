@@ -144,7 +144,7 @@ ARTICLES_1029=[
 "image":"/assets/news/wales-bonner-materials.jpg","image_alt":"Brown, green and black fabric swatches beside a plain clothbound book",
 "body":f"""<p><strong>The short answer:</strong> <a href="{WB}">Wales Bonner's collection page</a> says the adidas Originals by Wales Bonner Fall/Winter 2026 collection launches Thursday, October 29 at 9:00 AM GMT (10:00 CET) on walesbonner.com.</p>
 <h2>The footwear</h2>
-<p>The same page says the Karintha uses dark brown crocodile-stamped leather with gold brushed eyelets, the Gazelle Snake follows in green, the ADIZERO Adios Suede brings a running shoe into everyday wear, and the BW Pony arrives for the first time in pony hair with lizard-print overlays. It also says Harley Weir photographed the campaign, which draws on the attitude of 1980s London.</p>
+<p>The same page says the Karintha uses dark brown crocodile stamped leather with gold brushed eyelets, the Gazelle Snake follows in green, the ADIZERO Adios Suede brings a running shoe into everyday wear, and the BW Pony arrives for the first time in pony hair with lizard print overlays. It also says Harley Weir photographed the campaign, which draws on the attitude of 1980s London.</p>
 <h2>The Black Pony price and time</h2>
 <p><a href="{ADP}">adidas.com/us</a> lists the Wales Bonner Karintha BW Army Black Pony Shoes, style code KK2813, at $200, and says they are available Thursday, October 29 at 3:00 pm. That line does not name a time zone. <a href="{WBD}">Just Drops</a>, citing the adidas site, lists the same style code for 11:00 AM ET at $200, and says it tracks the pair at nine retailers, eight of them first come, first served and one a raffle. We have not confirmed a raffle on a retailer's own page, so it is not on our <a href="/raffles/">raffles page</a>. Enter only through each shop's own website.</p>
 <h2>Other doors</h2>
@@ -283,3 +283,97 @@ ARTICLES_1030=[
 "sources":[("Kids' Footwear Size Chart",NKS,"Nike","2026-10-30"),("The Best Nike Shoes for Kids",NKB,"Nike","2026-10-30")]},
 ]
 ARTICLES=ARTICLES_1030+ARTICLES
+K8="https://www.nike.com/launch/t/kobe-8-protro-shanghai-fireworks-laser-orange-and-safety-orange"
+AJ11MB="https://www.nike.com/launch/t/womens-air-jordan-11-magic-ball"
+WTLA="https://www.nike.com/launch/t/air-force-1-low-premium-what-the-la"
+BLZ="https://www.nike.com/launch/t/blazy-tie-dye-dark-sulfur-and-sail"
+DOL="https://www.nike.com/launch/t/women-s-air-max-dolce-leather-black-and-natural"
+AM95C="https://www.nike.com/launch/t/air-max-95-big-bubble-cacao-wow-and-black"
+MND2="https://www.nike.com/launch/t/nike-mind-002-flyknit-black-and-anthracite"
+AM90O="https://www.nike.com/launch/t/air-max-90-medium-olive-and-sequoia"
+AM90B="https://www.nike.com/launch/t/air-max-90-sp-black"
+BAK="https://www.nike.com/launch/t/air-bakin-high-sp-varsity-royal-and-black"
+NTOS="https://agreementservice.svs.nike.com/us/en_us/rest/agreement?agreementType=termsOfSale&country=US&language=en&requestType=redirect&uxId=com.nike.commerce.nikedotcom.web"
+NRET="https://www.nike.com/us/en/help/a/returns-policy"
+T31="2026-10-31T11:00:00+00:00"
+ARTICLES_1031=[
+{"slug":"kobe-8-protro-shanghai-fireworks-november-11-2026","title":"Kobe 8 Protro \"Shanghai Fireworks\" returns November 11 for $200","category":"Release Dates","date":"2026-10-31","publish":T31,
+"description":"Nike's SNKRS page lists the Kobe 8 Protro Shanghai Fireworks, style code IO6259-800, for November 11 at $200, with a Big Kids' listing at $125.",
+"image":BOX,"image_alt":BOXALT,
+"body":f"""<p><strong>The short answer:</strong> <a href="{K8}">Nike's SNKRS page</a> lists the Kobe 8 Protro "Shanghai Fireworks" in Laser Orange and Safety Orange (style code IO6259&#8209;800) for Wednesday, November 11 at $200. The same page carries a second listing at $125 under style code IV5459&#8209;800.</p>
+<h2>What Nike says</h2>
+<p>Nike says the colorway first released in 2013 and describes the upper as covered in artwork that depicts a fireworks display. According to the <a href="{K8}">listing</a>, the Protro build is low and light, uses a Nike React foam insert, and pairs a soft synthetic upper with grippy traction for quick cuts.</p>
+<h2>Sizes and price</h2>
+<p>Nike's <a href="{UPC}">upcoming launches list</a> shows both a basketball shoe listing and a Big Kids' Kobe 8 listing for November 11, which matches the two prices on the product page. If you need help picking between C, Y and men's sizes, see our <a href="/news/nike-kids-shoe-sizes-c-and-y-explained/">kids' sizing guide</a>.</p>
+<h2>Time and where to buy</h2>
+<p>The page we opened on October 31, 2026 read "Available 11/11 at 3:00 PM" with no time zone printed. SNKRS shows the hour in your own device's time zone, so check the page on your phone. The pair is on our <a href="/shoes/nike-kobe-8-protro-shanghai-fireworks/">Kobe 8 Protro release page</a> and in the <a href="/releases/">release calendar</a>. Our <a href="/news/how-nike-snkrs-draw-and-line-launches-work/">SNKRS Draw and Line explainer</a> covers how launches work. Dates and prices can change, so confirm on the retailer's page before you buy.</p>""",
+"sources":[("Kobe 8 Protro Shanghai Fireworks (IO6259-800)",K8,"Nike SNKRS","2026-10-31"),("Upcoming launches",UPC,"Nike SNKRS","2026-10-31")]},
+{"slug":"womens-air-jordan-11-magic-ball-november-11-2026","title":"Women's Air Jordan 11 \"Magic Ball\" launches November 11 at $235","category":"Jordan","date":"2026-10-31","publish":T31,
+"description":"Nike's SNKRS page lists the women's Air Jordan 11 Magic Ball, style code IZ1800-200, for November 11 at $235, with a Space Jam theme.",
+"image":BOX,"image_alt":BOXALT,
+"body":f"""<p><strong>The short answer:</strong> <a href="{AJ11MB}">Nike's SNKRS page</a> lists the women's Air Jordan 11 "Magic Ball" (style code IZ1800&#8209;200) for Wednesday, November 11 at $235.</p>
+<h2>The design</h2>
+<p>Nike ties this pair to the Magic Ball from Space Jam. The <a href="{AJ11MB}">listing</a> describes shifting color, Off Noir and flashes of Metallic Silver on the familiar Air Jordan 11 shape. The page credits the Space Jam name and characters to Warner Bros. Entertainment. RestockRally is not affiliated with Nike or Warner Bros.</p>
+<h2>The sister pair</h2>
+<p>Our <a href="/releases/">release calendar</a> also lists a women's Air Jordan 11 "Lapis" for the same date at $235, based on the <a href="{SIN}">SoleInsider November calendar</a>. Nike's <a href="{UPC}">upcoming list</a> we opened on October 31 showed the Magic Ball but not the Lapis yet, so treat that date as a calendar listing until Nike posts its own page. For the full month, see <a href="/news/air-jordan-releases-november-2026/">every Air Jordan releasing in November 2026</a>.</p>
+<h2>Time and sizing</h2>
+<p>The page read "Available 11/11 at 3:00 PM" when we opened it, with no time zone printed; SNKRS shows the hour in your device's time zone. This is a women's size run, so check the size guide on the product page before launch day. The pair has its own <a href="/shoes/air-jordan-11-magic-ball-womens/">release page</a> with where to buy links.</p>""",
+"sources":[("Women's Air Jordan 11 Magic Ball (IZ1800-200)",AJ11MB,"Nike SNKRS","2026-10-31"),("Upcoming launches",UPC,"Nike SNKRS","2026-10-31"),("November 2026 Sneaker Release Dates",SIN,"SoleInsider","2026-10-30")]},
+{"slug":"nike-air-force-1-low-premium-what-the-la-november-5-2026","title":"Nike Air Force 1 Low Premium \"What the LA\" drops November 5","category":"Release Dates","date":"2026-10-31","publish":T31,
+"description":"Nike's SNKRS page lists the Air Force 1 Low Premium What the LA, style code CT1117-100, for November 5 at $125, inspired by Los Angeles sports.",
+"image":BOX,"image_alt":BOXALT,
+"body":f"""<p><strong>The short answer:</strong> <a href="{WTLA}">Nike's SNKRS page</a> lists the Air Force 1 Low Premium "What the LA" (style code CT1117&#8209;100) for Thursday, November 5, with a listed price of $125.</p>
+<h2>The idea</h2>
+<p>Nike describes the shoe as a celebration of Los Angeles as a sports city. According to the <a href="{WTLA}">listing</a>, the design draws on the teams that call the city home and mixes materials and colors into a collage, in the style of other "What the" pairs that combine several looks on one shoe. Nike does not name any team on the page, and RestockRally is not affiliated with Nike or any team.</p>
+<h2>About the Air Force 1</h2>
+<p>Nike's page recaps the model's history: introduced in 1982, it was the first basketball sneaker to house Nike Air before becoming a street staple.</p>
+<h2>Time and where to buy</h2>
+<p>The page we opened on October 31, 2026 read "Available 11/5 at 3:00 PM" with no time zone printed. SNKRS shows the hour in your own device's time zone. November 5 is a busy day: the <a href="/news/nike-air-max-foamdome-eggplant-jordan-11-mcs-space-jam-november-5-2026/">Air Max Foamdome "Eggplant" and Jordan 11 MCS "Space Jam"</a> are on SNKRS the same day. The pair is in our <a href="/releases/">release calendar</a>. Confirm the price on the retailer's page before you buy.</p>""",
+"sources":[("Air Force 1 Low Premium What the LA (CT1117-100)",WTLA,"Nike SNKRS","2026-10-31"),("Upcoming launches",UPC,"Nike SNKRS","2026-10-31")]},
+{"slug":"nike-blazy-tie-dye-womens-air-max-dolce-leather-november-4-2026","title":"Nike Blazy \"Tie Dye\" and women's Air Max Dolce Leather launch November 4","category":"Release Dates","date":"2026-10-31","publish":T31,
+"description":"Nike's SNKRS pages list the Blazy Tie Dye at $105 and the women's Air Max Dolce Leather in Black and Natural at $170 for November 4.",
+"image":BOX,"image_alt":BOXALT,
+"body":f"""<p><strong>The short answer:</strong> Nike's SNKRS app lists two lifestyle pairs for Wednesday, November 4: the <a href="{BLZ}">Blazy "Tie Dye" in Dark Sulfur and Sail</a> (style code IV7023&#8209;700) at $105, and the <a href="{DOL}">women's Air Max Dolce Leather in Black and Natural</a> (IR8665&#8209;001) at $170.</p>
+<h2>Nike Blazy "Tie Dye"</h2>
+<p>Nike says the Blazy takes its look from the Blazer but adds more room in the toe box for comfort. The <a href="{BLZ}">listing</a> explains the name: a double taped midsole gives the shoe a reclined look, so Nike calls it the "Lazy Blazer." The upper mixes leather and textiles with a subtle stitched Swoosh.</p>
+<h2>Women's Air Max Dolce Leather</h2>
+<p>Nike describes the Dolce as a shoe that has gone "from running to the red carpet" and is now back. According to the <a href="{DOL}">listing</a>, it keeps the laceless molded upper with an overlay cage and the visible Air in the heel that gives the shoe its shape. This version uses a leather build in Black and Natural.</p>
+<h2>Time and where to buy</h2>
+<p>Both pages we opened on October 31, 2026 read "Available 11/4 at 3:00 PM" with no time zone printed; SNKRS shows the hour in your device's time zone. Both are in our <a href="/releases/">release calendar</a>, and the rest of the week is in our <a href="/news/sneaker-releases-november-1-7-2026/">November 1 to 7 list</a>. Confirm price and stock on the retailer's page before you buy.</p>""",
+"sources":[("Blazy Tie Dye Dark Sulfur and Sail (IV7023-700)",BLZ,"Nike SNKRS","2026-10-31"),("Women's Air Max Dolce Leather Black and Natural (IR8665-001)",DOL,"Nike SNKRS","2026-10-31")]},
+{"slug":"sneaker-releases-november-8-14-2026","title":"Sneaker releases November 8 to 14, 2026: Kobe 8, Magic Ball AJ11, Air Max 95 and 90","category":"Release Dates","date":"2026-10-31","publish":T31,
+"description":"Nike's SNKRS pages list a Big Bubble Air Max 95, a Mind 002 Flyknit, the Kobe 8 Shanghai Fireworks, a Magic Ball AJ11, an Air Bakin and two Air Max 90s.",
+"image":BOX,"image_alt":BOXALT,
+"body":f"""<p><strong>The short answer:</strong> the second week of November is busy on SNKRS, with launches listed on November 10, 11, 12 and 13. Every price and style code below comes from Nike's own SNKRS product pages, which we opened on October 31, 2026.</p>
+<h2>Tuesday, November 10</h2>
+<ul><li><a href="{AM95C}">Air Max 95 Big Bubble "Cacao Wow and Black"</a> (IX6347&#8209;200), $190. Nike says the upper stacks layers of genuine leather and mesh, with Tropical Teal on the lace loops, branding and Air units.</li>
+<li><a href="{MND2}">Nike Mind 002 Flyknit "Black and Anthracite"</a> (IR2176&#8209;002), $145. Nike says 22 nodes under the foot move against the sole to engage sensory areas of the brain, and this version uses a Flyknit upper.</li></ul>
+<h2>Wednesday, November 11</h2>
+<ul><li><a href="{K8}">Kobe 8 Protro "Shanghai Fireworks"</a> (IO6259&#8209;800), $200, with a Big Kids' listing at $125. More in our <a href="/news/kobe-8-protro-shanghai-fireworks-november-11-2026/">Kobe 8 report</a>.</li>
+<li><a href="{AJ11MB}">Women's Air Jordan 11 "Magic Ball"</a> (IZ1800&#8209;200), $235. More in our <a href="/news/womens-air-jordan-11-magic-ball-november-11-2026/">Magic Ball report</a>.</li></ul>
+<h2>Thursday, November 12</h2>
+<ul><li><a href="{BAK}">Air Bakin High SP "Varsity Royal and Black"</a> (IQ5365&#8209;400), $170. Nike says this is only the second time the Air Bakin has come back from the vault, with a ribbed upper, a high padded collar, Max Air in the heel and more Air in the forefoot.</li></ul>
+<h2>Friday, November 13</h2>
+<ul><li><a href="{AM90O}">Air Max 90 "Medium Olive and Sequoia"</a> (IV4504&#8209;201), $170, with a Medium Olive leather upper.</li>
+<li><a href="{AM90B}">Air Max 90 SP "Black"</a> (IV4504&#8209;001), $170, in an all black finish.</li></ul>
+<p>Nike says both Air Max 90s keep the Waffle sole and visible Max Air from Tinker Hatfield's original 1990 design. Our <a href="/releases/">release calendar</a> also lists the Nike Air Foamposite One "Phantom" and the Nike KD 19 "Aunt Pearl" for November 13 based on credited calendars; see our <a href="/news/nike-air-foamposite-releases-november-2026/">November Foamposite guide</a>.</p>
+<h2>Times</h2>
+<p>Each SNKRS page we opened showed a 3:00 PM availability time without printing a time zone. SNKRS shows the hour in your own device's time zone, so check the app for your exact time. Nike's <a href="{UPC}">upcoming launches list</a> can change, and new pairs are often added during the week. Confirm price and stock on the retailer's page before you buy.</p>""",
+"sources":[("Air Max 95 Big Bubble Cacao Wow and Black (IX6347-200)",AM95C,"Nike SNKRS","2026-10-31"),("Nike Mind 002 Flyknit Black and Anthracite (IR2176-002)",MND2,"Nike SNKRS","2026-10-31"),("Kobe 8 Protro Shanghai Fireworks (IO6259-800)",K8,"Nike SNKRS","2026-10-31"),("Women's Air Jordan 11 Magic Ball (IZ1800-200)",AJ11MB,"Nike SNKRS","2026-10-31"),("Air Bakin High SP Varsity Royal and Black (IQ5365-400)",BAK,"Nike SNKRS","2026-10-31"),("Air Max 90 Medium Olive and Sequoia (IV4504-201)",AM90O,"Nike SNKRS","2026-10-31"),("Air Max 90 SP Black (IV4504-001)",AM90B,"Nike SNKRS","2026-10-31"),("Upcoming launches",UPC,"Nike SNKRS","2026-10-31")]},
+{"slug":"can-you-return-snkrs-launch-sneakers-nike-terms-of-sale","title":"Can you return a pair you won on SNKRS? What Nike's Terms of Sale say","category":"Guides","date":"2026-11-02","publish":"2026-11-02T10:00:00+00:00",
+"description":"Nike's US Terms of Sale cover SNKRS orders, point to the policy at Nike.com/returns, exclude Final Sale items and refund to the original payment method.",
+"image":PHN,"image_alt":PHNALT,
+"body":f"""<p><strong>The short answer:</strong> yes, in most cases. Nike's US <a href="{NTOS}">Terms of Sale</a>, last revised in October 2026, say they apply to purchases made through Nike.com, SNKRS and the Nike app, and that you can return a purchase under the return policy shown at the time you buy, unless the item is marked "Final Sale."</p>
+<h2>What the Terms of Sale cover</h2>
+<p>The <a href="{NTOS}">Terms of Sale</a> group Nike.com, SNKRS and the Nike app together as Nike's digital stores. That means a pair you win in a SNKRS draw is treated like any other Nike order. The terms point to the return policy at Nike.com/returns for the details, including the return window, so check <a href="{NRET}">Nike's returns help page</a> for the current number of days.</p>
+<h2>Where you can return it</h2>
+<p>According to the terms, products bought from a Nike digital store can be returned to any Nike store, and products bought in a Nike retail store can be returned to any Nike retail store. Refunds go back to the original form of payment.</p>
+<h2>Exceptions to know</h2>
+<ul><li><strong>Final Sale.</strong> Items the store marks as Final Sale fall outside the normal return terms.</li>
+<li><strong>Defective pairs.</strong> The terms say you can return products that are defective or do not match your order. If Nike agrees the claim is justified, it says it refunds the price and any shipping costs.</li>
+<li><strong>Buying to resell.</strong> Nike's terms say its stores are for end consumers and that purchases for resale are prohibited. If Nike decides an order is for resale, it says it may suspend consumer policies for that order, cancel orders, charge restocking fees or decline returns.</li></ul>
+<h2>Before launch day</h2>
+<p>Pick the right listing and size first, since many launches carry separate men's, women's and kids' listings. Our <a href="/news/nike-kids-shoe-sizes-c-and-y-explained/">kids' sizing guide</a> and <a href="/news/how-nike-snkrs-draw-and-line-launches-work/">SNKRS Draw and Line explainer</a> can help. Policies can change, and the version shown when you buy is the one that applies. This is general consumer information, not legal advice.</p>""",
+"sources":[("Terms of Sale (US, revised October 2026)",NTOS,"Nike","2026-10-31"),("What Is Nike's Return Policy?",NRET,"Nike Help","2026-10-31")]},
+]
+ARTICLES=ARTICLES_1031+ARTICLES

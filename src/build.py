@@ -1,4 +1,5 @@
 import os, json, html, re, shutil, datetime
+from zoneinfo import ZoneInfo
 from data import SITE, RELEASES, RESTOCKS
 from articles import ARTICLES
 import sys, subprocess, legal_gate
@@ -26,7 +27,8 @@ def nice(d): return datetime.date.fromisoformat(d).strftime("%B %-d, %Y")
 def stamp(a):
     if a.get("publish"):
         dt=pub_dt(a)
-        return dt.strftime("%Y-%m-%dT%H:%M:%SZ"), nice(a["date"])+" at "+dt.strftime("%H:%M")+" London"
+        et=dt.astimezone(ZoneInfo("America/New_York"))
+        return dt.strftime("%Y-%m-%dT%H:%M:%SZ"), nice(et.date().isoformat())+" at "+et.strftime("%-I:%M %p")+" ET"
     return a["date"], nice(a["date"])
 LEGAL=f"© {Y} Joshua Israel Ventures LLC. All rights reserved. {N} is a trade name of Joshua Israel Ventures LLC, a Florida limited liability company."
 pages=[]

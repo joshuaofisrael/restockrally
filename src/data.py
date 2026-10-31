@@ -87,3 +87,16 @@ RELEASES=[(r[:5]+_snkrs(r[0].replace('"',''),_UP[r[4]])) if r[4] in _UP else r f
 CTU=("CartTactic","https://carttactic.com/nike-air-more-uptempo-96-black-white-restock-foot-locker/")
 RESTOCKS = [("Nike Air More Uptempo '96 \"Black/White\"","2026-10-29","Foot Locker (online)",170,"",CTU)] + [
  (r[0],r[1],r[2],230,"IO4635-001",("Sneaker News","https://sneakernews.com/2026/10/19/nike-air-max-goadome-pony-hair-io4635-001/")) if r[0].startswith("Nike Air Max Goadome") else r for r in RESTOCKS]
+# 31 Oct 2026 slot: rows checked on Nike SNKRS product pages on 31 Oct 2026.
+RELEASES += [
+ ("Nike Blazy \"Tie Dye\"","Nike","2026-11-04",105,"IV7023-700",*_snkrs("Blazy Tie Dye Dark Sulfur and Sail","https://www.nike.com/launch/t/blazy-tie-dye-dark-sulfur-and-sail")),
+ ("Nike Air Max Dolce Leather \"Black and Natural\" (Women's)","Nike","2026-11-04",170,"IR8665-001",*_snkrs("Women's Air Max Dolce Leather Black and Natural","https://www.nike.com/launch/t/women-s-air-max-dolce-leather-black-and-natural")),
+ ("Nike Air Force 1 Low Premium \"What the LA\"","Nike","2026-11-05",125,"CT1117-100",*_snkrs("Air Force 1 Low Premium What the LA","https://www.nike.com/launch/t/air-force-1-low-premium-what-the-la")),
+ ("Nike Air Max 95 Big Bubble \"Cacao Wow and Black\"","Nike","2026-11-10",190,"IX6347-200",*_snkrs("Air Max 95 Big Bubble Cacao Wow and Black","https://www.nike.com/launch/t/air-max-95-big-bubble-cacao-wow-and-black")),
+ ("Nike Mind 002 Flyknit \"Black and Anthracite\"","Nike","2026-11-10",145,"IR2176-002",*_snkrs("Nike Mind 002 Flyknit Black and Anthracite","https://www.nike.com/launch/t/nike-mind-002-flyknit-black-and-anthracite")),
+ ("Nike Air Max 90 \"Medium Olive and Sequoia\"","Nike","2026-11-13",170,"IV4504-201",*_snkrs("Air Max 90 Medium Olive and Sequoia","https://www.nike.com/launch/t/air-max-90-medium-olive-and-sequoia")),
+ ("Nike Air Max 90 SP \"Black\"","Nike","2026-11-13",170,"IV4504-001",*_snkrs("Air Max 90 SP Black","https://www.nike.com/launch/t/air-max-90-sp-black")),
+]
+_UP2={"IO6259-800":"https://www.nike.com/launch/t/kobe-8-protro-shanghai-fireworks-laser-orange-and-safety-orange","IZ1800-200":"https://www.nike.com/launch/t/womens-air-jordan-11-magic-ball","IQ5365-400":"https://www.nike.com/launch/t/air-bakin-high-sp-varsity-royal-and-black"}
+RELEASES=[(r[:5]+_snkrs(r[0].replace('"',''),_UP2[r[4]])) if r[4] in _UP2 else r for r in RELEASES]
+RESTOCKS = [("Air Jordan 41 \"Ruby\"","2026-10-30","Nike (online)",205,"HV6474-601",("CartTactic","https://carttactic.com/air-jordan-41-ruby-restock-nike/"))] + RESTOCKS
