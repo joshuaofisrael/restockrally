@@ -377,3 +377,22 @@ ARTICLES_1031=[
 "sources":[("Terms of Sale (US, revised October 2026)",NTOS,"Nike","2026-10-31"),("What Is Nike's Return Policy?",NRET,"Nike Help","2026-10-31")]},
 ]
 ARTICLES=ARTICLES_1031+ARTICLES
+
+SNKRSDRAWS="https://www.nike.com/help/a/snkrs-draws"
+ARTICLES_EVERGREEN=[
+{"slug":"what-is-a-sneaker-restock-and-how-to-catch-one","title":"What is a sneaker restock, and how do you catch one?","category":"Restocks","date":"2026-11-04","publish":"2026-11-04T11:00:00+00:00",
+"description":"A restock is a pair coming back after it sold out. Here is where restocks come from, why they rarely get an announcement, and practical ways to catch one.",
+"image":BOX,"image_alt":BOXALT,
+"body":f"""<p><strong>The short answer:</strong> a restock is a sneaker going back on sale after it has already sold out. Restocks happen when a retailer gets more stock, when unpaid or cancelled orders return to inventory, or when returns are put back on sale. Most are small and few are announced in advance, so catching one comes down to knowing where to look and being ready to check out fast.</p>
+<h2>Where restocks come from</h2>
+<p>There are three common sources. A planned restock is a fresh shipment the brand or retailer chooses to sell, and these are the ones most likely to be announced. A cancellation restock happens when orders from launch day fail payment checks or are cancelled, and those pairs go back on the site. A returns restock happens when buyers send pairs back within the return window. The last two usually mean only a few sizes, released without notice.</p>
+<h2>Restock versus release</h2>
+<p>A release is the first time a shoe goes on sale. A restock is any later return to sale, sometimes weeks after launch. Some pairs that were sold through a draw later reappear in a normal shop listing. On Nike's app, <a href="{SNKRSDRAWS}">Nike's SNKRS draws help page</a> explains how draw entries and results work, and our <a href="/news/how-nike-snkrs-draw-and-line-launches-work/">guide to SNKRS Draw and Line launches</a> covers the difference between the two formats.</p>
+<h2>How to catch one</h2>
+<p>Set up the basics before you need them: be signed in, save your size, delivery address and payment details where the retailer allows it, and turn on app notifications for the brands and stores you use. Check product pages you care about at different times of day rather than just once, since cancellation and returns stock can appear at any time. Watch the retailer's own channels first and treat any third party alert as a prompt to check, not as proof.</p>
+<h2>Avoid the traps</h2>
+<p>Restock hype attracts fake links and fake raffles. Only buy through the retailer's own site or app, and never pay a stranger to "hold" a pair. Our guide to <a href="/news/how-to-spot-a-fake-sneaker-release-ad-or-raffle/">spotting a fake sneaker release ad or raffle</a> lists the warning signs. Our monthly restock log, such as the <a href="/news/october-2026-sneaker-restocks-nike-mind-air-bakin/">October restocks roundup</a>, records which pairs actually came back.</p>
+<p>This is general shopping information. Stock, prices and rules change, so always confirm on the retailer's own page.</p>""",
+"sources":[("SNKRS Draws",SNKRSDRAWS,"Nike Help","2026-11-01")]},
+]
+ARTICLES=ARTICLES_EVERGREEN+ARTICLES
