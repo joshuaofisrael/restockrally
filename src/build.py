@@ -88,8 +88,11 @@ for r in REL:
 <aside class="buy-box" aria-labelledby="wtb"><h2 id="wtb">Where to buy</h2><ul>{buy}</ul><p class="small">Links go to the official retailer. Dates, prices and stock can change; the retailer's page has the final word. We do not sell shoes. See our <a href="/affiliate-disclosure/">affiliate disclosure</a>.</p></aside>
 <section class="sources"><h2>Source</h2><ol><li><a href="{e(r['src'][1])}">{e(r['src'][0])}</a></li></ol></section>
 <p><a href="/releases/">Back to the release calendar</a></p></article>"""
-    ld=[{"@type":"Product","name":r["name"],"sku":r["sku"],"brand":{"@type":"Brand","name":r["brand"]},"releaseDate":r["date"]}]
-    write(f"/shoes/{r['slug']}/",r["name"]+" release date and price",f"{r['name']} releases {nice(r['date'])} for ${r['price']}. Style code {r['sku']}, where to buy and sources.",body,ld,lastmod="2026-10-29" if r["date"]>="2026-10-29" and r["sku"] in ("A23933C-832","KK2813") else "2026-10-27")
+    lm="2026-10-29" if r["date"]>="2026-10-29" and r["sku"] in ("A23933C-832","KK2813") else "2026-10-27"
+    rtitle=r["name"]+" release date and price"; rdesc=f"{r['name']} releases {nice(r['date'])} for ${r['price']}. Style code {r['sku']}, where to buy and sources."
+    ld=[{"@type":"Product","name":r["name"],"sku":r["sku"],"brand":{"@type":"Brand","name":r["brand"]},"releaseDate":r["date"]},
+        {"@type":"NewsArticle","headline":rtitle,"description":rdesc,"datePublished":lm+"T00:00:00Z","dateModified":lm+"T00:00:00Z","mainEntityOfPage":U+"/shoes/"+r["slug"]+"/","author":{"@type":"Organization","name":N+" desk","url":U+"/about/"},"publisher":{"@id":U+"/#org"},"isBasedOn":[r["src"][1]]}]
+    write(f"/shoes/{r['slug']}/",rtitle,rdesc,body,ld,lastmod=lm)
 # calendar
 brands=sorted({r["brand"] for r in REL})
 opts="".join(f'<option>{e(b)}</option>' for b in brands)
