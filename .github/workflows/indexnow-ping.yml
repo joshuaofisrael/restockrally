@@ -1,0 +1,24 @@
+name: IndexNow ping
+
+on:
+  push:
+    branches: [master]
+    paths: ["docs/**"]
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Ping IndexNow with changed pages and the sitemap
+        run: |
+          before="${{ github.event.before }}"
+          if [ -z "$before" ] || [ "$before" = "0000000000000000000000000000000000000000" ]; then
+            changed=""
+          else
+            changed="$(git diff --name-only "$before" "${{ github.sha }}" -- docs | grep -E '\.html$' || true)"
+          fi
+          python3 src/indexnow_ping.py $changed
