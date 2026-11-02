@@ -38,7 +38,7 @@ def head(title,desc,path,ld,image=None):
     t=f"{title} | {N}" if path!="/" else f"{N}: {SITE['tagline']}"
     card="summary_large_image" if image else "summary"
     ogimg=f'<meta property="og:image" content="{U}{image}">' if image else ""
-    return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+    return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="msvalidate.01" content="942EB99DB458637348E2ADBDEBDAA7AE">
 <title>{e(t)}</title><meta name="description" content="{e(desc[:155])}"><link rel="canonical" href="{U}{path}">
 <meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:site_name" content="{N}"><meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc[:155])}"><meta property="og:url" content="{U}{path}"><meta property="og:type" content="{'article' if path.startswith('/news/') and path!='/news/' else 'website'}">{ogimg}<meta name="twitter:card" content="{card}">
 <link rel="icon" href="/assets/logo.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/site.css"><link rel="alternate" type="application/rss+xml" href="/feed.xml" title="{N}">
