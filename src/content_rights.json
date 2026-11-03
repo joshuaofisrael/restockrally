@@ -1,6 +1,26 @@
 {
- "/assets/logo.svg": {"licence": "Original RestockRally artwork, owned outright", "evidence": "src/static/assets/logo.svg created for the site on 27 Oct 2026"},
- "/assets/news/shai-001-release-morning.jpg": {"licence": "Original AI-generated editorial image, owned outright", "evidence": "Created for RestockRally on 29 Oct 2026. Not a product photo and not a third-party image. Labeled AI-generated on the page."},
- "/assets/news/wales-bonner-materials.jpg": {"licence": "Original AI-generated editorial image, owned outright", "evidence": "Created for RestockRally on 29 Oct 2026. Not a product photo and not a third-party image. Labeled AI-generated on the page."},
- "/assets/news/snkrs-draw-line.jpg": {"licence": "Original AI-generated editorial image, owned outright", "evidence": "Created for RestockRally on 29 Oct 2026. Not a product photo and not a third-party image. Labeled AI-generated on the page."}
+ "/assets/logo.svg": {
+  "licence": "Original RestockRally artwork, owned outright",
+  "evidence": "src/static/assets/logo.svg created for the site on 27 Oct 2026"
+ },
+ "/assets/news/shai-001-release-morning.jpg": {
+  "licence": "Original AI-generated editorial image, owned outright",
+  "evidence": "Created for RestockRally on 29 Oct 2026. Not a product photo and not a third-party image. Labeled AI-generated on the page."
+ },
+ "/assets/news/wales-bonner-materials.jpg": {
+  "licence": "Original AI-generated editorial image, owned outright",
+  "evidence": "Created for RestockRally on 29 Oct 2026. Not a product photo and not a third-party image. Labeled AI-generated on the page."
+ },
+ "/assets/news/snkrs-draw-line.jpg": {
+  "licence": "Original AI-generated editorial image, owned outright",
+  "evidence": "Created for RestockRally on 29 Oct 2026. Not a product photo and not a third-party image. Labeled AI-generated on the page."
+ },
+ "/assets/news/release-week-nov-3-7.jpg": {
+  "licence": "Original AI-generated editorial image, owned outright",
+  "evidence": "Mirrored and recropped on 3 Nov 2026 from the site's own AI-generated image /assets/news/shai-001-release-morning.jpg (created for RestockRally 29 Oct 2026). Not a product photo and not a third-party image. Labeled AI-generated on the page."
+ },
+ "/assets/news/release-week-nov-3-7-inline.jpg": {
+  "licence": "Original AI-generated editorial image, owned outright",
+  "evidence": "Mirrored and recropped on 3 Nov 2026 from the site's own AI-generated image /assets/news/wales-bonner-materials.jpg (created for RestockRally 29 Oct 2026). Not a product photo and not a third-party image. Labeled AI-generated on the page."
+ }
 }
