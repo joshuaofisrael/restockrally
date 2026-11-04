@@ -21,7 +21,7 @@
  },
  "/assets/news/release-week-nov-3-7-inline.jpg": {
   "licence": "Original AI-generated editorial image, owned outright",
-  "evidence": "Mirrored and recropped on 3 Nov 2026 from the site's own AI-generated image /assets/news/wales-bonner-materials.jpg (created for RestockRally 29 Oct 2026). Not a product photo and not a third-party image. Labeled AI-generated on the page."
+  "evidence": "Generated for RestockRally on 4 Nov 2026 with Grok Bot GenerateImage (replaces earlier mirrored crop). Prompt: 'Hyper-realistic photo: several unbranded generic sneakers in assorted colors lined up on a concrete shelf in a minimalist store, soft studio light, no logos, no brand marks, no text'. sha256 8db49606dac7d0dbd33d579da5b71eaf68ddb9b6c7a6dd44f1f503f368314ef0. No logos, people or text. Labeled AI-generated on the page. Joshua approved 4 Nov 2026 10:24 EST: 'Of course replace the images with our own images'."
  },
  "/assets/news/nike-foamposite-pro-mummy-duck-november-3-release.jpg": {
   "licence": "Original AI-generated editorial image, owned outright",
