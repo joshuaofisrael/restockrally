@@ -1,42 +1,54 @@
 {
- "/assets/logo.svg": {
-  "licence": "Original RestockRally artwork, owned outright",
-  "evidence": "src/static/assets/logo.svg created for the site on 27 Oct 2026"
- },
- "/assets/news/shai-001-release-morning.jpg": {
-  "licence": "Original AI-generated editorial image, owned outright",
-  "evidence": "Created for RestockRally on 29 Oct 2026. Not a product photo and not a third-party image. Labeled AI-generated on the page."
- },
- "/assets/news/wales-bonner-materials.jpg": {
-  "licence": "Original AI-generated editorial image, owned outright",
-  "evidence": "Created for RestockRally on 29 Oct 2026. Not a product photo and not a third-party image. Labeled AI-generated on the page."
- },
- "/assets/news/snkrs-draw-line.jpg": {
-  "licence": "Original AI-generated editorial image, owned outright",
-  "evidence": "Created for RestockRally on 29 Oct 2026. Not a product photo and not a third-party image. Labeled AI-generated on the page."
- },
- "/assets/news/release-week-nov-3-7.jpg": {
-  "licence": "Original AI-generated editorial image, owned outright",
-  "evidence": "Mirrored and recropped on 3 Nov 2026 from the site's own AI-generated image /assets/news/shai-001-release-morning.jpg (created for RestockRally 29 Oct 2026). Not a product photo and not a third-party image. Labeled AI-generated on the page."
- },
- "/assets/news/release-week-nov-3-7-inline.jpg": {
-  "licence": "Original AI-generated editorial image, owned outright",
-  "evidence": "Generated for RestockRally on 4 Nov 2026 with Grok Bot GenerateImage (replaces earlier mirrored crop). Prompt: 'Hyper-realistic photo: several unbranded generic sneakers in assorted colors lined up on a concrete shelf in a minimalist store, soft studio light, no logos, no brand marks, no text'. sha256 8db49606dac7d0dbd33d579da5b71eaf68ddb9b6c7a6dd44f1f503f368314ef0. No logos, people or text. Labeled AI-generated on the page. Joshua approved 4 Nov 2026 10:24 EST: 'Of course replace the images with our own images'."
- },
- "/assets/news/nike-foamposite-pro-mummy-duck-november-3-release.jpg": {
-  "licence": "Original AI-generated editorial image, owned outright",
-  "evidence": "Created for RestockRally on 3 Nov 2026. Not a product photo and not a third-party image. No people, logos or text. Labeled AI-generated on the page."
- },
- "/assets/news/air-jordan-6-white-infrared-november-7.jpg": {
-  "licence": "Original AI-generated editorial image, owned outright",
-  "evidence": "Created for RestockRally on 3 Nov 2026. Not a product photo and not a third-party image. No people, logos or text. Labeled AI-generated on the page."
- },
- "/assets/news/sneaker-drops-november-5-7-jordan-6-990v7-bape.jpg": {
-  "licence": "Original AI-generated editorial image, owned outright",
-  "evidence": "Created for RestockRally on 4 Nov 2026. Not a product photo and not a third-party image. No people, logos or text. Labeled AI-generated on the page."
- },
- "/assets/news/nike-air-zoom-generation-gloria-james-pe-spring-2027.jpg": {
-  "licence": "Original AI-generated editorial image, owned outright",
-  "evidence": "Created for RestockRally on 5 Nov 2026. Not a product photo and not a third-party image. No people, logos or text. sha256 77ed0e2da4238da9ba587df590cc494d0d7a149ebd75e7009d4f62ebdcb17c26. Labeled AI-generated on the page."
- }
+  "/assets/logo.svg": {
+    "licence": "Original RestockRally artwork, owned outright",
+    "evidence": "src/static/assets/logo.svg created for the site on 27 Oct 2026"
+  },
+  "/assets/news/shai-001-release-morning.jpg": {
+    "licence": "Original AI-generated editorial image, owned outright",
+    "evidence": "Created for RestockRally on 29 Oct 2026. Not a product photo and not a third-party image. Labeled AI-generated on the page."
+  },
+  "/assets/news/wales-bonner-materials.jpg": {
+    "licence": "Original AI-generated editorial image, owned outright",
+    "evidence": "Created for RestockRally on 29 Oct 2026. Not a product photo and not a third-party image. Labeled AI-generated on the page."
+  },
+  "/assets/news/snkrs-draw-line.jpg": {
+    "licence": "Original AI-generated editorial image, owned outright",
+    "evidence": "Created for RestockRally on 29 Oct 2026. Not a product photo and not a third-party image. Labeled AI-generated on the page."
+  },
+  "/assets/news/release-week-nov-3-7.jpg": {
+    "licence": "Original AI-generated editorial image, owned outright",
+    "evidence": "Mirrored and recropped on 3 Nov 2026 from the site's own AI-generated image /assets/news/shai-001-release-morning.jpg (created for RestockRally 29 Oct 2026). Not a product photo and not a third-party image. Labeled AI-generated on the page."
+  },
+  "/assets/news/release-week-nov-3-7-inline.jpg": {
+    "licence": "Original AI-generated editorial image, owned outright",
+    "evidence": "Generated for RestockRally on 4 Nov 2026 with Grok Bot GenerateImage (replaces earlier mirrored crop). Prompt: 'Hyper-realistic photo: several unbranded generic sneakers in assorted colors lined up on a concrete shelf in a minimalist store, soft studio light, no logos, no brand marks, no text'. sha256 8db49606dac7d0dbd33d579da5b71eaf68ddb9b6c7a6dd44f1f503f368314ef0. No logos, people or text. Labeled AI-generated on the page. Joshua approved 4 Nov 2026 10:24 EST: 'Of course replace the images with our own images'."
+  },
+  "/assets/news/nike-foamposite-pro-mummy-duck-november-3-release.jpg": {
+    "licence": "Original AI-generated editorial image, owned outright",
+    "evidence": "Created for RestockRally on 3 Nov 2026. Not a product photo and not a third-party image. No people, logos or text. Labeled AI-generated on the page."
+  },
+  "/assets/news/air-jordan-6-white-infrared-november-7.jpg": {
+    "licence": "Original AI-generated editorial image, owned outright",
+    "evidence": "Created for RestockRally on 3 Nov 2026. Not a product photo and not a third-party image. No people, logos or text. Labeled AI-generated on the page."
+  },
+  "/assets/news/sneaker-drops-november-5-7-jordan-6-990v7-bape.jpg": {
+    "licence": "Original AI-generated editorial image, owned outright",
+    "evidence": "Created for RestockRally on 4 Nov 2026. Not a product photo and not a third-party image. No people, logos or text. Labeled AI-generated on the page."
+  },
+  "/assets/news/nike-air-zoom-generation-gloria-james-pe-spring-2027.jpg": {
+    "licence": "Original AI-generated editorial image, owned outright",
+    "evidence": "Created for RestockRally on 5 Nov 2026. Not a product photo and not a third-party image. No people, logos or text. sha256 77ed0e2da4238da9ba587df590cc494d0d7a149ebd75e7009d4f62ebdcb17c26. Labeled AI-generated on the page."
+  },
+  "/assets/news/air-jordan-41-meteorite-sell-through.jpg": {
+    "licence": "Original AI-generated editorial image, owned outright",
+    "evidence": "Created for RestockRally on 6 Nov 2026 from image bank. Not a product photo and not a third-party image. No logos or text. Labeled AI-generated on the page."
+  },
+  "/assets/news/jordan-spizike-low-jam-central.jpg": {
+    "licence": "Original AI-generated editorial image, owned outright",
+    "evidence": "Created for RestockRally on 6 Nov 2026 from image bank. Not a product photo and not a third-party image. No logos or text. Labeled AI-generated on the page."
+  },
+  "/assets/news/new-balance-990v7-kool-grey.jpg": {
+    "licence": "Original AI-generated editorial image, owned outright",
+    "evidence": "Created for RestockRally on 6 Nov 2026 from image bank. Not a product photo and not a third-party image. No logos or text. Labeled AI-generated on the page."
+  }
 }
