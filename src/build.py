@@ -55,7 +55,7 @@ def chrome(body,path):
 <nav class="topics" aria-label="Sections"><div class="wrap"><ul class="topic-list">{nav}</ul></div></nav><div class="road-line" aria-hidden="true"></div></header>
 <main id="main" tabindex="-1"><div class="wrap">{body}</div></main>
 <footer class="site-footer"><div class="road-line" aria-hidden="true"></div><div class="wrap footer-grid">
-<nav aria-label="Coverage"><h2>Coverage</h2><ul><li><a href="/releases/">Release Calendar</a></li><li><a href="/restocks/">Restocks</a></li><li><a href="/raffles/">Raffles</a></li><li><a href="/guides/">Guides</a></li><li><a href="/news/">News</a></li></ul></nav>
+<nav aria-label="Coverage"><h2>Coverage</h2><ul><li><a href="/releases/">Release Calendar</a></li><li><a href="/restocks/">Restocks</a></li><li><a href="/raffles/">Raffles</a></li><li><a href="/guides/">Guides</a></li><li><a href="/brands/">Brands</a></li><li><a href="/news/">News</a></li></ul></nav>
 <nav aria-label="Company links"><h2>{N}</h2><ul><li><a href="/about/">About</a></li><li><a href="/contact/">Contact Us</a></li><li><a href="/sources-ethics/">Sources &amp; Ethics</a></li><li><a href="/corrections/">Corrections</a></li></ul></nav>
 <nav aria-label="Legal and feeds"><h2>Legal and feeds</h2><ul><li><a href="/terms/">Terms</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/disclaimer/">Disclaimer</a></li><li><a href="/copyright/">Copyright &amp; DMCA</a></li><li><a href="/image-policy/">Image policy</a></li><li><a href="/affiliate-disclosure/">Affiliate Disclosure</a></li><li><button type="button" class="consent-link" data-consent-open="1">Cookie choices</button></li><li><a href="/feed.xml">RSS</a></li></ul></nav>
 </div></footer><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{{"token": "eac63f2b5dbc4539a2d95249baab6472"}}'></script></body></html>"""
@@ -144,15 +144,18 @@ ghub="<h1>Sneaker guides</h1><p class='dek'>Evergreen how-to pages for buying sn
 for gname,sls in GUIDE_GROUPS:
     lis="".join(guide_li(x) for x in sls)
     if lis: ghub+=f"<section><h2 class='section-title'>{e(gname)}</h2><ul class='story-grid'>{lis}</ul></section>"
-ghub+="<p>For dates, see the <a href='/releases/'>release calendar</a>, the <a href='/restocks/'>restocks log</a> and the <a href='/raffles/'>raffles page</a>.</p>"
+ghub+="<p>Browse by brand: <a href='/brands/nike/'>Nike</a>, <a href='/brands/jordan/'>Jordan</a>, <a href='/brands/adidas/'>adidas</a> and <a href='/brands/new-balance/'>New Balance</a>. For dates, see the <a href='/releases/'>release calendar</a>, the <a href='/restocks/'>restocks log</a> and the <a href='/raffles/'>raffles page</a>.</p>"
 _gl=[_BY[x]["date"] for _,sls in GUIDE_GROUPS for x in sls if x in _BY]
 write("/guides/","Sneaker guides: raffles, restocks, sizing and authenticity","How sneaker raffles, drops and restocks work, brand size charts, and how resale platforms verify pairs. Sourced evergreen guides.",ghub,[{"@type":"CollectionPage","name":"Sneaker guides","url":U+"/guides/"}],lastmod=max(_gl) if _gl else "2026-11-12")
+import hubs
+BRAND_LIST=hubs.build_hubs(ART,REL,write,e,relrow,stamp,NOW.date().isoformat(),U)
+HOME_BRANDS=" · ".join(f'<a href="/brands/{b["slug"]}/">{e(b["name"])}</a>' for b in BRAND_LIST)
 HOME_GUIDES="".join(f'<li><a href="/news/{x}/">{e(_BY[x]["title"])}</a></li>' for x in ["how-online-sneaker-raffles-work","what-is-a-sneaker-restock-and-how-to-catch-one","nike-sizing-by-model","adidas-shoe-size-chart-us-uk-eu","new-balance-shoe-widths-explained","how-stockx-and-goat-verify-sneakers"] if x in _BY)
 today=NOW.date().isoformat(); up=[r for r in REL if r["date"]>=today][:8]
 home=f"""<section class="hero"><h1 class="visually-hidden">{N}</h1><p class="hero-kicker">Release dates, restocks and raffles</p><p class="hero-lead">The fastest way to see what drops next, what it costs and where to buy it.</p><p><a class="buy-btn" href="/releases/">Open the release calendar</a></p></section>
 <section aria-labelledby="up"><h2 id="up" class="section-title">Dropping next</h2><ul class="rel-list">{''.join(relrow(r) for r in up)}</ul><p><a href="/releases/">Full calendar</a></p></section>
 <section aria-labelledby="ln"><h2 id="ln" class="section-title">Latest news</h2><ul class="story-grid">{cards}</ul></section>
-<section aria-labelledby="gd"><h2 id="gd" class="section-title">Sneaker guides</h2><ul>{HOME_GUIDES}</ul><p><a href="/guides/">All guides</a></p></section>
+<section aria-labelledby="gd"><h2 id="gd" class="section-title">Sneaker guides</h2><ul>{HOME_GUIDES}</ul><p><a href="/guides/">All guides</a> · Brand hubs: {HOME_BRANDS}</p></section>
 <section aria-labelledby="rs"><h2 id="rs" class="section-title">Recent restocks</h2><ul class="rel-list">{rs}</ul></section>"""
 write("/",N,"Fast sneaker release calendar, restock log and raffle guide with prices, style codes and where to buy links. Every fact sourced.",home,[{"@type":"WebSite","name":N,"url":U+"/","publisher":{"@id":U+"/#org"}}],lastmod=NOW.date().isoformat())
 # static pages
@@ -185,7 +188,7 @@ open(f"{OUT}/robots.txt","w").write("".join(f"User-agent: {b}\nAllow: /\n\n" for
 open(f"{OUT}/ads.txt","w").write("google.com, pub-5681559774142917, DIRECT, f08c47fec0942fa0\n")
 open(f"{OUT}/{SITE['indexnow_key']}.txt","w").write(SITE["indexnow_key"])
 open(f"{OUT}/CNAME","w").write("restockrally.com\n"); open(f"{OUT}/.nojekyll","w").write("")
-open(f"{OUT}/llms.txt","w").write(f"# {N}\n\n> {SITE['tagline']}. Sourced sneaker release dates, restocks and raffles.\n\n## Key pages\n- [Release calendar]({U}/releases/)\n- [Restocks]({U}/restocks/)\n- [Raffles]({U}/raffles/)\n- [Guides]({U}/guides/)\n- [News]({U}/news/)\n- [Sources & Ethics]({U}/sources-ethics/)\n\n## Articles\n"+"".join(f"- [{a['title']}]({U}/news/{a['slug']}/): {a['description']}\n" for a in ART))
+open(f"{OUT}/llms.txt","w").write(f"# {N}\n\n> {SITE['tagline']}. Sourced sneaker release dates, restocks and raffles.\n\n## Key pages\n- [Release calendar]({U}/releases/)\n- [Restocks]({U}/restocks/)\n- [Raffles]({U}/raffles/)\n- [Guides]({U}/guides/)\n- [Brand hubs]({U}/brands/)\n- [Nike]({U}/brands/nike/)\n- [Jordan]({U}/brands/jordan/)\n- [adidas]({U}/brands/adidas/)\n- [New Balance]({U}/brands/new-balance/)\n- [News]({U}/news/)\n- [Sources & Ethics]({U}/sources-ethics/)\n\n## Articles\n"+"".join(f"- [{a['title']}]({U}/news/{a['slug']}/): {a['description']}\n" for a in ART))
 items="".join(f"<item><title>{e(a['title'])}</title><link>{U}/news/{a['slug']}/</link><guid>{U}/news/{a['slug']}/</guid><pubDate>{pub_dt(a).strftime('%a, %d %b %Y %H:%M:%S +0000')}</pubDate><description>{e(a['description'])}</description></item>" for a in ART)
 open(f"{OUT}/feed.xml","w").write(f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>{N}</title><link>{U}/</link><description>{SITE["tagline"]}</description>{items}</channel></rss>')
 # Legal hold gate layer 2: full-site backstop. If any built page is held, put docs/ back to the last committed version and fail.
