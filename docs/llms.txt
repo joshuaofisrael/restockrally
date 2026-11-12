@@ -7,6 +7,11 @@
 - [Restocks](https://restockrally.com/restocks/)
 - [Raffles](https://restockrally.com/raffles/)
 - [Guides](https://restockrally.com/guides/)
+- [Brand hubs](https://restockrally.com/brands/)
+- [Nike](https://restockrally.com/brands/nike/)
+- [Jordan](https://restockrally.com/brands/jordan/)
+- [adidas](https://restockrally.com/brands/adidas/)
+- [New Balance](https://restockrally.com/brands/new-balance/)
 - [News](https://restockrally.com/news/)
 - [Sources & Ethics](https://restockrally.com/sources-ethics/)
 
