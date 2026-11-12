@@ -3,8 +3,9 @@ from zoneinfo import ZoneInfo
 from data import SITE, RELEASES, RESTOCKS
 from articles import ARTICLES
 from guides_2026_11_12 import GUIDES_1112
+from guides_where_2026_11_12 import GUIDES_WHERE_1112
 from related import related_nav
-ARTICLES=ARTICLES+GUIDES_1112
+ARTICLES=ARTICLES+GUIDES_1112+GUIDES_WHERE_1112
 import sys, subprocess, legal_gate
 # Legal hold gate layer 1: a flagged article is never rendered (saved as HOLD_REVIEW draft + queue.jsonl instead).
 ARTICLES=[a for a in ARTICLES if legal_gate.gate_article(a)]
@@ -133,7 +134,7 @@ cards="".join(f'<li class="story-card"><p class="story-kicker"><span class="chip
 write("/news/","Sneaker news","Sourced sneaker release and restock news.",f"<h1>Sneaker news</h1><ul class='story-grid'>{cards}</ul>",lastmod=max((a["date"] for a in ART), default="2026-10-27"))
 # guides hub: evergreen how-to and where-to-buy pages, grouped by task
 GUIDE_GROUPS=[("Raffles, draws and drops",["how-online-sneaker-raffles-work","how-nike-snkrs-draw-and-line-launches-work","snkrs-exclusive-access","adidas-confirmed-app-raffle-queue-invite","snkrs-vs-retailers","how-to-spot-a-fake-sneaker-release-ad-or-raffle"]),
- ("Restocks and where to buy",["what-is-a-sneaker-restock-and-how-to-catch-one","how-restocks-work-at-nike-foot-locker-and-finish-line"]),
+ ("Restocks and where to buy",["what-is-a-sneaker-restock-and-how-to-catch-one","how-restocks-work-at-nike-foot-locker-and-finish-line","air-jordan-4-bred-2026-where-to-buy","air-jordan-11-green-screen-where-to-buy","adidas-ae-3-lucid-pink-where-to-buy"]),
  ("Sizing and fit",["nike-sizing-by-model","adidas-shoe-size-chart-us-uk-eu","new-balance-shoe-widths-explained","nike-kids-shoe-sizes-c-and-y-explained"]),
  ("Authenticity and style codes",["how-stockx-and-goat-verify-sneakers","how-to-check-a-nike-box-label-for-authenticity","nike-style-code-lookup"]),
  ("Returns and shipping",["can-you-return-snkrs-launch-sneakers-nike-terms-of-sale","shipping-delays-mail-order-rule"])]
