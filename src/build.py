@@ -2,6 +2,8 @@ import os, json, html, re, shutil, datetime
 from zoneinfo import ZoneInfo
 from data import SITE, RELEASES, RESTOCKS
 from articles import ARTICLES
+from guides_2026_11_12 import GUIDES_1112
+ARTICLES=ARTICLES+GUIDES_1112
 import sys, subprocess, legal_gate
 # Legal hold gate layer 1: a flagged article is never rendered (saved as HOLD_REVIEW draft + queue.jsonl instead).
 ARTICLES=[a for a in ARTICLES if legal_gate.gate_article(a)]
@@ -33,7 +35,7 @@ def stamp(a):
 LEGAL=f"© {Y} Joshua Israel Ventures LLC. All rights reserved. {N} is a trade name of Joshua Israel Ventures LLC, a Florida limited liability company."
 pages=[]
 ORG={"@type":"NewsMediaOrganization","@id":U+"/#org","name":N,"url":U+"/","logo":{"@type":"ImageObject","url":U+"/assets/logo.svg"},"parentOrganization":{"@type":"Organization","name":"Joshua Israel Ventures LLC"}}
-NAV=[("/releases/","Release Calendar"),("/restocks/","Restocks"),("/raffles/","Raffles"),("/news/","News")]
+NAV=[("/releases/","Release Calendar"),("/restocks/","Restocks"),("/raffles/","Raffles"),("/guides/","Guides"),("/news/","News")]
 def head(title,desc,path,ld,image=None):
     t=f"{title} | {N}" if path!="/" else f"{N}: {SITE['tagline']}"
     card="summary_large_image" if image else "summary"
@@ -53,7 +55,7 @@ def chrome(body,path):
 <nav class="topics" aria-label="Sections"><div class="wrap"><ul class="topic-list">{nav}</ul></div></nav><div class="road-line" aria-hidden="true"></div></header>
 <main id="main" tabindex="-1"><div class="wrap">{body}</div></main>
 <footer class="site-footer"><div class="road-line" aria-hidden="true"></div><div class="wrap footer-grid">
-<nav aria-label="Coverage"><h2>Coverage</h2><ul><li><a href="/releases/">Release Calendar</a></li><li><a href="/restocks/">Restocks</a></li><li><a href="/raffles/">Raffles</a></li><li><a href="/news/">News</a></li></ul></nav>
+<nav aria-label="Coverage"><h2>Coverage</h2><ul><li><a href="/releases/">Release Calendar</a></li><li><a href="/restocks/">Restocks</a></li><li><a href="/raffles/">Raffles</a></li><li><a href="/guides/">Guides</a></li><li><a href="/news/">News</a></li></ul></nav>
 <nav aria-label="Company links"><h2>{N}</h2><ul><li><a href="/about/">About</a></li><li><a href="/contact/">Contact Us</a></li><li><a href="/sources-ethics/">Sources &amp; Ethics</a></li><li><a href="/corrections/">Corrections</a></li></ul></nav>
 <nav aria-label="Legal and feeds"><h2>Legal and feeds</h2><ul><li><a href="/terms/">Terms</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/disclaimer/">Disclaimer</a></li><li><a href="/copyright/">Copyright &amp; DMCA</a></li><li><a href="/image-policy/">Image policy</a></li><li><a href="/affiliate-disclosure/">Affiliate Disclosure</a></li><li><button type="button" class="consent-link" data-consent-open="1">Cookie choices</button></li><li><a href="/feed.xml">RSS</a></li></ul></nav>
 </div></footer><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{{"token": "eac63f2b5dbc4539a2d95249baab6472"}}'></script></body></html>"""
@@ -119,7 +121,7 @@ for a in ART:
     iso,label=stamp(a)
     fig=""
     if a.get("image"):
-        fig=f'<figure class="story-figure"><img src="{e(a["image"])}" alt="{e(a.get("image_alt") or a["title"])}" width="1280" height="720"><figcaption><a class="src" href="/image-policy/">Source</a></figcaption></figure>'
+        fig=f'<figure class="story-figure"><img src="{e(a["image"])}" alt="{e(a.get("image_alt") or a["title"])}" width="1280" height="720"><figcaption>AI-generated image. <a class="src" href="/image-policy/">Image policy</a></figcaption></figure>'
     body=f"""<article class="story-page"><header class="article-head"><p class="story-kicker"><span class="chip">{e(a['category'])}</span> <time datetime="{iso}">{e(label)}</time></p><h1>{e(a['title'])}</h1><p class="byline">By the {N} desk</p><p class="dek">{e(a['description'])}</p><p class="last-updated">Last updated <time datetime="{iso}">{e(label)}</time></p></header>
 {fig}<div class="prose">{a['body']}</div><section class="sources" aria-labelledby="sh"><h2 id="sh">Sources</h2><ol>{srcs}</ol></section></article>"""
     published=pub_dt(a).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -128,10 +130,29 @@ for a in ART:
     write(f"/news/{a['slug']}/",a["title"],a["description"],body,ld,lastmod=a["date"],image=a.get("image"))
 cards="".join(f'<li class="story-card"><p class="story-kicker"><span class="chip">{e(a["category"])}</span> <time datetime="{stamp(a)[0]}">{e(stamp(a)[1])}</time></p><h3><a href="/news/{a["slug"]}/">{e(a["title"])}</a></h3><p>{e(a["description"])}</p></li>' for a in ART)
 write("/news/","Sneaker news","Sourced sneaker release and restock news.",f"<h1>Sneaker news</h1><ul class='story-grid'>{cards}</ul>",lastmod=max((a["date"] for a in ART), default="2026-10-27"))
+# guides hub: evergreen how-to and where-to-buy pages, grouped by task
+GUIDE_GROUPS=[("Raffles, draws and drops",["how-online-sneaker-raffles-work","how-nike-snkrs-draw-and-line-launches-work","snkrs-exclusive-access","adidas-confirmed-app-raffle-queue-invite","snkrs-vs-retailers","how-to-spot-a-fake-sneaker-release-ad-or-raffle"]),
+ ("Restocks and where to buy",["what-is-a-sneaker-restock-and-how-to-catch-one","how-restocks-work-at-nike-foot-locker-and-finish-line"]),
+ ("Sizing and fit",["nike-sizing-by-model","adidas-shoe-size-chart-us-uk-eu","new-balance-shoe-widths-explained","nike-kids-shoe-sizes-c-and-y-explained"]),
+ ("Authenticity and style codes",["how-stockx-and-goat-verify-sneakers","how-to-check-a-nike-box-label-for-authenticity","nike-style-code-lookup"]),
+ ("Returns and shipping",["can-you-return-snkrs-launch-sneakers-nike-terms-of-sale","shipping-delays-mail-order-rule"])]
+_BY={a["slug"]:a for a in ART}
+def guide_li(sl):
+    a=_BY.get(sl)
+    return f'<li class="story-card"><h3><a href="/news/{a["slug"]}/">{e(a["title"])}</a></h3><p>{e(a["description"])}</p></li>' if a else ""
+ghub="<h1>Sneaker guides</h1><p class='dek'>Evergreen how-to pages for buying sneakers at retail: how raffles and drops work, where restocks come from, sizing by brand, and how resale platforms check pairs. Every guide cites the brand or store's own pages.</p>"
+for gname,sls in GUIDE_GROUPS:
+    lis="".join(guide_li(x) for x in sls)
+    if lis: ghub+=f"<section><h2 class='section-title'>{e(gname)}</h2><ul class='story-grid'>{lis}</ul></section>"
+ghub+="<p>For dates, see the <a href='/releases/'>release calendar</a>, the <a href='/restocks/'>restocks log</a> and the <a href='/raffles/'>raffles page</a>.</p>"
+_gl=[_BY[x]["date"] for _,sls in GUIDE_GROUPS for x in sls if x in _BY]
+write("/guides/","Sneaker guides: raffles, restocks, sizing and authenticity","How sneaker raffles, drops and restocks work, brand size charts, and how resale platforms verify pairs. Sourced evergreen guides.",ghub,[{"@type":"CollectionPage","name":"Sneaker guides","url":U+"/guides/"}],lastmod=max(_gl) if _gl else "2026-11-12")
+HOME_GUIDES="".join(f'<li><a href="/news/{x}/">{e(_BY[x]["title"])}</a></li>' for x in ["how-online-sneaker-raffles-work","what-is-a-sneaker-restock-and-how-to-catch-one","nike-sizing-by-model","adidas-shoe-size-chart-us-uk-eu","new-balance-shoe-widths-explained","how-stockx-and-goat-verify-sneakers"] if x in _BY)
 today=NOW.date().isoformat(); up=[r for r in REL if r["date"]>=today][:8]
 home=f"""<section class="hero"><h1 class="visually-hidden">{N}</h1><p class="hero-kicker">Release dates, restocks and raffles</p><p class="hero-lead">The fastest way to see what drops next, what it costs and where to buy it.</p><p><a class="buy-btn" href="/releases/">Open the release calendar</a></p></section>
 <section aria-labelledby="up"><h2 id="up" class="section-title">Dropping next</h2><ul class="rel-list">{''.join(relrow(r) for r in up)}</ul><p><a href="/releases/">Full calendar</a></p></section>
 <section aria-labelledby="ln"><h2 id="ln" class="section-title">Latest news</h2><ul class="story-grid">{cards}</ul></section>
+<section aria-labelledby="gd"><h2 id="gd" class="section-title">Sneaker guides</h2><ul>{HOME_GUIDES}</ul><p><a href="/guides/">All guides</a></p></section>
 <section aria-labelledby="rs"><h2 id="rs" class="section-title">Recent restocks</h2><ul class="rel-list">{rs}</ul></section>"""
 write("/",N,"Fast sneaker release calendar, restock log and raffle guide with prices, style codes and where to buy links. Every fact sourced.",home,[{"@type":"WebSite","name":N,"url":U+"/","publisher":{"@id":U+"/#org"}}],lastmod=NOW.date().isoformat())
 # static pages
@@ -164,7 +185,7 @@ open(f"{OUT}/robots.txt","w").write("".join(f"User-agent: {b}\nAllow: /\n\n" for
 open(f"{OUT}/ads.txt","w").write("google.com, pub-5681559774142917, DIRECT, f08c47fec0942fa0\n")
 open(f"{OUT}/{SITE['indexnow_key']}.txt","w").write(SITE["indexnow_key"])
 open(f"{OUT}/CNAME","w").write("restockrally.com\n"); open(f"{OUT}/.nojekyll","w").write("")
-open(f"{OUT}/llms.txt","w").write(f"# {N}\n\n> {SITE['tagline']}. Sourced sneaker release dates, restocks and raffles.\n\n## Key pages\n- [Release calendar]({U}/releases/)\n- [Restocks]({U}/restocks/)\n- [Raffles]({U}/raffles/)\n- [News]({U}/news/)\n- [Sources & Ethics]({U}/sources-ethics/)\n\n## Articles\n"+"".join(f"- [{a['title']}]({U}/news/{a['slug']}/): {a['description']}\n" for a in ART))
+open(f"{OUT}/llms.txt","w").write(f"# {N}\n\n> {SITE['tagline']}. Sourced sneaker release dates, restocks and raffles.\n\n## Key pages\n- [Release calendar]({U}/releases/)\n- [Restocks]({U}/restocks/)\n- [Raffles]({U}/raffles/)\n- [Guides]({U}/guides/)\n- [News]({U}/news/)\n- [Sources & Ethics]({U}/sources-ethics/)\n\n## Articles\n"+"".join(f"- [{a['title']}]({U}/news/{a['slug']}/): {a['description']}\n" for a in ART))
 items="".join(f"<item><title>{e(a['title'])}</title><link>{U}/news/{a['slug']}/</link><guid>{U}/news/{a['slug']}/</guid><pubDate>{pub_dt(a).strftime('%a, %d %b %Y %H:%M:%S +0000')}</pubDate><description>{e(a['description'])}</description></item>" for a in ART)
 open(f"{OUT}/feed.xml","w").write(f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>{N}</title><link>{U}/</link><description>{SITE["tagline"]}</description>{items}</channel></rss>')
 # Legal hold gate layer 2: full-site backstop. If any built page is held, put docs/ back to the last committed version and fail.
