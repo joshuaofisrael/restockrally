@@ -71,26 +71,38 @@ GUIDES_1112 = [
   "category": "Guides",
   "date": "2026-11-12",
   "publish": "2026-11-12T13:04:00+00:00",
-  "description": "How adidas converts men's and women's US sizes to UK, EU and JP, how to measure heel to toe, and what adidas says to do if you fall between sizes.",
+  "description": "The adidas shoe size chart from US men's 4 to 15 with UK, EU, JP and heel to toe length, how adidas differs from New Balance and Nike, and what to do between sizes.",
   "image": "/assets/news/adidas-shoe-size-chart-us-uk-eu.jpg",
   "image_alt": "Unbranded white leather low top sneakers on a concrete plinth, no logos or readable text",
   "body": """<p>adidas publishes one footwear chart for men and women on its <a href="https://www.adidas.com/us/help/size_charts/shoes">US size chart page</a>. It lines up heel to toe length in inches and centimeters with US men's, US women's, EU, UK and JP sizes. Here is how to read it, and where it differs from Nike's.</p>
 <h2>Measure first</h2>
 <p>adidas says to measure your feet at the end of the day for the best fit, from the tip of your big toe to the outermost part of your heel. Match that length to the heel to toe row on the chart, then read down for your size in each system.</p>
-<h2>Sample rows from the adidas chart</h2>
+<h2>The adidas chart, US men's 4 to 15</h2>
 <table><thead><tr><th>Heel to toe</th><th>US men</th><th>US women</th><th>UK</th><th>EU</th><th>JP</th></tr></thead><tbody>
+<tr><td>22.1 cm (8.7 in)</td><td>4</td><td>5</td><td>3.5</td><td>36</td><td>220</td></tr>
+<tr><td>22.9 cm (9.0 in)</td><td>5</td><td>6</td><td>4.5</td><td>37 1/3</td><td>230</td></tr>
+<tr><td>23.8 cm (9.4 in)</td><td>6</td><td>7</td><td>5.5</td><td>38 2/3</td><td>240</td></tr>
 <tr><td>24.6 cm (9.7 in)</td><td>7</td><td>8</td><td>6.5</td><td>40</td><td>250</td></tr>
+<tr><td>25.0 cm (9.8 in)</td><td>7.5</td><td>8.5</td><td>7</td><td>40 2/3</td><td>255</td></tr>
 <tr><td>25.5 cm (10.0 in)</td><td>8</td><td>9</td><td>7.5</td><td>41 1/3</td><td>260</td></tr>
+<tr><td>25.9 cm (10.2 in)</td><td>8.5</td><td>9.5</td><td>8</td><td>42</td><td>265</td></tr>
 <tr><td>26.3 cm (10.4 in)</td><td>9</td><td>10</td><td>8.5</td><td>42 2/3</td><td>270</td></tr>
+<tr><td>26.7 cm (10.5 in)</td><td>9.5</td><td>10.5</td><td>9</td><td>43 1/3</td><td>275</td></tr>
 <tr><td>27.1 cm (10.7 in)</td><td>10</td><td>11</td><td>9.5</td><td>44</td><td>280</td></tr>
+<tr><td>27.6 cm (10.9 in)</td><td>10.5</td><td>11.5</td><td>10</td><td>44 2/3</td><td>285</td></tr>
 <tr><td>28.0 cm (11.0 in)</td><td>11</td><td>12</td><td>10.5</td><td>45 1/3</td><td>290</td></tr>
 <tr><td>28.8 cm (11.3 in)</td><td>12</td><td>13</td><td>11.5</td><td>46 2/3</td><td>300</td></tr>
+<tr><td>29.7 cm (11.7 in)</td><td>13</td><td>14</td><td>12.5</td><td>48</td><td>310</td></tr>
+<tr><td>30.5 cm (12.0 in)</td><td>14</td><td>15</td><td>13.5</td><td>49 1/3</td><td>320</td></tr>
+<tr><td>31.4 cm (12.4 in)</td><td>15</td><td>—</td><td>14.5</td><td>50 2/3</td><td>—</td></tr>
 </tbody></table>
-<p>The full chart on adidas's page runs from US men's 4 to 20.</p>
+<p>Rows copied from adidas's US chart, read 12 November 2026. The chart continues to US men's 20 (35.2 cm, UK 19, EU 55 2/3). US women's sizes stop at 15.5, and JP sizes stop at 325.</p>
 <h2>Three patterns in the chart</h2>
 <ul><li><strong>US women's is one size above US men's.</strong> On the adidas chart a men's 8 sits in the same column as a women's 9. That is different from Nike's charts, which put women's sizes 1.5 above men's. Our <a href="/news/nike-sizing-by-model/">Nike sizing guide</a> covers Nike's rule.</li>
 <li><strong>UK is half a size below US men's.</strong> A US men's 9 is a UK 8.5 in every row of the adidas table.</li>
 <li><strong>EU sizes move in thirds.</strong> adidas lists EU sizes such as 40 2/3 and 41 1/3, so an EU number from another brand may not have an exact match.</li></ul>
+<h2>adidas vs New Balance at the same US size</h2>
+<p>Brands do not print the same foot length against the same US size. adidas puts US men's 9 at 26.3 cm heel to toe. <a href="https://www.newbalance.com/es/size-guide.html">New Balance's size guide</a> puts US men's 9 at 27 cm, and its EU number is 42.5 rather than adidas's 42 2/3. The two charts also handle women's sizes differently: adidas adds one size (men's 9 is women's 10), while New Balance adds 1.5 (men's 9 is women's 10.5). Use each brand's own chart rather than carrying a number across. Our <a href="/news/new-balance-shoe-widths-explained/">New Balance sizing and widths guide</a> has the New Balance rows.</p>
 <h2>Between sizes</h2>
 <p>adidas's own advice: for a tight fit go one size down, and for a loose fit go one size up. It also says its men's chart follows standard sizing, so it should reflect your normal fit. If a particular product page carries its own fit note, that note is specific to the shoe.</p>
 <h2>Before a drop</h2>
@@ -98,15 +110,16 @@ GUIDES_1112 = [
   "sources": [
     ("Men's and women's adidas footwear sizing", "https://www.adidas.com/us/help/size_charts/shoes", "adidas", "2026-11-12"),
     ("Men's Footwear Size Chart", "https://www.nike.com/size-fit/mens-footwear", "Nike", "2026-11-11"),
+    ("Guía de tallas y anchos (size and width guide)", "https://www.newbalance.com/es/size-guide.html", "New Balance", "2026-11-12"),
   ],
 },
 {
   "slug": "new-balance-shoe-widths-explained",
-  "title": "New Balance shoe widths explained: what B, D, 2E and 4E mean",
+  "title": "New Balance size chart and widths: what B, D, 2E and 4E mean",
   "category": "Guides",
   "date": "2026-11-12",
   "publish": "2026-11-12T13:06:00+00:00",
-  "description": "New Balance width letters mean different things in men's and women's shoes. Here is New Balance's own width list, from 2A to 6E, and how to tell if you need a different width.",
+  "description": "New Balance width letters from 2A to 6E, the men's and unisex length chart in cm with US, UK and EU sizes, measured widths by letter, and how to tell if you need a different width.",
   "image": "/assets/news/new-balance-shoe-widths-explained.jpg",
   "image_alt": "Side profile of a grey mesh running shoe with an orange midsole, no logos or readable text",
   "body": """<p>New Balance sells many of its shoes in more than one width, and the letter after the size tells you which. The catch is that the same letter means a different width in men's and women's shoes. This guide uses the width list New Balance publishes on its customer help pages in <a href="https://newbalanceau.zendesk.com/hc/en-us/articles/360034646272-What-shoe-widths-does-New-Balance-offer">Australia</a> and <a href="https://newbalancenz.zendesk.com/hc/en-us/articles/13150286730767-What-shoe-widths-does-New-Balance-offer">New Zealand</a>.</p>
@@ -123,6 +136,23 @@ GUIDES_1112 = [
 <p>Kids' shoes use a separate scale: M for standard, W for wide and XW for extra wide.</p>
 <h2>Why the same letter differs</h2>
 <p>In New Balance's list, standard width is D for men and B for women. So a men's B is narrow, while a women's B is standard. A women's D is wide, while a men's D is standard. When you shop a unisex or men's sized release in a women's size, check the width letter as well as the length.</p>
+<h2>New Balance length chart, men's and unisex</h2>
+<p>New Balance's men's and unisex chart lines up US men's, US women's, UK and EU sizes with foot length in centimetres. Selected rows, copied from the chart on <a href="https://www.newbalance.com/es/size-guide.html">New Balance's size guide</a> and the size and fit chart on New Balance's <a href="https://www.newbalance.de/en/pd/740/U740V2-50660.html">English language European product pages</a>:</p>
+<table><thead><tr><th>US men</th><th>US women</th><th>UK</th><th>EU</th><th>Length</th></tr></thead><tbody>
+<tr><td>6</td><td>7.5</td><td>5.5</td><td>38.5</td><td>24 cm</td></tr>
+<tr><td>7</td><td>8.5</td><td>6.5</td><td>40</td><td>25 cm</td></tr>
+<tr><td>8</td><td>9.5</td><td>7.5</td><td>41.5</td><td>26 cm</td></tr>
+<tr><td>8.5</td><td>10</td><td>8</td><td>42</td><td>26.5 cm</td></tr>
+<tr><td>9</td><td>10.5</td><td>8.5</td><td>42.5</td><td>27 cm</td></tr>
+<tr><td>9.5</td><td>11</td><td>9</td><td>43</td><td>27.5 cm</td></tr>
+<tr><td>10</td><td>11.5</td><td>9.5</td><td>44</td><td>28 cm</td></tr>
+<tr><td>11</td><td>12.5</td><td>10.5</td><td>45</td><td>29 cm</td></tr>
+<tr><td>12</td><td>13.5</td><td>11.5</td><td>46.5</td><td>30 cm</td></tr>
+<tr><td>13</td><td>15</td><td>12.5</td><td>47.5</td><td>31 cm</td></tr>
+</tbody></table>
+<p>Two things stand out. On a men's or unisex pair, New Balance puts the US women's size 1.5 above the men's size, so a women's 10.5 buys a men's 9. And each half size adds 0.5 cm of length. The chart runs from US men's 4 (22 cm) to 20 (38 cm).</p>
+<h2>How wide is each width?</h2>
+<p>New Balance's printable men's chart also gives a width measurement for each letter by running size. For a US men's 9 it lists 10.0 for B, 10.4 for D, 10.7 for 2E and 11.0 for 4E; for a men's 11 it lists 10.4, 10.8, 11.1 and 11.5. Each step up in letter adds a little under 0.4 on the same chart. The printable chart also says to measure in the late afternoon, to pick the larger size if you are between sizes or one foot is bigger, and to remeasure every year.</p>
 <h2>Signs you need a different width</h2>
 <p>New Balance gives three checks:</p>
 <ul><li>If the shoe feels too tight across the sides, you may need a wider width.</li>
@@ -135,6 +165,9 @@ GUIDES_1112 = [
   "sources": [
     ("What shoe widths does New Balance offer?", "https://newbalanceau.zendesk.com/hc/en-us/articles/360034646272-What-shoe-widths-does-New-Balance-offer", "New Balance Australia", "2026-11-12"),
     ("What shoe widths does New Balance offer?", "https://newbalancenz.zendesk.com/hc/en-us/articles/13150286730767-What-shoe-widths-does-New-Balance-offer", "New Balance NZ", "2026-11-12"),
+    ("Guía de tallas y anchos (size and width guide)", "https://www.newbalance.com/es/size-guide.html", "New Balance", "2026-11-12"),
+    ("740 Shoes, Men's/Unisex Shoes Size & Fit Chart", "https://www.newbalance.de/en/pd/740/U740V2-50660.html", "New Balance Germany", "2026-11-12"),
+    ("Men's printable size chart (PDF)", "https://www.newbalance.co.il/on/demandware.static/-/Sites-newbalance-Library/default/dw34edff23/PDF/nb_Men_Printable_Size_Chart_11.4.24.pdf%D7%A2%D7%91%D7%A8%D7%99%D7%AA%202.pdf", "New Balance Israel", "2026-11-12"),
   ],
 },
 {
