@@ -123,7 +123,7 @@ for a in ART:
     iso,label=stamp(a)
     fig=""
     if a.get("image"):
-        fig=f'<figure class="story-figure"><img src="{e(a["image"])}" alt="{e(a.get("image_alt") or a["title"])}" width="1280" height="720"><figcaption>AI-generated image. <a class="src" href="/image-policy/">Image policy</a></figcaption></figure>'
+        fig=f'<figure class="story-figure"><img src="{e(a["image"])}" alt="{e(a.get("image_alt") or a["title"])}" width="1280" height="720"><figcaption>AI-generated image. <a class="src" href="/image-policy/">Source</a></figcaption></figure>'
     body=f"""<article class="story-page"><header class="article-head"><p class="story-kicker"><span class="chip">{e(a['category'])}</span> <time datetime="{iso}">{e(label)}</time></p><h1>{e(a['title'])}</h1><p class="byline">By the {N} desk</p><p class="dek">{e(a['description'])}</p><p class="last-updated">Last updated <time datetime="{iso}">{e(label)}</time></p></header>
 {fig}<div class="prose">{a['body']}</div><section class="sources" aria-labelledby="sh"><h2 id="sh">Sources</h2><ol>{srcs}</ol></section>{related_nav(a['slug'], e)}</article>"""
     published=pub_dt(a).strftime("%Y-%m-%dT%H:%M:%SZ")
