@@ -57,7 +57,7 @@ def chrome(body,path):
 <nav class="topics" aria-label="Sections"><div class="wrap"><ul class="topic-list">{nav}</ul></div></nav><div class="road-line" aria-hidden="true"></div></header>
 <main id="main" tabindex="-1"><div class="wrap">{body}</div></main>
 <footer class="site-footer"><div class="road-line" aria-hidden="true"></div><div class="wrap footer-grid">
-<nav aria-label="Coverage"><h2>Coverage</h2><ul><li><a href="/releases/">Release Calendar</a></li><li><a href="/restocks/">Restocks</a></li><li><a href="/raffles/">Raffles</a></li><li><a href="/guides/">Guides</a></li><li><a href="/brands/">Brands</a></li><li><a href="/news/">News</a></li></ul></nav>
+<nav aria-label="Coverage"><h2>Coverage</h2><ul><li><a href="/releases/">Release Calendar</a></li><li><a href="/restocks/">Restocks</a></li><li><a href="/raffles/">Raffles</a></li><li><a href="/guides/">Guides</a></li><li><a href="/brands/">Brands</a></li><li><a href="/style-codes/">Style code lookup</a></li><li><a href="/news/">News</a></li></ul></nav>
 <nav aria-label="Company links"><h2>{N}</h2><ul><li><a href="/about/">About</a></li><li><a href="/contact/">Contact Us</a></li><li><a href="/sources-ethics/">Sources &amp; Ethics</a></li><li><a href="/corrections/">Corrections</a></li></ul></nav>
 <nav aria-label="Legal and feeds"><h2>Legal and feeds</h2><ul><li><a href="/terms/">Terms</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/disclaimer/">Disclaimer</a></li><li><a href="/copyright/">Copyright &amp; DMCA</a></li><li><a href="/image-policy/">Image policy</a></li><li><a href="/affiliate-disclosure/">Affiliate Disclosure</a></li><li><button type="button" class="consent-link" data-consent-open="1">Cookie choices</button></li><li><a href="/feed.xml">RSS</a></li></ul></nav>
 </div></footer><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{{"token": "eac63f2b5dbc4539a2d95249baab6472"}}'></script></body></html>"""
@@ -89,11 +89,15 @@ for r in REL:
     body=f"""<article class="story-page"><p class="story-kicker"><span class="chip">{e(r['brand'])}</span> <time datetime="{r['date']}">{nice(r['date'])}</time></p>
 <h1>{e(r['name'])}</h1><p class="dek">Releases {nice(r['date'])} at ${r['price']} retail (US), according to <a href="{e(r['src'][1])}">{e(r['src'][0])}</a>.</p>
 <dl class="facts"><div><dt>Release date</dt><dd>{nice(r['date'])}</dd></div><div><dt>Retail price</dt><dd>${r['price']}</dd></div><div><dt>Style code</dt><dd>{e(r['sku'])}</dd></div><div><dt>Brand</dt><dd>{e(r['brand'])}</dd></div></dl>
+<p class="small">Find any pair by its code in our <a href="/style-codes/">sneaker style code index</a>{(' or read <a href="/news/nike-style-code-lookup/">how to look up a Nike style code</a>') if r['brand'] in ('Nike','Jordan') else ''}.</p>
 <aside class="buy-box" aria-labelledby="wtb"><h2 id="wtb">Where to buy</h2><ul>{buy}</ul><p class="small">Links go to the official retailer. Dates, prices and stock can change; the retailer's page has the final word. We do not sell shoes. See our <a href="/affiliate-disclosure/">affiliate disclosure</a>.</p></aside>
 <section class="sources"><h2>Source</h2><ol><li><a href="{e(r['src'][1])}">{e(r['src'][0])}</a></li></ol></section>
 <p><a href="/releases/">Back to the release calendar</a></p></article>"""
     lm="2026-10-29" if r["date"]>="2026-10-29" and r["sku"] in ("A23933C-832","KK2813") else "2026-10-27"
-    rtitle=r["name"]+" release date and price"; rdesc=f"{r['name']} releases {nice(r['date'])} for ${r['price']}. Style code {r['sku']}, where to buy and sources."
+    rtitle=f"{r['name']} ({r['sku']}) release date and price"
+    if len(rtitle)>70: rtitle=f"{r['name']} ({r['sku']}) release date"
+    if len(rtitle)>70: rtitle=f"{r['name']} ({r['sku']})"
+    rdesc=f"{r['name']} releases {nice(r['date'])} for ${r['price']}. Style code {r['sku']}, where to buy and sources."
     ld=[{"@type":"Product","name":r["name"],"sku":r["sku"],"brand":{"@type":"Brand","name":r["brand"]},"releaseDate":r["date"]},
         {"@type":"NewsArticle","headline":rtitle,"description":rdesc,"datePublished":lm+"T00:00:00Z","dateModified":lm+"T00:00:00Z","mainEntityOfPage":U+"/shoes/"+r["slug"]+"/","author":{"@type":"Organization","name":N+" desk","url":U+"/about/"},"publisher":{"@id":U+"/#org"},"isBasedOn":[r["src"][1]]}]
     write(f"/shoes/{r['slug']}/",rtitle,rdesc,body,ld,lastmod=lm)
@@ -108,6 +112,16 @@ cal=f"""<h1>Sneaker release calendar</h1><p class="dek">Upcoming sneaker release
 <p id="count" class="small" aria-live="polite">{len(REL)} releases</p><ul class="rel-list" id="rel-list">{''.join(relrow(r) for r in REL)}</ul>
 <p class="small">Sources: retail prices and dates come from the brand's own pages where available, and otherwise from the release calendars credited on each shoe page.</p><script src="/assets/calendar.js" defer></script>"""
 write("/releases/","Sneaker release dates calendar","Fast, filterable sneaker release calendar: dates, retail prices and style codes for Nike, Jordan, adidas and more, with where to buy links.",cal,lastmod=NOW.date().isoformat())
+# style code index: one lookup table, every code links to its shoe page
+_codes=sorted(REL,key=lambda r:r["sku"].upper())
+_rows="".join(f'<tr data-q="{e((r["sku"]+" "+r["name"]+" "+r["brand"]).lower())}"><td><code>{e(r["sku"])}</code></td><td><a href="/shoes/{r["slug"]}/">{e(r["name"])}</a></td><td>{e(r["brand"])}</td><td><time datetime="{r["date"]}">{nice(r["date"])}</time></td><td>${r["price"]}</td></tr>' for r in _codes)
+_sc=f"""<h1>Sneaker style code lookup</h1><p class="dek">Type a style code (the SKU printed on the box label and the size tag) to find the shoe, its release date and retail price. {len(_codes)} codes from our release calendar, each linked to a sourced shoe page.</p>
+<p><label for="sc-q">Search by code or name </label><input id="sc-q" type="search" placeholder="e.g. {e(_codes[0]["sku"])}" autocomplete="off"></p>
+<div class="table-wrap"><table class="sc-table"><thead><tr><th scope="col">Style code</th><th scope="col">Shoe</th><th scope="col">Brand</th><th scope="col">Release date</th><th scope="col">Retail (US)</th></tr></thead><tbody id="sc-body">{_rows}</tbody></table></div>
+<h2>Where to find a style code</h2><p>Nike and Jordan print the style code on the box label and on the tag inside the shoe, in the form of six characters, a dash and three digits. adidas and New Balance use their own article or model codes. See <a href="/news/nike-style-code-lookup/">how to look up a Nike style code</a> and <a href="/news/how-to-check-a-nike-box-label-for-authenticity/">how to check a Nike box label</a>.</p>
+<p class="small">Codes, dates and prices come from the source cited on each shoe page. A code that is not listed here is not yet in our <a href="/releases/">release calendar</a>.</p>
+<script>document.getElementById("sc-q").addEventListener("input",function(){{var q=this.value.trim().toLowerCase();document.querySelectorAll("#sc-body tr").forEach(function(t){{t.hidden=q&&t.dataset.q.indexOf(q)<0;}});}});</script>"""
+write("/style-codes/","Sneaker style code lookup: find a shoe by SKU","Look up a sneaker by its style code or SKU: shoe name, brand, release date and retail price for every pair in our sourced release calendar.",_sc,[{"@type":"Dataset","name":"Sneaker style code index","description":"Style codes (SKUs) with shoe name, brand, release date and US retail price, each linked to a sourced shoe page.","url":U+"/style-codes/","creator":{"@id":U+"/#org"},"isAccessibleForFree":True}],lastmod=NOW.date().isoformat())
 # restocks
 rs="".join(f'<li class="rel"><time datetime="{d}">{datetime.date.fromisoformat(d).strftime("%b %-d")}</time><span class="rel-main"><strong>{e(n)}</strong><span class="meta">{e(w)}{" · "+e(k) if k else ""} · reported by <a href="{e(su)}">{e(sn)}</a></span></span><span class="price">{"$"+str(p) if p else "See retailer"}</span></li>' for n,d,w,p,k,(sn,su) in RESTOCKS)
 write("/restocks/","Sneaker restocks log","A sourced log of recent sneaker restocks: what came back, where, at what retail price, and who reported it.",f"<h1>Sneaker restocks</h1><p class='dek'>Recent restocks, newest first. Each entry links to the original report. Stock moves fast, so check the retailer right away.</p><ul class='rel-list'>{rs}</ul><p><a href='/news/october-2026-sneaker-restocks-nike-mind-air-bakin/'>Read the October restocks roundup</a></p>")
@@ -146,7 +160,7 @@ ghub="<h1>Sneaker guides</h1><p class='dek'>Evergreen how-to pages for buying sn
 for gname,sls in GUIDE_GROUPS:
     lis="".join(guide_li(x) for x in sls)
     if lis: ghub+=f"<section><h2 class='section-title'>{e(gname)}</h2><ul class='story-grid'>{lis}</ul></section>"
-ghub+="<p>Browse by brand: <a href='/brands/nike/'>Nike</a>, <a href='/brands/jordan/'>Jordan</a>, <a href='/brands/adidas/'>adidas</a> and <a href='/brands/new-balance/'>New Balance</a>. For dates, see the <a href='/releases/'>release calendar</a>, the <a href='/restocks/'>restocks log</a> and the <a href='/raffles/'>raffles page</a>.</p>"
+ghub+="<p>Browse by brand: <a href='/brands/nike/'>Nike</a>, <a href='/brands/jordan/'>Jordan</a>, <a href='/brands/adidas/'>adidas</a> and <a href='/brands/new-balance/'>New Balance</a>. Look up a pair by SKU in the <a href='/style-codes/'>style code index</a>. For dates, see the <a href='/releases/'>release calendar</a>, the <a href='/restocks/'>restocks log</a> and the <a href='/raffles/'>raffles page</a>.</p>"
 _gl=[_BY[x]["date"] for _,sls in GUIDE_GROUPS for x in sls if x in _BY]
 write("/guides/","Sneaker guides: raffles, restocks, sizing and authenticity","How sneaker raffles, drops and restocks work, brand size charts, and how resale platforms verify pairs. Sourced evergreen guides.",ghub,[{"@type":"CollectionPage","name":"Sneaker guides","url":U+"/guides/"}],lastmod=max(_gl) if _gl else "2026-11-12")
 import hubs
@@ -190,7 +204,7 @@ open(f"{OUT}/robots.txt","w").write("".join(f"User-agent: {b}\nAllow: /\n\n" for
 open(f"{OUT}/ads.txt","w").write("google.com, pub-5681559774142917, DIRECT, f08c47fec0942fa0\n")
 open(f"{OUT}/{SITE['indexnow_key']}.txt","w").write(SITE["indexnow_key"])
 open(f"{OUT}/CNAME","w").write("restockrally.com\n"); open(f"{OUT}/.nojekyll","w").write("")
-open(f"{OUT}/llms.txt","w").write(f"# {N}\n\n> {SITE['tagline']}. Sourced sneaker release dates, restocks and raffles.\n\n## Key pages\n- [Release calendar]({U}/releases/)\n- [Restocks]({U}/restocks/)\n- [Raffles]({U}/raffles/)\n- [Guides]({U}/guides/)\n- [Brand hubs]({U}/brands/)\n- [Nike]({U}/brands/nike/)\n- [Jordan]({U}/brands/jordan/)\n- [adidas]({U}/brands/adidas/)\n- [New Balance]({U}/brands/new-balance/)\n- [News]({U}/news/)\n- [Sources & Ethics]({U}/sources-ethics/)\n\n## Articles\n"+"".join(f"- [{a['title']}]({U}/news/{a['slug']}/): {a['description']}\n" for a in ART))
+open(f"{OUT}/llms.txt","w").write(f"# {N}\n\n> {SITE['tagline']}. Sourced sneaker release dates, restocks and raffles.\n\n## Key pages\n- [Release calendar]({U}/releases/)\n- [Restocks]({U}/restocks/)\n- [Raffles]({U}/raffles/)\n- [Guides]({U}/guides/)\n- [Brand hubs]({U}/brands/)\n- [Sneaker style code lookup]({U}/style-codes/)\n- [Nike]({U}/brands/nike/)\n- [Jordan]({U}/brands/jordan/)\n- [adidas]({U}/brands/adidas/)\n- [New Balance]({U}/brands/new-balance/)\n- [News]({U}/news/)\n- [Sources & Ethics]({U}/sources-ethics/)\n\n## Articles\n"+"".join(f"- [{a['title']}]({U}/news/{a['slug']}/): {a['description']}\n" for a in ART))
 items="".join(f"<item><title>{e(a['title'])}</title><link>{U}/news/{a['slug']}/</link><guid>{U}/news/{a['slug']}/</guid><pubDate>{pub_dt(a).strftime('%a, %d %b %Y %H:%M:%S +0000')}</pubDate><description>{e(a['description'])}</description></item>" for a in ART)
 open(f"{OUT}/feed.xml","w").write(f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>{N}</title><link>{U}/</link><description>{SITE["tagline"]}</description>{items}</channel></rss>')
 # Legal hold gate layer 2: full-site backstop. If any built page is held, put docs/ back to the last committed version and fail.
