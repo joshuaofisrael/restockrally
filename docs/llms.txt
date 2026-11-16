@@ -8,6 +8,7 @@
 - [Raffles](https://restockrally.com/raffles/)
 - [Guides](https://restockrally.com/guides/)
 - [Brand hubs](https://restockrally.com/brands/)
+- [Sneaker style code lookup](https://restockrally.com/style-codes/)
 - [Nike](https://restockrally.com/brands/nike/)
 - [Jordan](https://restockrally.com/brands/jordan/)
 - [adidas](https://restockrally.com/brands/adidas/)

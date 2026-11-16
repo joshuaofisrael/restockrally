@@ -52,3 +52,5 @@ select,input,textarea{font:inherit;padding:.5rem;border:2px solid var(--muted);b
 .site-footer h2{font-size:1rem;color:var(--gold)}.site-footer ul{list-style:none;padding:0;margin:0}.site-footer li{margin:.35rem 0}.site-footer a,.site-footer .consent-link{color:var(--header-text)}
 .consent-link{background:none;border:0;padding:0;font:inherit;text-decoration:underline;cursor:pointer}
 @media (max-width:40rem){.header-charge{display:none}.rel{flex-wrap:wrap}}
+/* style code index */
+.table-wrap{overflow-x:auto}.sc-table{width:100%;border-collapse:collapse;font-size:.95rem}.sc-table th,.sc-table td{text-align:left;padding:.45rem .5rem;border-bottom:1px solid rgba(127,127,127,.25);vertical-align:top}.sc-table code{font-weight:600;white-space:nowrap}#sc-q{padding:.45rem .6rem;min-width:min(22rem,100%)}
