@@ -4,7 +4,7 @@ from data import SITE, RELEASES, RESTOCKS
 from articles import ARTICLES
 from guides_2026_11_12 import GUIDES_1112
 from guides_where_2026_11_12 import GUIDES_WHERE_1112
-from related import related_nav
+from related import RELATED
 ARTICLES=ARTICLES+GUIDES_1112+GUIDES_WHERE_1112
 import sys, subprocess, legal_gate
 # Legal hold gate layer 1: a flagged article is never rendered (saved as HOLD_REVIEW draft + queue.jsonl instead).
@@ -139,18 +139,181 @@ write("/raffles/","Sneaker raffles and draws","How sneaker raffles and draws wor
 <p>See the <a href="/releases/">release calendar</a> for upcoming dates.</p>""")
 # articles
 ART=sorted(ARTICLES,key=lambda a:pub_dt(a),reverse=True)
+_BYART={a["slug"]:a for a in ART}
+_OKIMG=legal_gate.rights()
+_GUIDE_SLUGS={"how-online-sneaker-raffles-work","how-nike-snkrs-draw-and-line-launches-work","snkrs-exclusive-access","adidas-confirmed-app-raffle-queue-invite","snkrs-vs-retailers","how-to-spot-a-fake-sneaker-release-ad-or-raffle","what-is-a-sneaker-restock-and-how-to-catch-one","how-restocks-work-at-nike-foot-locker-and-finish-line","air-jordan-4-bred-2026-where-to-buy","air-jordan-11-green-screen-where-to-buy","adidas-ae-3-lucid-pink-where-to-buy","nike-sizing-by-model","adidas-shoe-size-chart-us-uk-eu","new-balance-shoe-widths-explained","nike-kids-shoe-sizes-c-and-y-explained","how-stockx-and-goat-verify-sneakers","how-to-check-a-nike-box-label-for-authenticity","nike-style-code-lookup","can-you-return-snkrs-launch-sneakers-nike-terms-of-sale","shipping-delays-mail-order-rule"}
+_STOP={"the","and","for","with","from","this","that","your","how","what","when","where","who","are","was","were","has","have","its","into","over","than","then","them","they","will","just","back","out","off","all","new","low","high","retro","release","releases","date","dates","november","december","october","january","february","march","sneaker","sneakers","shoes","shoe","pair","pairs","nike","adidas","jordan","air","balance","pro","protro","womens","women","mens","men","size","sizes","2026","2025","today","tomorrow","yesterday","tonight","launches","launch","launched","still","coming","first","official","images","live","now","went","available","price","retail","returns","return","dropping","drops","drop","week","weeks","original","colorway","colourway","friday","saturday","sunday","monday","tuesday","wednesday","thursday"}
+_CAT_GUIDES={
+ "Jordan":["how-nike-snkrs-draw-and-line-launches-work","nike-style-code-lookup","nike-sizing-by-model","how-to-spot-a-fake-sneaker-release-ad-or-raffle"],
+ "Nike":["how-nike-snkrs-draw-and-line-launches-work","nike-style-code-lookup","snkrs-vs-retailers","how-to-spot-a-fake-sneaker-release-ad-or-raffle"],
+ "adidas":["adidas-confirmed-app-raffle-queue-invite","adidas-shoe-size-chart-us-uk-eu","how-online-sneaker-raffles-work"],
+ "New Balance":["new-balance-shoe-widths-explained","how-online-sneaker-raffles-work","nike-style-code-lookup"],
+ "Restocks":["what-is-a-sneaker-restock-and-how-to-catch-one","how-restocks-work-at-nike-foot-locker-and-finish-line","how-to-spot-a-fake-sneaker-release-ad-or-raffle"],
+ "Raffles":["how-online-sneaker-raffles-work","how-to-spot-a-fake-sneaker-release-ad-or-raffle","how-nike-snkrs-draw-and-line-launches-work"],
+ "Guides":["how-nike-snkrs-draw-and-line-launches-work","what-is-a-sneaker-restock-and-how-to-catch-one","nike-style-code-lookup"],
+ "Release Dates":["nike-style-code-lookup","how-to-spot-a-fake-sneaker-release-ad-or-raffle","how-online-sneaker-raffles-work"],
+}
+_INTENT=[
+ (re.compile(r"restock",re.I),["what-is-a-sneaker-restock-and-how-to-catch-one","how-restocks-work-at-nike-foot-locker-and-finish-line"]),
+ (re.compile(r"raffle|\bdraw",re.I),["how-online-sneaker-raffles-work","how-to-spot-a-fake-sneaker-release-ad-or-raffle","how-nike-snkrs-draw-and-line-launches-work"]),
+ (re.compile(r"SNKRS|style code",re.I),["how-nike-snkrs-draw-and-line-launches-work","nike-style-code-lookup","snkrs-exclusive-access"]),
+ (re.compile(r"\bsize|sizing|width",re.I),["nike-sizing-by-model","nike-kids-shoe-sizes-c-and-y-explained","new-balance-shoe-widths-explained"]),
+ (re.compile(r"\badidas|confirmed",re.I),["adidas-confirmed-app-raffle-queue-invite","adidas-shoe-size-chart-us-uk-eu"]),
+ (re.compile(r"new balance",re.I),["new-balance-shoe-widths-explained"]),
+ (re.compile(r"reebok|asics|puma|converse",re.I),["how-online-sneaker-raffles-work","how-to-spot-a-fake-sneaker-release-ad-or-raffle","what-is-a-sneaker-restock-and-how-to-catch-one"]),
+ (re.compile(r"stockx|goat|authentic|box label",re.I),["how-stockx-and-goat-verify-sneakers","how-to-check-a-nike-box-label-for-authenticity"]),
+]
+def _toks(a):
+    out=set()
+    for w in re.findall(r"[a-z0-9]+",(a["title"]+" "+a["slug"]).lower()):
+        if w in _STOP: continue
+        if len(w)>3 or any(c.isdigit() for c in w): out.add(w)
+    return out
+def _ov(ta,tb):
+    s=0
+    for w in ta&tb: s+=1 if w.isdigit() else 4
+    return s
+def _add_pick(picked,seen,b):
+    if not b or b["slug"] in seen: return
+    img=b.get("image")
+    if not img or img not in _OKIMG: return
+    seen.add(b["slug"]); picked.append(b)
+def pick_related(a):
+    picked=[]; seen={a["slug"]}
+    for href,_name in RELATED.get(a["slug"],[]):
+        m=re.search(r"/news/([^/]+)/",href)
+        if m: _add_pick(picked,seen,_BYART.get(m.group(1)))
+    ta=_toks(a); cands=[]
+    for b in ART:
+        if b["slug"] in seen: continue
+        s=_ov(ta,_toks(b))
+        if a.get("category") and a.get("category")==b.get("category") and a.get("category") not in ("Release Dates","Guides"): s+=2
+        if s>=4: cands.append((s,pub_dt(b),b))
+    cands.sort(key=lambda x:(x[0],x[1]),reverse=True)
+    for _s,_dt,b in cands:
+        _add_pick(picked,seen,b)
+        if len(picked)>=4: break
+    if len(picked)<4:
+        blob=a["title"]+" "+a["slug"]+" "+re.sub(r"<[^>]+>"," ",a.get("body",""))[:400]
+        slugs=list(_CAT_GUIDES.get(a.get("category"),[]))
+        for rx,gs in _INTENT:
+            if rx.search(blob): slugs.extend(gs)
+        for s in slugs:
+            if len(picked)>=4: break
+            _add_pick(picked,seen,_BYART.get(s))
+    return picked[:4]
+def next_html(items,heading):
+    if len(items)<3: return ""
+    lis="".join(f'<li><a href="/news/{b["slug"]}/"><img src="{e(b["image"])}" alt="" width="160" height="90" loading="lazy" decoding="async"><span>{e(b["title"])}</span></a></li>' for b in items)
+    return f'<nav class="next-reads" aria-label="{e(heading)}"><h2>{heading}</h2><ul class="next-read-list">{lis}</ul><p class="small">Story photos are <a href="/image-policy/">AI-generated</a>.</p></nav>'
+def insert_mid(body,block):
+    if not block: return body
+    parts=body.split("</p>")
+    if len(parts)>=4: return "</p>".join(parts[:2])+"</p>"+block+"</p>".join(parts[2:])
+    h=body.find("</h2>")
+    if h!=-1: return body[:h+5]+block+body[h+5:]
+    return body+block
+_LINK_RULES=[
+ (re.compile(r"\bstyle codes?\b",re.I),"/style-codes/"),
+ (re.compile(r"\bSNKRS\b"),"/news/how-nike-snkrs-draw-and-line-launches-work/"),
+ (re.compile(r"\bFoot Locker\b"),"/news/how-restocks-work-at-nike-foot-locker-and-finish-line/"),
+ (re.compile(r"\braffles?\b",re.I),"/news/how-online-sneaker-raffles-work/"),
+ (re.compile(r"\brestocks?\b",re.I),"/news/what-is-a-sneaker-restock-and-how-to-catch-one/"),
+ (re.compile(r"\brelease calendar\b",re.I),"/releases/"),
+]
+def autolink(body,a):
+    rules=list(_LINK_RULES)
+    title=a["title"]; cat=a.get("category") or ""
+    if re.search(r"\bJordan\b",title) or cat=="Jordan": rules.append((re.compile(r"\bJordan\b"),"/brands/jordan/"))
+    elif re.search(r"\badidas\b",title,re.I) or cat=="adidas": rules.append((re.compile(r"\badidas\b"),"/brands/adidas/"))
+    elif re.search(r"New Balance",title) or cat=="New Balance": rules.append((re.compile(r"\bNew Balance\b"),"/brands/new-balance/"))
+    elif re.search(r"\bNike\b",title) or cat=="Nike": rules.append((re.compile(r"\bNike\b"),"/brands/nike/"))
+    existing=set(re.findall(r'href="([^"]+)"',body))
+    parts=re.split(r"(<[^>]+>)",body)
+    in_a=in_h=0; added=0; used=set()
+    for i,part in enumerate(parts):
+        if part.startswith("<"):
+            if re.match(r"<a\b",part,re.I): in_a+=1
+            elif re.match(r"</a\b",part,re.I): in_a=max(0,in_a-1)
+            elif re.match(r"<h[1-6]\b",part,re.I): in_h+=1
+            elif re.match(r"</h[1-6]\b",part,re.I): in_h=max(0,in_h-1)
+            continue
+        if in_a or in_h or added>=3: continue
+        for rx,href in rules:
+            if href in existing or href in used: continue
+            if href.rstrip("/")==f"/news/{a['slug']}": continue
+            m=rx.search(part)
+            if not m: continue
+            part=part[:m.start()]+f'<a href="{href}">{m.group(0)}</a>'+part[m.end():]
+            used.add(href); added+=1
+            break
+        parts[i]=part
+    return "".join(parts)
+def background_links(a,picked):
+    used={f"/news/{b['slug']}/" for b in picked}
+    links=[]
+    def add(href,text):
+        if href in used or any(h==href for h,_ in links): return
+        links.append((href,text)); used.add(href)
+    blob=(a["title"]+" "+a["slug"]).lower()
+    if "jordan" in blob or a.get("category")=="Jordan": add("/brands/jordan/","Jordan hub: dates, stories and buying guides")
+    elif "adidas" in blob or a.get("category")=="adidas": add("/brands/adidas/","adidas hub: dates, stories and buying guides")
+    elif "new balance" in blob or a.get("category")=="New Balance": add("/brands/new-balance/","New Balance hub: dates, stories and buying guides")
+    elif re.search(r"nike|snkrs|kobe|dunk|foamposite",blob) or a.get("category")=="Nike": add("/brands/nike/","Nike hub: dates, stories and buying guides")
+    is_guide=a["slug"] in _GUIDE_SLUGS or a.get("category")=="Guides"
+    if is_guide:
+        add("/guides/","All sneaker guides"); add("/style-codes/","Style code lookup"); add("/releases/","Release calendar")
+    elif a.get("category")=="Restocks" or "restock" in blob:
+        add("/restocks/","Restock log"); add("/news/what-is-a-sneaker-restock-and-how-to-catch-one/","What a sneaker restock is, and how to catch one"); add("/news/how-to-spot-a-fake-sneaker-release-ad-or-raffle/","How to spot a fake release ad or raffle"); add("/guides/","Sneaker guides")
+    elif a.get("category")=="Raffles" or "raffle" in blob:
+        add("/raffles/","Raffles and draws"); add("/news/how-online-sneaker-raffles-work/","How online sneaker raffles work"); add("/guides/","Sneaker guides")
+    else:
+        add("/releases/","Release calendar"); add("/guides/","Sneaker guides"); add("/style-codes/","Style code lookup")
+    ta=_toks(a); later=[]
+    for b in ART:
+        if b["slug"]==a["slug"] or pub_dt(b)<=pub_dt(a): continue
+        if _ov(ta,_toks(b))>=4: later.append(b)
+    if later:
+        later.sort(key=pub_dt,reverse=True)
+        b=later[0]
+        add(f"/news/{b['slug']}/","Later coverage: "+b["title"])
+    return links,is_guide
+_REL_OK=_REL_SHORT=0
 for a in ART:
     srcs="".join(f'<li><a href="{e(u)}">{e(t)}</a> <span class="source-meta">{e(p)}, {nice(d)}</span></li>' for t,u,p,d in a["sources"])
     iso,label=stamp(a)
+    published=pub_dt(a).strftime("%Y-%m-%dT%H:%M:%SZ")
+    if a.get("updated"):
+        raw=a["updated"]; mod_dt=datetime.datetime.fromisoformat(raw[:10]+"T18:00:00+00:00") if len(raw)<=10 else datetime.datetime.fromisoformat(raw)
+        if mod_dt.tzinfo is None: mod_dt=mod_dt.replace(tzinfo=datetime.timezone.utc)
+        pub=pub_dt(a)
+        if mod_dt<pub: mod_dt=pub
+        modified=mod_dt.astimezone(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        mod_label=nice(mod_dt.astimezone(ZoneInfo("America/New_York")).date().isoformat())
+        lastmod=mod_dt.astimezone(datetime.timezone.utc).date().isoformat()
+    else:
+        modified,mod_label,lastmod=published,label,a["date"]
     fig=""
     if a.get("image"):
         fig=f'<figure class="story-figure"><img src="{e(a["image"])}" alt="{e(a.get("image_alt") or a["title"])}" width="1280" height="720"><figcaption>AI-generated image. <a class="src" href="/image-policy/">Source</a></figcaption></figure>'
-    body=f"""<article class="story-page"><header class="article-head"><p class="story-kicker"><span class="chip">{e(a['category'])}</span> <time datetime="{iso}">{e(label)}</time></p><h1>{e(a['title'])}</h1><p class="byline">By the {N} desk</p><p class="dek">{e(a['description'])}</p><p class="last-updated">Last updated <time datetime="{iso}">{e(label)}</time></p></header>
-{fig}<div class="prose">{a['body']}</div><section class="sources" aria-labelledby="sh"><h2 id="sh">Sources</h2><ol>{srcs}</ol></section>{related_nav(a['slug'], e)}</article>"""
-    published=pub_dt(a).strftime("%Y-%m-%dT%H:%M:%SZ")
-    ld=[{"@type":"NewsArticle","headline":a["title"],"description":a["description"],"datePublished":published,"dateModified":published,"mainEntityOfPage":U+"/news/"+a["slug"]+"/","author":{"@type":"Organization","name":N+" desk","url":U+"/about/"},"publisher":{"@id":U+"/#org"},"isBasedOn":[s[1] for s in a["sources"]]}]
+    prose=a["body"]
+    if len(re.findall(r'href="(/[^"]+)"',prose))<3: prose=autolink(prose,a)
+    reads=pick_related(a)
+    if len(reads)>=3: _REL_OK+=1
+    else: _REL_SHORT+=1
+    prose=insert_mid(prose,next_html(reads,"Read next"))
+    end=next_html(reads,"Keep reading")
+    bglinks,is_guide=background_links(a,reads)
+    bg_h="More on this" if is_guide else "Background"
+    bg=""
+    if bglinks:
+        blis="".join(f'<li><a href="{href}">{e(text)}</a></li>' for href,text in bglinks)
+        bg=f'<aside class="background-reads" aria-label="{e(bg_h)}"><h2>{bg_h}</h2><ul>{blis}</ul></aside>'
+    body=f"""<article class="story-page"><header class="article-head"><p class="story-kicker"><span class="chip">{e(a['category'])}</span> <time datetime="{iso}">{e(label)}</time></p><h1>{e(a['title'])}</h1><p class="byline">By the {N} desk</p><p class="dek">{e(a['description'])}</p><p class="last-updated">Last updated <time datetime="{modified}">{e(mod_label)}</time></p></header>
+{fig}<div class="prose">{prose}</div><section class="sources" aria-labelledby="sh"><h2 id="sh">Sources</h2><ol>{srcs}</ol></section>{end}{bg}</article>"""
+    ld=[{"@type":"NewsArticle","headline":a["title"],"description":a["description"],"datePublished":published,"dateModified":modified,"mainEntityOfPage":U+"/news/"+a["slug"]+"/","author":{"@type":"Organization","name":N+" desk","url":U+"/about/"},"publisher":{"@id":U+"/#org"},"isBasedOn":[s[1] for s in a["sources"]]}]
     if a.get("image"): ld[0]["image"]=U+a["image"]
-    write(f"/news/{a['slug']}/",a["title"],a["description"],body,ld,lastmod=a["date"],image=a.get("image"))
+    write(f"/news/{a['slug']}/",a["title"],a["description"],body,ld,lastmod=lastmod,image=a.get("image"))
 cards="".join(f'<li class="story-card"><p class="story-kicker"><span class="chip">{e(a["category"])}</span> <time datetime="{stamp(a)[0]}">{e(stamp(a)[1])}</time></p><h3><a href="/news/{a["slug"]}/">{e(a["title"])}</a></h3><p>{e(a["description"])}</p></li>' for a in ART)
 write("/news/","Sneaker news","Sourced sneaker release and restock news.",f"<h1>Sneaker news</h1><ul class='story-grid'>{cards}</ul>",lastmod=max((a["date"] for a in ART), default="2026-10-27"))
 # guides hub: evergreen how-to and where-to-buy pages, grouped by task
@@ -220,3 +383,4 @@ if legal_gate.main([]) != 0:
     subprocess.run(["git","checkout","--","docs"],cwd=root); subprocess.run(["git","clean","-fdq","docs"],cwd=root)
     print("HOLD_REVIEW: build refused, docs/ restored to the last published version"); sys.exit(3)
 print(len(pages),"pages")
+print(f"next-reads: {_REL_OK} articles with 3 or more, {_REL_SHORT} with fewer")
