@@ -1,5 +1,17 @@
 # Contextual internal links between 12 Nov news and evergreen guides.
 RELATED = {
+    "pharrell-adidas-virginia-adistar-jellyfish-kh6728-sneakersnstuff-november-21": [
+        ("/news/adidas-don-issue-8-solar-turbo-ki9285-november-21-2026/", "adidas D.O.N. Issue 8 Solar Turbo, out the same morning"),
+        ("/news/sneaker-releases-november-1-7-2026/", "November 1 to 7 roundup, including the earlier Jellyfish code"),
+        ("/news/whitaker-group-adidas-campus-00s-do-not-duplicate-dash-grey-la6870-november-20/", "Whitaker Group adidas Campus 00s"),
+        ("/news/adidas-shoe-size-chart-us-uk-eu/", "adidas shoe size chart"),
+    ],
+    "how-nike-snkrs-draw-and-line-launches-work": [
+        ("/news/snkrs-exclusive-access/", "What SNKRS Exclusive Access is"),
+        ("/news/air-jordan-4-bred-november-27-2026/", "Air Jordan 4 Bred, a later date on the SNKRS calendar"),
+        ("/news/air-jordan-11-space-jam-2026-december-12-ct8012-900-235-jumpman-jam/", "Air Jordan 11 Space Jam, 12 December"),
+        ("/news/corteiz-nike-shox-r419-metallic-silver-iq9951-001-november-20/", "Corteiz x Nike Shox R419"),
+    ],
     "jordan-tatum-5-south-beach-november-12": [
         ("/news/nike-sizing-by-model/", "Nike sizing by model: charts, conversions and how to measure"),
         ("/news/nike-style-code-lookup/", "How to look up a Nike style code or SKU"),

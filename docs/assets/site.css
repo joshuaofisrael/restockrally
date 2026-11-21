@@ -52,7 +52,9 @@ select,input,textarea{font:inherit;padding:.5rem;border:2px solid var(--muted);b
 .site-footer h2{font-size:1rem;color:var(--gold)}.site-footer ul{list-style:none;padding:0;margin:0}.site-footer li{margin:.35rem 0}.site-footer a,.site-footer .consent-link{color:var(--header-text)}
 .consent-link{background:none;border:0;padding:0;font:inherit;text-decoration:underline;cursor:pointer}
 .next-reads{margin:1.6rem 0;padding-top:1rem;border-top:1px solid var(--line)}
-.next-reads h2,.background-reads h2{font-size:1.05rem;margin:0 0 .7rem}
+.next-reads h2,.background-reads h2{font-size:1.05rem;margin:1rem 0 .45rem}
+.background-reads h2:first-child{margin-top:0}
+.background-reads p{margin:.2rem 0 .8rem;font-size:.95rem}
 .next-read-list{list-style:none;margin:0;padding:0;display:grid;gap:.65rem}
 .next-read-list a{display:grid;grid-template-columns:6.5rem 1fr;gap:.75rem;align-items:center;color:var(--link);font-family:var(--sans);font-size:.95rem;line-height:1.3;text-decoration:underline;text-underline-offset:.14em}
 .next-read-list img{width:6.5rem;height:3.7rem;object-fit:cover;border-radius:4px;background:var(--line)}
