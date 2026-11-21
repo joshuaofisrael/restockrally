@@ -142,7 +142,7 @@ ART=sorted(ARTICLES,key=lambda a:pub_dt(a),reverse=True)
 _BYART={a["slug"]:a for a in ART}
 _OKIMG=legal_gate.rights()
 _GUIDE_SLUGS={"how-online-sneaker-raffles-work","how-nike-snkrs-draw-and-line-launches-work","snkrs-exclusive-access","adidas-confirmed-app-raffle-queue-invite","snkrs-vs-retailers","how-to-spot-a-fake-sneaker-release-ad-or-raffle","what-is-a-sneaker-restock-and-how-to-catch-one","how-restocks-work-at-nike-foot-locker-and-finish-line","air-jordan-4-bred-2026-where-to-buy","air-jordan-11-green-screen-where-to-buy","adidas-ae-3-lucid-pink-where-to-buy","nike-sizing-by-model","adidas-shoe-size-chart-us-uk-eu","new-balance-shoe-widths-explained","nike-kids-shoe-sizes-c-and-y-explained","how-stockx-and-goat-verify-sneakers","how-to-check-a-nike-box-label-for-authenticity","nike-style-code-lookup","can-you-return-snkrs-launch-sneakers-nike-terms-of-sale","shipping-delays-mail-order-rule"}
-_STOP={"the","and","for","with","from","this","that","your","how","what","when","where","who","are","was","were","has","have","its","into","over","than","then","them","they","will","just","back","out","off","all","new","low","high","retro","release","releases","date","dates","november","december","october","january","february","march","sneaker","sneakers","shoes","shoe","pair","pairs","nike","adidas","jordan","air","balance","pro","protro","womens","women","mens","men","size","sizes","2026","2025","today","tomorrow","yesterday","tonight","launches","launch","launched","still","coming","first","official","images","live","now","went","available","price","retail","returns","return","dropping","drops","drop","week","weeks","original","colorway","colourway","friday","saturday","sunday","monday","tuesday","wednesday","thursday"}
+_STOP={"the","and","for","with","from","this","that","your","how","what","when","where","who","are","was","were","has","have","its","into","over","than","then","them","they","will","just","back","out","off","all","new","low","high","retro","release","releases","date","dates","november","december","october","january","february","march","sneaker","sneakers","shoes","shoe","pair","pairs","air","pro","protro","womens","women","mens","men","size","sizes","2026","2025","today","tomorrow","yesterday","tonight","launches","launch","launched","still","coming","first","official","images","live","now","went","available","price","retail","returns","return","dropping","drops","drop","week","weeks","original","colorway","colourway","friday","saturday","sunday","monday","tuesday","wednesday","thursday"}
 _CAT_GUIDES={
  "Jordan":["how-nike-snkrs-draw-and-line-launches-work","nike-style-code-lookup","nike-sizing-by-model","how-to-spot-a-fake-sneaker-release-ad-or-raffle"],
  "Nike":["how-nike-snkrs-draw-and-line-launches-work","nike-style-code-lookup","snkrs-vs-retailers","how-to-spot-a-fake-sneaker-release-ad-or-raffle"],
@@ -249,35 +249,65 @@ def autolink(body,a):
             break
         parts[i]=part
     return "".join(parts)
-def background_links(a,picked):
+_BRANDS=("new balance","adidas","jordan","reebok","asics","puma","converse","nike")
+def _brand_of(a):
+    blob=(a["title"]+" "+a["slug"]+" "+(a.get("category") or "")).lower()
+    for name in _BRANDS:
+        if name in blob: return name
+    return ""
+def follow_section(a,picked):
+    """News follow-up and background links (engagement rule e), separate from the thumbnail next-reads."""
     used={f"/news/{b['slug']}/" for b in picked}
-    links=[]
-    def add(href,text):
-        if href in used or any(h==href for h,_ in links): return
-        links.append((href,text)); used.add(href)
+    used.add(f"/news/{a['slug']}/")
+    brand=_brand_of(a)
+    ta=_toks(a)
+    pool=[]
+    for b in ART:
+        if b["slug"]==a["slug"]: continue
+        href=f"/news/{b['slug']}/"
+        if href in used: continue
+        s=_ov(ta,_toks(b))
+        if brand and brand in (b["title"]+" "+b["slug"]).lower(): s+=6
+        if s>=4: pool.append((s,pub_dt(b),b))
+    pool.sort(key=lambda x:(x[0],x[1]),reverse=True)
+    later=[]; earlier=[]
+    for _s,_dt,b in pool:
+        if pub_dt(b)>pub_dt(a):
+            if len(later)<2: later.append(b)
+        elif len(earlier)<3: earlier.append(b)
+    hubs=[]
+    def add_hub(href,text):
+        if any(h==href for h,_ in hubs): return
+        hubs.append((href,text))
     blob=(a["title"]+" "+a["slug"]).lower()
-    if "jordan" in blob or a.get("category")=="Jordan": add("/brands/jordan/","Jordan hub: dates, stories and buying guides")
-    elif "adidas" in blob or a.get("category")=="adidas": add("/brands/adidas/","adidas hub: dates, stories and buying guides")
-    elif "new balance" in blob or a.get("category")=="New Balance": add("/brands/new-balance/","New Balance hub: dates, stories and buying guides")
-    elif re.search(r"nike|snkrs|kobe|dunk|foamposite",blob) or a.get("category")=="Nike": add("/brands/nike/","Nike hub: dates, stories and buying guides")
+    if brand=="jordan": add_hub("/brands/jordan/","Jordan hub: dates, stories and buying guides")
+    elif brand=="adidas": add_hub("/brands/adidas/","adidas hub: dates, stories and buying guides")
+    elif brand=="new balance": add_hub("/brands/new-balance/","New Balance hub: dates, stories and buying guides")
+    elif brand=="nike": add_hub("/brands/nike/","Nike hub: dates, stories and buying guides")
     is_guide=a["slug"] in _GUIDE_SLUGS or a.get("category")=="Guides"
     if is_guide:
-        add("/guides/","All sneaker guides"); add("/style-codes/","Style code lookup"); add("/releases/","Release calendar")
+        add_hub("/guides/","All sneaker guides"); add_hub("/style-codes/","Style code lookup"); add_hub("/releases/","Release calendar")
     elif a.get("category")=="Restocks" or "restock" in blob:
-        add("/restocks/","Restock log"); add("/news/what-is-a-sneaker-restock-and-how-to-catch-one/","What a sneaker restock is, and how to catch one"); add("/news/how-to-spot-a-fake-sneaker-release-ad-or-raffle/","How to spot a fake release ad or raffle"); add("/guides/","Sneaker guides")
+        add_hub("/restocks/","Restock log"); add_hub("/guides/","Sneaker guides")
     elif a.get("category")=="Raffles" or "raffle" in blob:
-        add("/raffles/","Raffles and draws"); add("/news/how-online-sneaker-raffles-work/","How online sneaker raffles work"); add("/guides/","Sneaker guides")
+        add_hub("/raffles/","Raffles and draws"); add_hub("/guides/","Sneaker guides")
     else:
-        add("/releases/","Release calendar"); add("/guides/","Sneaker guides"); add("/style-codes/","Style code lookup")
-    ta=_toks(a); later=[]
-    for b in ART:
-        if b["slug"]==a["slug"] or pub_dt(b)<=pub_dt(a): continue
-        if _ov(ta,_toks(b))>=4: later.append(b)
+        add_hub("/releases/","Release calendar"); add_hub("/guides/","Sneaker guides"); add_hub("/style-codes/","Style code lookup")
+    parts=[]
+    def news_lis(items):
+        return "".join(f'<li><a href="/news/{b["slug"]}/">{e(b["title"])}</a></li>' for b in items)
+    def hub_lis():
+        return "".join(f'<li><a href="{href}">{e(text)}</a></li>' for href,text in hubs)
     if later:
-        later.sort(key=pub_dt,reverse=True)
-        b=later[0]
-        add(f"/news/{b['slug']}/","Later coverage: "+b["title"])
-    return links,is_guide
+        parts.append("<h2>What happened next</h2><ul>"+news_lis(later)+"</ul>")
+    elif not is_guide:
+        parts.append("<h2>What happened next</h2><p>This is the latest story we have on this release.</p>")
+    if earlier:
+        parts.append("<h2>Background</h2><ul>"+news_lis(earlier)+"</ul>")
+    if hubs:
+        parts.append("<h2>More from this section</h2><ul>"+hub_lis()+"</ul>")
+    if not parts: return ""
+    return '<aside class="background-reads" aria-label="What happened next and background">'+"".join(parts)+"</aside>"
 _REL_OK=_REL_SHORT=0
 for a in ART:
     srcs="".join(f'<li><a href="{e(u)}">{e(t)}</a> <span class="source-meta">{e(p)}, {nice(d)}</span></li>' for t,u,p,d in a["sources"])
@@ -303,12 +333,7 @@ for a in ART:
     else: _REL_SHORT+=1
     prose=insert_mid(prose,next_html(reads,"Read next"))
     end=next_html(reads,"Keep reading")
-    bglinks,is_guide=background_links(a,reads)
-    bg_h="More on this" if is_guide else "Background"
-    bg=""
-    if bglinks:
-        blis="".join(f'<li><a href="{href}">{e(text)}</a></li>' for href,text in bglinks)
-        bg=f'<aside class="background-reads" aria-label="{e(bg_h)}"><h2>{bg_h}</h2><ul>{blis}</ul></aside>'
+    bg=follow_section(a,reads)
     body=f"""<article class="story-page"><header class="article-head"><p class="story-kicker"><span class="chip">{e(a['category'])}</span> <time datetime="{iso}">{e(label)}</time></p><h1>{e(a['title'])}</h1><p class="byline">By the {N} desk</p><p class="dek">{e(a['description'])}</p><p class="last-updated">Last updated <time datetime="{modified}">{e(mod_label)}</time></p></header>
 {fig}<div class="prose">{prose}</div><section class="sources" aria-labelledby="sh"><h2 id="sh">Sources</h2><ol>{srcs}</ol></section>{end}{bg}</article>"""
     ld=[{"@type":"NewsArticle","headline":a["title"],"description":a["description"],"datePublished":published,"dateModified":modified,"mainEntityOfPage":U+"/news/"+a["slug"]+"/","author":{"@type":"Organization","name":N+" desk","url":U+"/about/"},"publisher":{"@id":U+"/#org"},"isBasedOn":[s[1] for s in a["sources"]]}]
