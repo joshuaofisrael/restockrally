@@ -47,7 +47,7 @@ def head(title,desc,path,ld,image=None):
 <meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:site_name" content="{N}"><meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc[:155])}"><meta property="og:url" content="{U}{path}"><meta property="og:type" content="{'article' if path.startswith('/news/') and path!='/news/' else 'website'}">{ogimg}<meta name="twitter:card" content="{card}">
 <link rel="icon" href="/assets/logo.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/site.css"><link rel="alternate" type="application/rss+xml" href="/feed.xml" title="{N}">
 <script>window.__rrGaId={json.dumps(SITE['ga_id'])};window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('consent','default',{{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',functionality_storage:'denied',personalization_storage:'denied',security_storage:'granted',wait_for_update:500}});</script><script defer src="/consent.js"></script>
-<script type="application/ld+json">{json.dumps({"@context":"https://schema.org","@graph":[ORG]+ld})}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5681559774142917" crossorigin="anonymous"></script></head>"""
+<script type="application/ld+json">{json.dumps({"@context":"https://schema.org","@graph":[ORG]+ld})}</script></head>"""
 def chrome(body,path):
     nav="".join(f'<li><a href="{h}"{" aria-current=\"page\"" if path.startswith(h) else ""}>{t}</a></li>' for h,t in NAV)
     return f"""<body><a class="skip-link" href="#main">Skip to content</a>
@@ -396,7 +396,7 @@ sm="".join(f"<url><loc>{U}{p}</loc><lastmod>{lm}</lastmod></url>" for p,lm in pa
 open(f"{OUT}/sitemap.xml","w").write(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{sm}</urlset>')
 bots=["Googlebot","Mediapartners-Google","Bingbot","OAI-SearchBot","GPTBot","ChatGPT-User","PerplexityBot","ClaudeBot","Claude-SearchBot","Google-Extended","Applebot","Applebot-Extended","CCBot","DuckDuckBot"]
 open(f"{OUT}/robots.txt","w").write("".join(f"User-agent: {b}\nAllow: /\n\n" for b in bots)+f"User-agent: *\nAllow: /\n\nSitemap: {U}/sitemap.xml\n")
-open(f"{OUT}/ads.txt","w").write("google.com, pub-5681559774142917, DIRECT, f08c47fec0942fa0\n")
+open(f"{OUT}/ads.txt","w").write("")  # AdSense detached 21 Nov 2026 until the account is approved (see seo-central/site-seo-rules.md). Do not re-add.
 open(f"{OUT}/{SITE['indexnow_key']}.txt","w").write(SITE["indexnow_key"])
 open(f"{OUT}/CNAME","w").write("restockrally.com\n"); open(f"{OUT}/.nojekyll","w").write("")
 open(f"{OUT}/llms.txt","w").write(f"# {N}\n\n> {SITE['tagline']}. Sourced sneaker release dates, restocks and raffles.\n\n## Key pages\n- [Release calendar]({U}/releases/)\n- [Restocks]({U}/restocks/)\n- [Raffles]({U}/raffles/)\n- [Guides]({U}/guides/)\n- [Brand hubs]({U}/brands/)\n- [Sneaker style code lookup]({U}/style-codes/)\n- [Nike]({U}/brands/nike/)\n- [Jordan]({U}/brands/jordan/)\n- [adidas]({U}/brands/adidas/)\n- [New Balance]({U}/brands/new-balance/)\n- [News]({U}/news/)\n- [Sources & Ethics]({U}/sources-ethics/)\n\n## Articles\n"+"".join(f"- [{a['title']}]({U}/news/{a['slug']}/): {a['description']}\n" for a in ART))
